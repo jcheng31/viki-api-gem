@@ -69,7 +69,7 @@ module Viki::Core
           cache_key += "-#{k}=#{v}"
         end
       end
-      "#{Viki.cache_hash_key}.#{cache_key}"
+      "#{Viki.cache_ns}.#{cache_key}"
     end
   end
 end
