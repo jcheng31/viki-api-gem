@@ -23,7 +23,6 @@ end
 Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
-  config.extend VCR::RSpec::Macros
   config.include LoginHelper
 
   config.order = "random"
