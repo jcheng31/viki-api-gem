@@ -114,22 +114,6 @@ Viki::Cover.fetch(container_id: '50c', language: 'en') do |response|
 end
 ```
 
-* Login a user
-
-```ruby
-Viki::User.authenticate(username, password, persist_longer) do |response|
-  puts response.inspect
-end
-```
-
-* Login a user using Facebook
-
-```ruby
-Viki::User.auth_facebook(fb_token) do |response|
-  puts response.inspect
-end
-```
-
 * Subscribe a user to a container
 
 ```ruby
