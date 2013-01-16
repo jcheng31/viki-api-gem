@@ -5,6 +5,7 @@ PATH
       addressable (~> 2.3)
       oj (~> 1.4)
       typhoeus (~> 0.5)
+      viki_utils
 
 GEM
   remote: http://rubygems.org/
