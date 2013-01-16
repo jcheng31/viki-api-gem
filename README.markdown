@@ -53,10 +53,81 @@ Configuration
 
 * `c.logger` Instance of `Logger` you want the gem to use. Default to `Logger.new(STDOUT)`. **Optional**
 
-Usage
------
+Usage by examples
+-----------------
 
-WIP
+**NOTE:** Remember to run `Viki.run` after fetching.
+
+* Fetch a list of episodes
+```
+  Viki::Episode.fetch do |response|
+    puts response.value.inspect
+  end
+```
+
+* Fetch a single episode
+```
+  Viki::Episode.fetch(id: "44699v") do |response|
+    puts response.value.inspect
+  end
+```
+
+* Fetch trending movies (videos)
+```
+  Viki::Movie.trending do |response|
+    puts response.value.inspect
+  end
+```
+
+* Fetch recommended videos for an episode
+```
+  Viki::Video.recommendations("44699v") do |response|
+    puts response.value.inspect
+  end
+```
+
+* Fetch popular TV shows
+```
+  Viki::Series.popular do |response|
+    puts response.value.inspect
+  end
+```
+
+* Fetch upcoming TV shows
+```
+  Viki::Series.upcoming do |response|
+    puts response.value.inspect
+  end
+```
+
+* Fetch a container cover page
+```
+  Viki::Cover.fetch(container_id: '50c', language: 'en') do |response|
+    puts response.value.inspect
+  end
+```
+
+* Login a user
+```
+  Viki::User.authenticate(username, password, persist_longer) do |response|
+    puts response.inspect
+  end
+```
+
+* Login a user using Facebook
+```
+  Viki::User.auth_facebook(fb_token) do |response|
+    puts response.inspect
+  end
+```
+
+* Subscribe a user to a container
+```
+  Viki::Subscription.create({user_id: user_id}, {'resource_id' => container_id}) do |response|
+    puts response.inspect
+  end
+```
+
 
 Development
 -----------
