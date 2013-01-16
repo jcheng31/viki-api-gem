@@ -8,14 +8,14 @@ Installation
 
 Add the gem in your `Gemfile` and run `bundle`
 
-```
+```ruby
 gem "viki-api", require: 'viki'
 ```
 
 Now you need to configure it. In a Rails project you can create a `viki_api.rb` file in your
 initializers folder with the following content:
 
-```
+```ruby
 Viki.configure do |c|
   # Required fields
   c.salt = 'your_salt'
@@ -59,73 +59,83 @@ Usage by examples
 **NOTE:** Remember to run `Viki.run` after fetching.
 
 * Fetch a list of episodes
-```
-  Viki::Episode.fetch do |response|
-    puts response.value.inspect
-  end
+
+```ruby
+Viki::Episode.fetch do |response|
+  puts response.value.inspect
+end
 ```
 
 * Fetch a single episode
-```
-  Viki::Episode.fetch(id: "44699v") do |response|
-    puts response.value.inspect
-  end
+
+```ruby
+Viki::Episode.fetch(id: "44699v") do |response|
+  puts response.value.inspect
+end
 ```
 
 * Fetch trending movies (videos)
-```
-  Viki::Movie.trending do |response|
-    puts response.value.inspect
-  end
+
+```ruby
+Viki::Movie.trending do |response|
+  puts response.value.inspect
+end
 ```
 
 * Fetch recommended videos for an episode
-```
-  Viki::Video.recommendations("44699v") do |response|
-    puts response.value.inspect
-  end
+
+```ruby
+Viki::Video.recommendations("44699v") do |response|
+  puts response.value.inspect
+end
 ```
 
 * Fetch popular TV shows
-```
-  Viki::Series.popular do |response|
-    puts response.value.inspect
-  end
+
+```ruby
+Viki::Series.popular do |response|
+  puts response.value.inspect
+end
 ```
 
 * Fetch upcoming TV shows
-```
-  Viki::Series.upcoming do |response|
-    puts response.value.inspect
-  end
+
+```ruby
+Viki::Series.upcoming do |response|
+  puts response.value.inspect
+end
 ```
 
 * Fetch a container cover page
-```
-  Viki::Cover.fetch(container_id: '50c', language: 'en') do |response|
-    puts response.value.inspect
-  end
+
+```ruby
+Viki::Cover.fetch(container_id: '50c', language: 'en') do |response|
+  puts response.value.inspect
+end
 ```
 
 * Login a user
-```
-  Viki::User.authenticate(username, password, persist_longer) do |response|
-    puts response.inspect
-  end
+
+```ruby
+Viki::User.authenticate(username, password, persist_longer) do |response|
+  puts response.inspect
+end
 ```
 
 * Login a user using Facebook
-```
-  Viki::User.auth_facebook(fb_token) do |response|
-    puts response.inspect
-  end
+
+```ruby
+Viki::User.auth_facebook(fb_token) do |response|
+  puts response.inspect
+end
 ```
 
 * Subscribe a user to a container
-```
-  Viki::Subscription.create({user_id: user_id}, {'resource_id' => container_id}) do |response|
-    puts response.inspect
-  end
+
+```ruby
+Viki::Subscription.create({user_id: user_id}, {'resource_id' => container_id}) do |response|
+  puts response.inspect
+end
 ```
 
 
@@ -136,7 +146,7 @@ Make sure you have bundler >= 1.2.
 
 To develop with a local copy of the viki-api-gem, run the following command:
 
-```
+```ruby
 bundle config local.viki-api-gem ~/workspace/viki_api_gem/
 ```
 
