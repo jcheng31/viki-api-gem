@@ -4,7 +4,7 @@ require 'typhoeus'
 require 'ostruct'
 require 'openssl'
 require 'addressable/uri'
-require 'soautilsrb'
+require 'viki_utils'
 
 module Viki
   class << self
@@ -26,7 +26,7 @@ module Viki
     configurator = Configurator.new
     block.call configurator
 
-    @signer = Viki::SOA::UriSigner.new(configurator.salt)
+    @signer = Viki::UriSigner.new(configurator.salt)
     @salt = configurator.salt
     @app_id = configurator.app_id
     @domain = configurator.domain
