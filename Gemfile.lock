@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    viki-api-gem (0.0.6)
+    viki-api (0.0.6)
       addressable (~> 2.3)
       oj (~> 1.4)
       typhoeus (~> 0.5)
@@ -44,6 +44,6 @@ DEPENDENCIES
   rspec (~> 2.11)
   timecop (~> 0.5)
   vcr (~> 2.3)
-  viki-api-gem!
+  viki-api!
   viki_utils
   webmock (~> 1.9)

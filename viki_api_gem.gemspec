@@ -3,15 +3,13 @@ $:.push File.expand_path("../lib", __FILE__)
 require "viki/version"
 
 Gem::Specification.new do |s|
-  s.name        = "viki-api-gem"
+  s.name        = "viki-api"
   s.version     = Viki::VERSION
-  s.authors     = ["Albert Callarisa Roca", "Fadhli Rahim"]
+  s.authors     = ["Albert Callarisa Roca", "Fadhli Rahim", "Nuttanart Pornprasitsakul"]
   s.email       = ["engineering@viki.com"]
   s.homepage    = "http://dev.viki.com"
   s.summary     = "A thin wrapper around the Viki V4 API"
-  s.description = "Viki API gem is an official wrapper gem for the Viki V4 API."
-
-  s.rubyforge_project = "viki-api-gem"
+  s.description = "Official ruby wrapper to access the Viki V4 API."
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
