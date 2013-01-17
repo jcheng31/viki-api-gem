@@ -25,9 +25,6 @@ Viki.configure do |c|
 
   # Optional
   c.user_country = -> { 'the country of your user' }
-  c.cache = YOUR_REDIS_INSTANCE
-  c.cache_ns = 'namespace_for_your_redis_cache_keys'
-  c.cache_time = 30 # seconds to cache
   c.logger = Logger.new(STDOUT) # The logger to use from the gem
 end
 ```
@@ -44,12 +41,6 @@ Configuration
 * `c.user_token` Lambda block returning the session token of the user. **Required**
 
 * `c.user_country` Lambda block returning the country of the user. If not present, will be resolved from his/her IP address. **Optional**
-
-* `c.cache` Redis instance where the gem will store cached responses from the API. Default to nil. **Optional**
-
-* `c.cache_ns` Namespace for the cache keys stored in Redis. Default to `viki-api-gem-cache`. **Optional**
-
-* `c.cache_time` Seconds to cache responses from the API. Default to 30. **Optional**
 
 * `c.logger` Instance of `Logger` you want the gem to use. Default to `Logger.new(STDOUT)`. **Optional**
 
@@ -121,6 +112,12 @@ Viki::Subscription.create({user_id: user_id}, {'resource_id' => container_id}) d
   puts response.inspect
 end
 ```
+
+Changelog
+---------
+
+* 0.0.8
+  * Removed caching.
 
 
 Development

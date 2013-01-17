@@ -8,8 +8,7 @@ require 'viki_utils'
 
 module Viki
   class << self
-    attr_accessor :salt, :app_id, :domain, :logger, :user_ip, :user_token, :cache,
-                  :cache_ns, :cache_seconds, :user_country, :signer
+    attr_accessor :salt, :app_id, :domain, :logger, :user_ip, :user_token, :user_country, :signer
   end
 
   def self.run
@@ -33,16 +32,12 @@ module Viki
     @logger = Viki::Logger.new(configurator.logger)
     @user_ip = configurator.user_ip
     @user_token = configurator.user_token
-    @cache = configurator.cache
-    @cache_ns = configurator.cache_ns
-    @cache_seconds = configurator.cache_seconds
     @user_country = configurator.user_country
     nil
   end
 
   class Configurator
-    attr_accessor :salt, :app_id, :domain, :logger, :user_ip, :user_token, :cache,
-                  :cache_ns, :cache_seconds, :user_country
+    attr_accessor :salt, :app_id, :domain, :logger, :user_ip, :user_token, :user_country
 
     def initialize
       @salt = ENV["VIKI_API_SALT"]
@@ -52,9 +47,6 @@ module Viki
       @logger.level = ::Logger::INFO
       @user_ip = lambda { }
       @user_token = lambda { }
-      @cache = nil
-      @cache_ns = "viki-api-gem-cache"
-      @cache_seconds = 30
       @user_country = lambda { }
     end
   end
