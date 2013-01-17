@@ -118,17 +118,3 @@ Changelog
 
 * 0.0.8
   * Removed caching.
-
-
-Development
------------
-
-Make sure you have bundler >= 1.2.
-
-To develop with a local copy of the viki-api-gem, run the following command:
-
-```ruby
-bundle config local.viki-api-gem ~/workspace/viki_api_gem/
-```
-
-This will use your local copy of the gem instead of the remote one.
