@@ -116,5 +116,8 @@ end
 Changelog
 ---------
 
+* 0.0.9
+  * Authentication goes through Session, leaving User for user management.
+
 * 0.0.8
   * Removed caching.
