@@ -116,6 +116,9 @@ end
 Changelog
 ---------
 
+* 0.0.10
+  * User creation goes through https.
+
 * 0.0.9
   * Authentication goes through Session, leaving User for user management.
 

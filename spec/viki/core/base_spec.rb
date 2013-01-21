@@ -7,7 +7,6 @@ describe Viki::Core::Base do
     end
   }
 
-
   describe "#uri" do
     let(:nested_test_klass) {
       Class.new(described_class) do
@@ -68,6 +67,13 @@ describe Viki::Core::Base do
     it "does not include the user token if it's empty" do
       Viki.stub(:user_token) { lambda { '' } }
       test_klass.uri.to_s.should_not match("token=")
+    end
+
+    it 'uses https for ssl' do
+      test_klass._ssl = true
+      test_klass.uri.to_s.should start_with("https")
+      test_klass._ssl = false
+      test_klass.uri.to_s.should_not start_with("https")
     end
   end
 

@@ -12,7 +12,11 @@ module Viki::Core
     END_OF_PATH_REGEX = /(\/\w+)(\.\w+)?$/
 
     class << self
-      attr_accessor :_paths
+      attr_accessor :_paths, :_ssl
+
+      def use_ssl
+        @_ssl = true
+      end
 
       def path(path)
         @_paths ||= []
@@ -23,7 +27,7 @@ module Viki::Core
         path = select_best_path(_paths, params)
         path, params = process_ids(path, params)
         params = process_user_country(params)
-        uri = Addressable::URI.join("http://#{Viki.domain}", path)
+        uri = Addressable::URI.join("http#{"s" if @_ssl}://#{Viki.domain}", path)
         query_values = {}
         query_values.merge! uri.query_values if uri.query_values
         query_values.merge! params
