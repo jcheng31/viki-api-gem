@@ -2,16 +2,6 @@ require "spec_helper"
 
 describe Viki::Session, api: true do
   describe '.authenticate' do
-    it 'returns the authentication token' do
-      VCR.use_cassette "Viki::Session_valid_authentication" do
-        described_class.authenticate('qaviki01', 'test101') do |response|
-          response.error.should be_nil
-          response.value["token"].should be
-        end
-        Viki.run
-      end
-    end
-
     it 'raises error when the authentication fails' do
       VCR.use_cassette "Viki::Session_invalid_authentication" do
         described_class.authenticate('qaviki01', 'WrongPassword') do |exception, response|
