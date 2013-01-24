@@ -113,6 +113,13 @@ Viki::Subscription.create({user_id: user_id}, {'resource_id' => container_id}) d
 end
 ```
 
+* Get country information
+
+```ruby
+italy = Viki::Country.find('it')
+all_country_codes = Viki::Country.codes
+```
+
 Changelog
 ---------
 

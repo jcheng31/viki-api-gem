@@ -87,3 +87,4 @@ require 'viki/holdback'
 require 'viki/search'
 
 require 'viki/cover'
+require 'viki/country'
