@@ -113,6 +113,13 @@ Viki::Subscription.create({user_id: user_id}, {'resource_id' => container_id}) d
 end
 ```
 
+* Get language information
+
+```ruby
+english = Viki::Language.find('en')
+all_language_codes = Viki::Language.codes
+```
+
 * Get country information
 
 ```ruby
@@ -122,6 +129,9 @@ all_country_codes = Viki::Country.codes
 
 Changelog
 ---------
+
+* 0.0.11
+  * Added Language and Country support.
 
 * 0.0.10
   * User creation goes through https.

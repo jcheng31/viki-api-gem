@@ -88,3 +88,4 @@ require 'viki/search'
 
 require 'viki/cover'
 require 'viki/country'
+require 'viki/language'
