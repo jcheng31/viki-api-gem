@@ -130,6 +130,9 @@ all_country_codes = Viki::Country.codes
 Changelog
 ---------
 
+* 0.0.12
+  * Fixed X-Forwarded-For issue
+
 * 0.0.11
   * Added Language and Country support.
 

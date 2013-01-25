@@ -49,7 +49,7 @@ module Viki::Core
     def default_headers
       {}.tap do |headers|
         user_ip = Viki.user_ip.call
-        headers[:x_forwarded_for] = user_ip if user_ip
+        headers['X-Forwarded-For'] = user_ip if user_ip
       end
     end
 
