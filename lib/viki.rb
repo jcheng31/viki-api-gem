@@ -67,6 +67,7 @@ require 'viki/core/response'
 
 require 'viki/user'
 require 'viki/session'
+require 'viki/reset_password_token'
 
 require 'viki/video'
 require 'viki/episode'

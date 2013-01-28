@@ -4,6 +4,7 @@ module Viki
     end
 
     path '/v4/sessions.json'
+    path '/v4/sessions/:token.json'
 
     def self.authenticate(username, password, persist = false, &block)
       body = {'username' => username, 'password' => password, 'persist' => persist}

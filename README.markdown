@@ -127,6 +127,79 @@ italy = Viki::Country.find('it')
 all_country_codes = Viki::Country.codes
 ```
 
+* Create a user
+
+```ruby
+user_attributes = {first_name: "Tester",
+                   last_name: "Lee",
+                   email: "tester@example.com",
+                   language: 'en',
+                   password: "123456",
+                   password_confirmation: "123456"}
+Viki::User.create({}, user_attributes) do |response|
+  puts response.inspect
+end
+```
+
+* Update a user
+
+The `token` and the `id` should belong to the same user
+
+```ruby
+user_new_attributes = {first_name: "new first name"}
+Viki::User.update({id: user_id}, user_new_attributes) do |response|
+  puts response.inspect
+end
+```
+
+* Fetch user
+
+```ruby
+Viki::User.fetch(id: user_id) do |response|
+  puts response.inspect
+end
+```
+
+* Login
+
+```ruby
+Viki::Session.authenticate('tester@example.com', 'password') do |response|
+  puts response.inspect
+end
+```
+
+* Logout
+
+```ruby
+Viki::Session.destroy(token: user_token) do |response|
+  puts response.inspect
+end
+```
+
+* Validate a token
+
+```ruby
+Viki::Session.fetch(token: user_token) do |response|
+  puts response.inspect
+end
+```
+
+* Send reset password
+
+```ruby
+Viki::ResetPasswordToken.forgot_password!(user_email) do |response|
+  puts response.inspect
+end
+
+* Update password from reset password token
+
+```ruby
+Viki::ResetPasswordToken.reset_password!(token, password, password_confirmation) do |response|
+  puts response.inspect
+end
+
+
+
 Changelog
 ---------
 
