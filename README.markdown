@@ -194,7 +194,7 @@ end
 * Update password from reset password token
 
 ```ruby
-Viki::ResetPasswordToken.reset_password!(token, password, password_confirmation) do |response|
+Viki::ResetPasswordToken.reset_password!(reset_password_token, password, password_confirmation) do |response|
   puts response.inspect
 end
 
@@ -202,6 +202,12 @@ end
 
 Changelog
 ---------
+
+* 0.0.13
+  * Added ResetPasswordToken support
+  * Documented usage of Sessions
+  * Documented usage of Users
+  * Documented usage of ResetPassword tokens
 
 * 0.0.12
   * Fixed X-Forwarded-For issue
