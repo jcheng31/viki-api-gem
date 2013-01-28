@@ -60,6 +60,7 @@ Viki::configure{}
 require 'viki/core/base_request'
 require 'viki/core/fetcher'
 require 'viki/core/creator'
+require 'viki/core/updater'
 require 'viki/core/destroyer'
 require 'viki/core/base'
 require 'viki/core/response'

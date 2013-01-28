@@ -111,12 +111,24 @@ describe Viki::Core::Base do
     end
   end
 
+  describe "#update" do
+    it "constructs a updater from the signed_uri and the body" do
+      uri = stub
+      options = stub
+      body = stub
+      test_klass.should_receive(:signed_uri).with(options, body) { uri }
+      Viki::Core::Updater.should_receive(:new).with(uri, body) { stub :queue => nil }
+      test_klass.update(options, body) do
+      end
+    end
+  end
+
   describe "#destroy" do
-    it "constructs a creator from the signed_uri and the body" do
+    it "constructs a destroyer from the signed_uri and the body" do
       uri = stub
       options = stub
       test_klass.should_receive(:signed_uri).with(options) { uri }
-      Viki::Core::Destroyer.should_receive(:new).with(uri) { stub :queue => nil }
+      Viki::Core::Destroyer.should_receive(:new).with(uri, {}) { stub :queue => nil }
       test_klass.destroy(options) do
       end
     end

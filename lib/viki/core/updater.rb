@@ -1,5 +1,5 @@
 module Viki::Core
-  class Destroyer < BaseRequest
+  class Updater < BaseRequest
     def on_complete(error, body, &block)
       parsed_body = Oj.load(body) rescue nil
       block.call Viki::Core::Response.new(error, parsed_body)
@@ -10,7 +10,7 @@ module Viki::Core
       @request ||= Typhoeus::Request.new url,
                                          body: body,
                                          headers: headers,
-                                         method: "delete"
+                                         method: "put"
     end
   end
 end

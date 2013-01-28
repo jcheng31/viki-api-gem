@@ -61,10 +61,18 @@ module Viki::Core
         creator
       end
 
-      def destroy(url_options = {}, &block)
+      def update(url_options = {}, body = {}, &block)
+        uri = signed_uri(url_options, body)
+        Viki.logger.info "#{self.name} updating to the API: #{uri}"
+        creator = Viki::Core::Updater.new(uri, body)
+        creator.queue &block
+        creator
+      end
+
+      def destroy(url_options = {}, body = {}, &block)
         uri = signed_uri(url_options)
         Viki.logger.info "#{self.name} destroying to the API: #{uri}"
-        destroyer = Viki::Core::Destroyer.new(uri)
+        destroyer = Viki::Core::Destroyer.new(uri, body)
         destroyer.queue &block
         destroyer
       end
