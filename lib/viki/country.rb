@@ -1,5 +1,6 @@
 module Viki
   class Country < Viki::Core::Base
+    EMPTY = {}
     path 'v4/countries.json'
 
     def self.find(country_code)
@@ -11,9 +12,9 @@ module Viki
     end
 
     def self.all
-      return @countries if defined?(@countries)
+      return @countries if @countries && @countries != EMPTY
       fetch do |response|
-        @countries = response.value
+        @countries = response.value || EMPTY
       end
       Viki.run
       @countries
