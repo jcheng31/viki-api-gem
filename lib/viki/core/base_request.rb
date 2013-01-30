@@ -3,13 +3,19 @@ module Viki::Core
     class ErrorResponse < RuntimeError
       INVALID_TOKEN = 11
 
-      attr_accessor :error, :vcode, :status, :url, :json
+      attr_accessor :error, :vcode, :status, :url, :json, :body
+
       def initialize(body, status, url)
-        @json = Oj.load(body)
-        @error = @json["error"]
-        @vcode = @json["vcode"].to_i
+        @body = body
         @status = status
         @url = url
+        begin
+          @json = Oj.load(@body)
+          @error = @json["error"]
+          @vcode = @json["vcode"].to_i
+        rescue Oj::ParseError
+          #ignore
+        end
       end
 
       def to_s
