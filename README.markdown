@@ -65,6 +65,14 @@ Viki::Episode.fetch(id: "44699v") do |response|
 end
 ```
 
+* Fetch streams for a video
+
+```ruby
+Viki::Stream.fetch(video_id: '44699v') do |response|
+  puts response.inspect
+end
+
+
 * Fetch trending movies (videos)
 
 ```ruby
@@ -202,6 +210,9 @@ end
 
 Changelog
 ---------
+
+* 0.0.16
+  * Added streams
 
 * 0.0.13
   * Added ResetPasswordToken support

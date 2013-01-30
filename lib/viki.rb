@@ -76,6 +76,8 @@ require 'viki/movie'
 require 'viki/music_video'
 require 'viki/news_clip'
 
+require 'viki/stream'
+
 require 'viki/container'
 require 'viki/artist'
 require 'viki/film'
