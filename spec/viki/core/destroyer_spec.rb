@@ -7,7 +7,7 @@ describe Viki::Core::Destroyer do
     let(:content) { "Ok" }
     let!(:req_stub) do
       stub_request("delete", "http://example.com/path").
-        to_return(body: Oj.dump(content), status: status)
+        to_return(body: Oj.dump(content, mode: :compat), status: status)
     end
     around do |example|
       VCR.turned_off(&example)

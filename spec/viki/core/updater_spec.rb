@@ -8,8 +8,8 @@ describe Viki::Core::Updater do
     let(:creator) { Viki::Core::Updater.new("http://example.com/path", content) }
     let!(:req_stub) do
       stub_request("put", "http://example.com/path").
-        with(body: Oj.dump(content)).
-        to_return(body: Oj.dump(content), status: status)
+        with(body: Oj.dump(content, mode: :compat)).
+        to_return(body: Oj.dump(content, mode: :compat), status: status)
     end
     around do |example|
       VCR.turned_off(&example)

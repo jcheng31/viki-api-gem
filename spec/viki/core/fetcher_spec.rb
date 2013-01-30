@@ -11,7 +11,7 @@ describe Viki::Core::Fetcher do
     end
 
     before do
-      stub_request("get", "http://example.com/path").to_return(body: Oj.dump(content),
+      stub_request("get", "http://example.com/path").to_return(body: Oj.dump(content, mode: :compat),
                                                                status: status)
     end
 

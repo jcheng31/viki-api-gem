@@ -32,7 +32,7 @@ module Viki::Core
 
     def initialize(url, body = nil)
       @url = url.to_s
-      @body = body ? Oj.dump(body) : nil
+      @body = body ? Oj.dump(body, mode: :compat) : nil
     end
 
     def queue(&block)

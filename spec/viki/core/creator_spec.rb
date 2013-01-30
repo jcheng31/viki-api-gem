@@ -8,8 +8,8 @@ describe Viki::Core::Creator do
     let(:creator) { Viki::Core::Creator.new("http://example.com/path", content) }
     let!(:req_stub) do
       stub_request("post", "http://example.com/path").
-        with(body: Oj.dump(content)).
-        to_return(body: Oj.dump(content), status: status)
+        with(body: Oj.dump(content, mode: :compat)).
+        to_return(body: Oj.dump(content, mode: :compat), status: status)
     end
     around do |example|
       VCR.turned_off(&example)

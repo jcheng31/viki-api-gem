@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "webmock", "~> 1.9"
   s.add_development_dependency "timecop", "~> 0.5"
 
-  s.add_runtime_dependency     "oj", "~> 1.4"
+  s.add_runtime_dependency     "oj", "~> 2.0"
   s.add_runtime_dependency     "typhoeus", "~> 0.5"
   s.add_runtime_dependency     "addressable", "~> 2.3"
   s.add_runtime_dependency     "viki_utils"
