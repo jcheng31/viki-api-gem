@@ -8,17 +8,19 @@ require 'viki_utils'
 
 module Viki
   class << self
-    attr_accessor :salt, :app_id, :domain, :logger, :user_ip, :user_token, :user_country, :signer
+    attr_accessor :salt, :app_id, :domain, :logger, :user_ip, :user_token, :user_country, :signer, :hydra
   end
 
   def self.run
     if defined?(::ActiveSupport::Notifications)
       ActiveSupport::Notifications.instrument("viki-api.fetch") do
-        Typhoeus::Hydra.hydra.run
+        @hydra.run
       end
     else
-      Typhoeus::Hydra.hydra.run
+      @hydra.run
     end
+  ensure
+    @hydra = new_hydra
   end
 
   def self.configure(&block)
@@ -33,7 +35,12 @@ module Viki
     @user_ip = configurator.user_ip
     @user_token = configurator.user_token
     @user_country = configurator.user_country
+    @hydra = new_hydra
     nil
+  end
+
+  def self.new_hydra
+    Typhoeus::Hydra.new
   end
 
   class Configurator

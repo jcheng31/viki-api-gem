@@ -48,7 +48,7 @@ module Viki::Core
           end
         end
 
-        Typhoeus::Hydra.hydra.queue(req)
+        Viki.hydra.queue(req)
       end
     end
 
