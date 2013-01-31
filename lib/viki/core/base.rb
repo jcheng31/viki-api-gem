@@ -53,12 +53,26 @@ module Viki::Core
         fetcher
       end
 
+      def fetch_sync(url_options = {})
+        response = nil
+        fetch(url_options) { |r| response = r }
+        Viki.run
+        response
+      end
+
       def create(url_options = {}, body = {}, &block)
         uri = signed_uri(url_options, body)
         Viki.logger.info "#{self.name} creating to the API: #{uri}"
         creator = Viki::Core::Creator.new(uri, body)
         creator.queue &block
         creator
+      end
+
+      def create_sync(url_options = {}, body = {})
+        response = nil
+        create(url_options, body) { |r| response = r }
+        Viki.run
+        response
       end
 
       def update(url_options = {}, body = {}, &block)
@@ -69,12 +83,26 @@ module Viki::Core
         creator
       end
 
+      def update_sync(url_options = {}, body = {})
+        response = nil
+        update(url_options, body) { |r| response = r }
+        Viki.run
+        response
+      end
+
       def destroy(url_options = {}, body = {}, &block)
         uri = signed_uri(url_options)
         Viki.logger.info "#{self.name} destroying to the API: #{uri}"
         destroyer = Viki::Core::Destroyer.new(uri, body)
         destroyer.queue &block
         destroyer
+      end
+
+      def destroy_sync(url_options = {}, body = {})
+        response = nil
+        destroy(url_options, body) { |r| response = r }
+        Viki.run
+        response
       end
 
       private
