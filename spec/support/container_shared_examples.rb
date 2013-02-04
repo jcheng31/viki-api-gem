@@ -1,13 +1,11 @@
 shared_examples_for "a container object" do
   it "fetches containers" do
-    VCR.use_cassette "#{described_class.name}_container" do
-      described_class.fetch do |response|
-        containers = response.value
-        containers.should be_a_kind_of(Array)
-        containers.first.keys.should include('managers')
-      end
-      Viki.run
+    described_class.fetch do |response|
+      containers = response.value
+      containers.should be_a_kind_of(Array)
+      containers.first.keys.should include('managers')
     end
+    Viki.run
   end
 
   describe ".popular" do

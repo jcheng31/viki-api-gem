@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
 
   # specify any dependencies here; for example:
   s.add_development_dependency "rspec", "~> 2.11"
-  s.add_development_dependency "vcr", "~> 2.3"
   s.add_development_dependency "webmock", "~> 1.9"
   s.add_development_dependency "timecop", "~> 0.5"
 

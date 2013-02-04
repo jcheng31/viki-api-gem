@@ -30,7 +30,6 @@ GEM
     timecop (0.5.9.1)
     typhoeus (0.5.4)
       ethon (~> 0.5.7)
-    vcr (2.4.0)
     viki_utils (0.0.2)
       addressable (>= 2.3)
       oj (~> 2.0.2)
@@ -44,7 +43,6 @@ PLATFORMS
 DEPENDENCIES
   rspec (~> 2.11)
   timecop (~> 0.5)
-  vcr (~> 2.3)
   viki-api!
   viki_utils
   webmock (~> 1.9)

@@ -94,7 +94,6 @@ require 'viki/series'
 require 'viki/list'
 require 'viki/genre'
 require 'viki/subscription'
-require 'viki/holdback'
 require 'viki/search'
 
 require 'viki/cover'

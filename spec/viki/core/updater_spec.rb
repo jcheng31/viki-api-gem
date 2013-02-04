@@ -11,9 +11,6 @@ describe Viki::Core::Updater do
         with(body: Oj.dump(content, mode: :compat)).
         to_return(body: Oj.dump(content, mode: :compat), status: status)
     end
-    around do |example|
-      VCR.turned_off(&example)
-    end
 
     it "runs the request" do
       creator.queue do |response|

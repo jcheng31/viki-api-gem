@@ -9,9 +9,6 @@ describe Viki::Core::Destroyer do
       stub_request("delete", "http://example.com/path").
         to_return(body: Oj.dump(content, mode: :compat), status: status)
     end
-    around do |example|
-      VCR.turned_off(&example)
-    end
 
     it "runs the request" do
       destroyer.queue do |response|

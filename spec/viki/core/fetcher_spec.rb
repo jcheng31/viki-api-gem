@@ -6,10 +6,6 @@ describe Viki::Core::Fetcher do
     let(:status) { 200 }
     let(:fetcher) { Viki::Core::Fetcher.new("http://example.com/path") }
 
-    around do |example|
-      VCR.turned_off(&example)
-    end
-
     before do
       stub_request("get", "http://example.com/path").to_return(body: Oj.dump(content, mode: :compat),
                                                                status: status)

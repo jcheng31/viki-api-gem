@@ -1,7 +1,7 @@
 module LoginHelper
-  def login_as(username, password, &cb)
+  def login_as(email, password, &cb)
     user_id = nil
-    Viki::Session.authenticate('qaviki01', 'test101') do |response|
+    Viki::Session.authenticate(email, password) do |response|
       data = response.value
       token = data["token"]
       Viki.stub(:user_token) { lambda { token } }
