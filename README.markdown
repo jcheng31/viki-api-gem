@@ -211,6 +211,10 @@ end
 Changelog
 ---------
 
+* 0.0.21
+  * Removed Holdbacks enpoint support
+  * Mass specs refactor, from real requests to all stubs.
+
 * 0.0.16
   * Added streams
 
