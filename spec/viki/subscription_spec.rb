@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe Viki::Subscription, api: true do
-  let(:user_id) { login_as 'hannah.carleen@gmail.com', 'testing' }
 
   it "fetches subscriptions for a user" do
+    stub_api 'users/123u/subscriptions.json', '["1v", "2v"]'
     videos = nil
-    described_class.fetch(user_id: user_id) { |response| videos = response.value }
+    described_class.fetch(user_id: "123u") { |response| videos = response.value }
     Viki.run
-    videos.should be_a_kind_of(Array)
+    videos.should == ["1v", "2v"]
   end
 
   it "creates subscriptions" do

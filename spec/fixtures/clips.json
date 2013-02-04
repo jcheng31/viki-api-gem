@@ -1,0 +1,73 @@
+{"more":true, "response":[
+  {
+    "id":"82971v",
+    "created_at":"2010-11-29T09:09:16Z",
+    "updated_at":"2013-02-02T04:48:59Z",
+    "type":"clip",
+    "duration":null,
+    "number":0,
+    "root_id":"17831vr",
+    "origin":{
+      "language":"az"
+    },
+    "titles":{
+      "en":"Shining Inheritance / Brilliant Legacy"
+    },
+    "descriptions":{},
+    "subtitle_completions":{},
+    "container":{
+      "id":"270c",
+      "type":"series",
+      "titles":{
+        "ar":"الإرث الساطع",
+        "de":"Shining Inheritance / Brilliant Legacy",
+        "en":"Shining Inheritance / Brilliant Legacy",
+        "es":"Brillante herencia",
+        "fr":"Shining Inheritance / Brilliant Legacy",
+        "he":"ירושה נוצצת",
+        "ko":"찬란한 유산",
+        "tl":"Brilliant Legacy",
+        "vi":"Shining Inheritance - Việt Sub"
+      },
+      "team_name":null,
+      "genres":["23g", "18g", "9g"],
+      "origin":{
+        "country":"kr",
+        "language":"ko"
+      },
+      "url":{
+        "web":"http://www.viki.com/tv/270c-shining-inheritance--brilliant-legacy",
+        "api":"http://api.viki.io/v4/series/270c.json"
+      }
+    },
+    "source":"cdnetworks",
+    "images":{},
+    "flags":{
+      "licensed":true,
+      "hosted":true,
+      "on_air":false,
+      "embeddable":true,
+      "state":"normal"
+    },
+    "url":{
+      "web":"http://www.viki.com/videos/82971v-shining-inheritance--brilliant-legacy",
+      "api":"http://api.viki.io/v4/videos/82971v.json",
+      "og":"http://www.viki.com/channels/270-shining-inheritance-brilliant-legacy/videos/17831"
+    },
+    "embed":{
+      "flash":{
+        "url":"http://x0.vikiassets.com/player.swf?auto_play=true&source=api_v4&id=82971v"
+      },
+      "iframe":{
+        "url":"http://www.viki.com/player/82971v"
+      }
+    },
+    "parts":[
+      {
+        "id":"82971v",
+        "part":1,
+        "url":"http://api.viki.io/v4/videos/82971v.json"
+      }
+    ]
+  }
+]}

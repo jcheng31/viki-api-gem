@@ -1,0 +1,111 @@
+{"more":true, "response":[
+  {
+    "id":"9887c",
+    "type":"series",
+    "origin":{
+      "country":"kr",
+      "language":"ko"
+    },
+    "created_at":"2012-08-27T08:09:59Z",
+    "updated_at":"2013-02-02T04:01:55Z",
+    "subscriptions":{
+      "count":4158
+    },
+    "contributors":{
+      "count":316
+    },
+    "team":{
+      "name":"His Royal Subjects Team"
+    },
+    "titles":{
+      "ar":"مـلك الدرآما",
+      "en":"King of Dramas",
+      "es":"드라마의 제왕",
+      "pl":"Król Dram",
+      "pt":"Rei dos Dramas",
+      "tr":"Dizilerin Kralı"
+    },
+    "images":{
+      "poster":{
+        "url":"http://0.viki.io/c/c10/c53/b21/tumblr_mcj6gaTKba1rb60l9o1_500.jpg"
+      }
+    },
+    "descriptions":{
+      "ar":"تدور الأحداث في عالم إنتاج الدراما \r\nومآ يحدث خلف الكوآليس لتلك الأعمال الضخمة التي نرآها. \r\nأنطوني كيم هو الرئيس التنفيذي لشركة إنتاج مُستقلة \r\nوقد أنتج أنجح الدرآمات في السآحة الفنية \r\nلكن الشيء الوحيد الذي يهتم به هو المال،المال ولا شيء غير المال !!\r\nيحصل على عمل مع كآتبة سيناريو مُبتدئة تعتقد أن الدراما يجب أن تكون عن الإنسانية \r\n.بالإضافة للنجم المشهور هيون مين  وهو شخص في قمة الأنآنية والغرور\r\nهل يُمكن لهؤلاء الثلاثة أن يتعاونوا معاً لإنتاج درآما سآحقة..ما الذي سيحدث ؟",
+      "en":"We all knew that creating a hit drama series is hard work with lots of prima donnas to contend with and placate. Anthony Kim is a producer who has the Midas touch in creating hit shows, but he has to deal with an idealistic new screenwriter who wants her dramas to carry an important message and an arrogant, top actor who refuses to compromise in any way. Can the three put their differences aside to create a hit drama series or will their own personal dramas overtake their project?",
+      "fr":"L'histoire nous plonge dans le monde de la production de dramas. Anthony Kim (Kim Myung Min) ferait n'importe quoi pour le succès et l'argent. C'est un homme très talentueux à qui tout réussit. Son chemin va croiser la route d'un acteur au sommet de sa gloire (Kang Hyun Min, joué par Siwon) et d'une scénariste débutante (Lee Go Eun, jouée par Jung Ryeo Won) qui apportera une touche de nouveauté dans le monde des dramas.",
+      "pl":"Jak wszyscy wiemy, stworzenie dramy, która zdobędzie popularność, wcale nie jest proste. Anthony Kim to producent, który tworzy hit za hitem i uważa, że nic nie jest w stanie przeszkodzić mu w dojściu na szczyt. Jednak kiedyś los musi się odwrócić, a jemu pozostanie jedynie możliwość pracy z początkującą scenarzystką o skłonnościach idealistycznych, oraz z topowym aktorem, który jest równie znany co arogancki. Czy tej trójce uda się stworzyć hit, czy też ważniejsze okażą się ich osobiste dramy?",
+      "pt":"Todos nós sabemos que produzir um bom drama e de sucesso é difícil. Anthony Kim é um produtor conhecido por ter o toque de Midas nos seus dramas, mas que agora tem de lidar com uma argumentista inovadora que quer que os seus dramas transmitam uma mensagem importante e com um actor conhecido e arrogante que se recusa a comprometer com qualquer coisa. Conseguirão os três deixar as suas diferenças de parte e criar um drama de sucesso ou acabará cada um por ir para o seu lado?",
+      "tr":"Yatıştırılması gereken kaprisli oyuncularla hit bir dizi yapmanın ne kadar zor bir iş olduğun herkes bilir. Anthony Kim'in, hit programları yapma konusunda farklı bir yeteneği var, var olmasına ama şimdi, dizilerinin önemli mesajlar içermesi konusuna takmış idealist bir film yazarı ve hiçbir şekilde taviz vermeyen kibirli bir aktörle uğraşmak zorunda.Bu üç insan, farklılıklarını bir kenara bırakıp güzel bir dizi ortaya çıkarabilecekler mi, yoksa kendi yaşamları esas diziyi alt mı edecek?"
+    },
+    "genres":["9g", "23g"],
+    "subtitle_completions":{
+      "ar":70,
+      "de":52,
+      "en":99,
+      "es":99,
+      "fr":99,
+      "id":55,
+      "it":97,
+      "pt":100,
+      "ro":20,
+      "tl":12,
+      "tr":97,
+      "vi":99
+    },
+    "managers":[
+      {
+        "id":"157366u",
+        "username":"trucalling",
+        "avatar":{
+          "url":"http://0.viki.io/u/c05/f6f/398/tumblr_mfzq04EUbx1r8owhxo3_250.gif"
+        },
+        "url":{
+          "web":"http://www.viki.com/users/trucalling",
+          "api":"http://api.viki.io/v4/users/157366u.json"
+        }
+      }
+    ],
+    "watch_now":{
+      "id":"215440v",
+      "url":{
+        "web":"http://www.viki.com/videos/215440v-king-of-dramas",
+        "api":"http://api.viki.io/v4/videos/215440v.json"
+      }
+    },
+    "url":{
+      "web":"http://www.viki.com/tv/9887c-king-of-dramas",
+      "api":"http://api.viki.io/v4/series/9887c.json",
+      "og":"http://www.viki.com/channels/9887-king-of-drama"
+    },
+    "flags":{
+      "licensed":true,
+      "hosted":true,
+      "on_air":true,
+      "state":"normal"
+    },
+    "people":[
+      {
+        "name":"Jung Ryu Won"
+      },
+      {
+        "name":"Kim Myung-Min"
+      },
+      {
+        "name":"Choi Si Won"
+      }
+    ],
+    "clips":{
+      "count":5,
+      "url":{
+        "api":"http://api.viki.io/v4/series/9887c/clips.json"
+      }
+    },
+    "episodes":{
+      "count":17,
+      "url":{
+        "api":"http://api.viki.io/v4/series/9887c/episodes.json"
+      }
+    }
+  }
+]}

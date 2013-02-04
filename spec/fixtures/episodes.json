@@ -1,0 +1,79 @@
+{"more":true, "response":[
+  {
+    "id":"9994v",
+    "created_at":"2009-05-06T02:42:35Z",
+    "updated_at":"2013-02-02T04:48:59Z",
+    "type":"episode",
+    "duration":4156,
+    "number":17,
+    "root_id":"1540vr",
+    "origin":{
+      "language":"ko"
+    },
+    "titles":{
+      "en":"Princess Ja Myung",
+      "ko":"자명고"
+    },
+    "descriptions":{},
+    "subtitle_completions":{
+      "en":100,
+      "es":100
+    },
+    "container":{
+      "id":"127c",
+      "type":"series",
+      "titles":{
+        "ar":"أسطورة الطبل",
+        "en":"Ja Myung Go",
+        "ja":"自鳴鼓",
+        "ko":"자명고",
+        "th":"จามอง ยอดหญิงผู้พิทักษ์แผ่นดิน",
+        "tr":"Prenses Ja Myung",
+        "zh":"自鳴鼓"
+      },
+      "team_name":null,
+      "genres":["23g", "9g", "1g", "18g", "25g"],
+      "origin":{
+        "country":"kr",
+        "language":"ko"
+      },
+      "url":{
+        "web":"http://www.viki.com/tv/127c-ja-myung-go",
+        "api":"http://api.viki.io/v4/series/127c.json"
+      }
+    },
+    "source":"viki",
+    "images":{
+      "poster":{
+        "url":"http://0.viki.io/v/9994/f5eb5acf540e9582d79d86a1cc06558043d37d75.png"
+      }
+    },
+    "flags":{
+      "licensed":true,
+      "hosted":true,
+      "on_air":false,
+      "embeddable":true,
+      "state":"normal"
+    },
+    "url":{
+      "web":"http://www.viki.com/videos/9994v-ja-myung-go",
+      "api":"http://api.viki.io/v4/videos/9994v.json",
+      "og":"http://www.viki.com/channels/127-ja-myung-go/videos/1540"
+    },
+    "embed":{
+      "flash":{
+        "url":"http://x0.vikiassets.com/player.swf?auto_play=true&source=api_v4&id=9994v"
+      },
+      "iframe":{
+        "url":"http://www.viki.com/player/9994v"
+      }
+    },
+    "parts":[
+      {
+        "id":"9994v",
+        "part":1,
+        "url":"http://api.viki.io/v4/videos/9994v.json"
+      }
+    ]
+  }
+]}

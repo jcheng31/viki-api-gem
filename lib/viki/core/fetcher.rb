@@ -10,7 +10,14 @@ module Viki::Core
       if error
         block.call Viki::Core::Response.new(error, nil, self)
       else
-        block.call Viki::Core::Response.new(nil, get_content(Oj.load(body)), self)
+        parsed_body = Oj.load(body) rescue nil
+        if parsed_body
+          block.call Viki::Core::Response.new(nil, get_content(parsed_body), self)
+        else
+          error = ErrorResponse.new(body, 0, url)
+          Viki.logger.error(error.to_s)
+          block.call Viki::Core::Response.new(error, nil, self)
+        end
       end
     end
 

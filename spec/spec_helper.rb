@@ -8,19 +8,16 @@ require 'timecop'
 require 'webmock/rspec'
 
 Viki.configure do |c|
-  c.logger = Logger.new(STDOUT)
+  c.logger = nil
 end
 
 Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
-  config.include LoginHelper
+  config.include JsonFixtures
+  config.include ApiStub
 
   config.order = "random"
-
-  config.before(:each, api: true) do
-    WebMock.allow_net_connect!
-  end
 
   config.after(:each) do
     Viki.run

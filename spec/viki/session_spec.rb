@@ -2,19 +2,20 @@ require "spec_helper"
 
 describe Viki::Session, api: true do
   describe '.authenticate' do
-    it 'raises error when the authentication fails' do
-      described_class.authenticate('qaviki01', 'WrongPassword') do |exception, response|
-        exception.should_not be_nil
-        response.should be_nil
+    it 'authenticates the user' do
+      stub_api 'sessions.json', '{"token": "123456"}',
+               method: :post
+      described_class.authenticate('user', 'pass') do |response|
+        response.error.should be_nil
       end
-      Viki.run
     end
 
-    it 'sends the persist option' do
-      described_class.should_receive(:signed_uri).with({}, hash_including('persist' => true)) { '' }
-      Viki::Core::Creator.should_receive(:new) { stub(:queue => nil) }
-      described_class.authenticate('qaviki01', 'WrongPassword', true)
-      Viki.run
+    it 'raises error when the authentication fails' do
+      stub_api 'sessions.json', '{"vcode": "404"}',
+               method: :post, response_code: '404'
+      described_class.authenticate('user', 'pass') do |response|
+        response.error.should_not be_nil
+      end
     end
   end
 end

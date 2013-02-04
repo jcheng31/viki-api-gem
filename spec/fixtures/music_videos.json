@@ -1,0 +1,75 @@
+{"more":true, "response":[
+  {
+    "id":"87825v",
+    "created_at":"2010-12-19T02:59:10Z",
+    "updated_at":"2013-02-02T04:48:59Z",
+    "type":"music_video",
+    "duration":null,
+    "number":0,
+    "root_id":"30598vr",
+    "origin":{
+      "language":"ko"
+    },
+    "titles":{
+      "en":"Goodbye Baby",
+      "zh":"Goodbye Baby"
+    },
+    "descriptions":{
+      "zh":"Goodbye Baby"
+    },
+    "subtitle_completions":{
+      "en":12
+    },
+    "container":{
+      "id":"2558c",
+      "type":"artist",
+      "titles":{
+        "en":"BIG BANG"
+      },
+      "team_name":"VIP Team",
+      "genres":[],
+      "origin":{
+        "country":"kr",
+        "language":"en"
+      },
+      "url":{
+        "web":"http://www.viki.com/artists/2558c-big-bang",
+        "api":"http://api.viki.io/v4/artists/2558c.json"
+      }
+    },
+    "source":"youtube",
+    "images":{
+      "poster":{
+        "url":"http://0.viki.io/v/87825/8f25d10ace93fed0ea9c7a220fa133d28c8ce885.jpg"
+      }
+    },
+    "flags":{
+      "licensed":true,
+      "hosted":true,
+      "on_air":false,
+      "embeddable":true,
+      "state":"normal"
+    },
+    "url":{
+      "web":"http://www.viki.com/videos/87825v-big-bang",
+      "api":"http://api.viki.io/v4/videos/87825v.json",
+      "og":"http://www.viki.com/channels/2558-bigbang/videos/30598"
+    },
+    "embed":{
+      "flash":{
+        "url":"http://x0.vikiassets.com/player.swf?auto_play=true&source=api_v4&id=87825v"
+      },
+      "iframe":{
+        "url":"http://www.viki.com/player/87825v"
+      }
+    },
+    "parts":[
+      {
+        "id":"87825v",
+        "part":1,
+        "url":"http://api.viki.io/v4/videos/87825v.json"
+      }
+    ],
+    "genres":["1032g"]
+  }
+]}

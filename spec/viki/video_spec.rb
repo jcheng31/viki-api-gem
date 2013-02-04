@@ -2,20 +2,19 @@ require 'spec_helper'
 
 describe Viki::Video, api: true do
   it "fetches single videos" do
+    stub_api 'videos/11501v.json', json_fixture(:video)
     described_class.fetch(id: "11501v") do |response|
       video = response.value
       video.should be_a_kind_of(Hash)
       video.keys.should include('titles')
     end
-    Viki.run
   end
 
   it "fetches recommendations for episode 1 of BoF" do
+    resp = stub
+    Viki::Video.should_receive(:fetch).with(recommended_for: '44699v').and_yield(resp)
     Viki::Video.recommendations("44699v") do |response|
-      video = response.value
-      video.should be_a_kind_of(Array)
-      video.first.keys.should include('titles')
+      response.should == resp
     end
-    Viki.run
   end
 end

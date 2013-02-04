@@ -1,0 +1,9 @@
+{"240p":{
+  "http":{
+    "url":"http://v.viki.io/video.mp4",
+    "seek":"ms"
+  },
+  "rtmp":{
+    "url":"rtmp://viki.fcod.llnwd.net/video.mp4"
+  }
+}}

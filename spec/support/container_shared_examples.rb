@@ -1,5 +1,6 @@
 shared_examples_for "a container object" do
   it "fetches containers" do
+    stub_api 'countries.json', json_fixture(:countries)
     described_class.fetch do |response|
       containers = response.value
       containers.should be_a_kind_of(Array)
