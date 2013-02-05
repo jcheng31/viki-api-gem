@@ -166,6 +166,9 @@ end
 Viki::User.fetch(id: user_id) do |response|
   puts response.inspect
 end
+Viki::User.fetch(full_id: user_id) do |response|
+  puts response.inspect
+end
 ```
 
 * Login
@@ -210,6 +213,9 @@ end
 
 Changelog
 ---------
+
+* 0.0.23
+  * Support for full user info
 
 * 0.0.21
   * Removed Holdbacks enpoint support
