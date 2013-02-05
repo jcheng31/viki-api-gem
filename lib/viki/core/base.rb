@@ -45,7 +45,7 @@ module Viki::Core
       end
 
       def fetch(url_options = {}, &block)
-        uri = signed_uri(url_options)
+        uri = signed_uri(url_options.dup)
         Viki.logger.info "#{self.name} fetching from the API: #{uri}"
         fetcher = Viki::Core::Fetcher.new(uri)
 
@@ -61,7 +61,7 @@ module Viki::Core
       end
 
       def create(url_options = {}, body = {}, &block)
-        uri = signed_uri(url_options, body)
+        uri = signed_uri(url_options.dup, body)
         Viki.logger.info "#{self.name} creating to the API: #{uri}"
         creator = Viki::Core::Creator.new(uri, body)
         creator.queue &block
@@ -76,7 +76,7 @@ module Viki::Core
       end
 
       def update(url_options = {}, body = {}, &block)
-        uri = signed_uri(url_options, body)
+        uri = signed_uri(url_options.dup, body)
         Viki.logger.info "#{self.name} updating to the API: #{uri}"
         creator = Viki::Core::Updater.new(uri, body)
         creator.queue &block
@@ -91,7 +91,7 @@ module Viki::Core
       end
 
       def destroy(url_options = {}, body = {}, &block)
-        uri = signed_uri(url_options)
+        uri = signed_uri(url_options.dup)
         Viki.logger.info "#{self.name} destroying to the API: #{uri}"
         destroyer = Viki::Core::Destroyer.new(uri, body)
         destroyer.queue &block
