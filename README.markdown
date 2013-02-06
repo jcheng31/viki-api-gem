@@ -222,6 +222,9 @@ end
 Changelog
 ---------
 
+* 0.0.26
+  * Support for Applications
+
 * 0.0.25
   * Support for About page
 
@@ -231,27 +234,3 @@ Changelog
 * 0.0.21
   * Removed Holdbacks enpoint support
   * Mass specs refactor, from real requests to all stubs.
-
-* 0.0.16
-  * Added streams
-
-* 0.0.13
-  * Added ResetPasswordToken support
-  * Documented usage of Sessions
-  * Documented usage of Users
-  * Documented usage of ResetPassword tokens
-
-* 0.0.12
-  * Fixed X-Forwarded-For issue
-
-* 0.0.11
-  * Added Language and Country support.
-
-* 0.0.10
-  * User creation goes through https.
-
-* 0.0.9
-  * Authentication goes through Session, leaving User for user management.
-
-* 0.0.8
-  * Removed caching.

@@ -72,6 +72,8 @@ require 'viki/core/destroyer'
 require 'viki/core/base'
 require 'viki/core/response'
 
+require 'viki/application'
+
 require 'viki/user'
 require 'viki/user_about'
 require 'viki/session'
