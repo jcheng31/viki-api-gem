@@ -171,6 +171,14 @@ Viki::User.fetch(full_id: user_id) do |response|
 end
 ```
 
+* Fetch user about page
+
+```ruby
+Viki::UserAbout.fetch(user_id: user_id) do |response|
+  puts response.inspect
+end
+```
+
 * Login
 
 ```ruby
@@ -213,6 +221,9 @@ end
 
 Changelog
 ---------
+
+* 0.0.25
+  * Support for About page
 
 * 0.0.23
   * Support for full user info
