@@ -25,7 +25,8 @@ module Viki::Core
     def request
       Typhoeus::Request.new url,
                             headers: default_headers,
-                            method: "get"
+                            method: "get",
+                            forbid_reuse: true
     end
 
     private

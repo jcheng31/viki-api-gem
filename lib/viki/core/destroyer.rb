@@ -10,7 +10,8 @@ module Viki::Core
       @request ||= Typhoeus::Request.new url,
                                          body: body,
                                          headers: headers,
-                                         method: "delete"
+                                         method: "delete",
+                                         forbid_reuse: true
     end
   end
 end
