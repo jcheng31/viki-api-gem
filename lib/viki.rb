@@ -5,7 +5,7 @@ require 'ostruct'
 require 'openssl'
 require 'addressable/uri'
 require 'viki_utils'
-
+require 'base64'
 module Viki
   class << self
     attr_accessor :salt, :app_id, :domain, :logger, :user_ip, :user_token, :user_country, :signer, :hydra
