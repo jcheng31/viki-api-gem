@@ -222,9 +222,6 @@ end
 Changelog
 ---------
 
-* 0.0.28
-  * Files are sent in Base64
-
 * 0.0.26
   * Support for Applications
 

@@ -5,10 +5,10 @@ describe Viki::Core::Updater do
     let(:body) { {'title' => 'City Hunter'} }
     let(:content) { "ok" }
     let(:status) { 200 }
-    let(:creator) { Viki::Core::Updater.new("http://example.com/path", body) }
+    let(:creator) { Viki::Core::Updater.new("http://example.com/path", content) }
     let!(:req_stub) do
       stub_request("put", "http://example.com/path").
-        with(body: Oj.dump(body, mode: :compat)).
+        with(body: Oj.dump(content, mode: :compat)).
         to_return(body: Oj.dump(content, mode: :compat), status: status)
     end
 
@@ -25,22 +25,6 @@ describe Viki::Core::Updater do
       creator.queue do
         WebMock.should have_requested("put", "http://example.com/path").
                          with(:headers => {'X-Forwarded-For' => "1.2.3.4"})
-      end
-    end
-
-    context "sending files" do
-      let(:body) { {"file" => File.open(__FILE__)} }
-      let!(:req_stub) do
-        stub_request("put", "http://example.com/path").
-          with(body: Oj.dump({"file" => Base64.encode64(File.read(__FILE__))}, mode: :compat)).
-          to_return(body: Oj.dump(content, mode: :compat), status: status)
-      end
-      it 'sends them in base64' do
-        creator.queue do |response|
-          response.error.should be_nil
-        end
-        Viki.run # This also runs in a before filter, but we want to make sure the request is made
-        req_stub.should have_been_made
       end
     end
 
