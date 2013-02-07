@@ -5,6 +5,7 @@ require 'ostruct'
 require 'openssl'
 require 'addressable/uri'
 require 'viki_utils'
+require 'base64'
 
 module Viki
   class << self

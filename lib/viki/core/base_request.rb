@@ -32,7 +32,19 @@ module Viki::Core
 
     def initialize(url, body = nil)
       @url = url.to_s
-      @body = body ? Oj.dump(body, mode: :compat) : nil
+      @body = body ? dump_body(body) : nil
+    end
+
+    def dump_body(body)
+      new_body = body.inject({}) do |acc, (k, v)|
+        acc[k] = if v.respond_to?(:read)
+          Base64.encode64(v.read)
+        else
+          v
+        end
+        acc
+      end
+      Oj.dump(new_body, mode: :compat)
     end
 
     def queue(&block)
