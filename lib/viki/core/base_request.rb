@@ -1,7 +1,7 @@
 module Viki::Core
   class BaseRequest
     class ErrorResponse < RuntimeError
-      INVALID_TOKEN = 11
+      INVALID_TOKENS = [11, 7402]
 
       attr_accessor :error, :vcode, :status, :url, :json, :body
 
@@ -24,7 +24,7 @@ module Viki::Core
       end
 
       def invalid_token?
-        @vcode == INVALID_TOKEN
+        INVALID_TOKENS.include? @vcode
       end
     end
 
