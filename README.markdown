@@ -225,6 +225,9 @@ end
 Changelog
 ---------
 
+* 0.0.31
+  * Support for timeout configuration
+
 * 0.0.26
   * Support for Applications
 
@@ -233,7 +236,3 @@ Changelog
 
 * 0.0.23
   * Support for full user info
-
-* 0.0.21
-  * Removed Holdbacks enpoint support
-  * Mass specs refactor, from real requests to all stubs.

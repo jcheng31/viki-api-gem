@@ -3,13 +3,13 @@ module Viki
     path '/v4/reset_password_tokens.json'
 
     def self.forgot_password!(email, &block)
-      self.create({}, {email: email}, &block)
+      self.create({}, {'email' => email}, &block)
     end
 
     def self.reset_password!(reset_password_token, password, password_confirmation, &block)
-      options = {reset_password_token: reset_password_token,
-                 password: password,
-                 password_confirmation: password_confirmation}
+      options = {'reset_password_token' => reset_password_token,
+                 'password' => password,
+                 'password_confirmation' => password_confirmation}
       self.destroy({}, options, &block)
     end
   end
