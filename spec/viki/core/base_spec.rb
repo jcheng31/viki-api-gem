@@ -151,9 +151,10 @@ describe Viki::Core::Base do
     it "constructs a destroyer from the signed_uri and the body" do
       uri = stub
       options = stub
-      test_klass.should_receive(:signed_uri).with(options) { uri }
-      Viki::Core::Destroyer.should_receive(:new).with(uri, {}) { stub :queue => nil }
-      test_klass.destroy(options) do
+      body = stub.as_null_object
+      test_klass.should_receive(:signed_uri).with(options, body) { uri }
+      Viki::Core::Destroyer.should_receive(:new).with(uri, body) { stub :queue => nil }
+      test_klass.destroy(options, body) do
       end
     end
 
@@ -163,7 +164,7 @@ describe Viki::Core::Base do
       f = File.open(__FILE__)
       serialized = Base64.encode64(File.read(__FILE__))
 
-      test_klass.should_receive(:signed_uri).with(options) { uri }
+      test_klass.should_receive(:signed_uri).with(options, {"file" => serialized}) { uri }
       Viki::Core::Destroyer.should_receive(:new).with(uri, {"file" => serialized}) { stub :queue => nil }
       test_klass.destroy(options, {"file" => f}) do
       end
