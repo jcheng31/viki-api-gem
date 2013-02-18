@@ -26,6 +26,7 @@ Viki.configure do |c|
   # Optional
   c.user_country = -> { 'the country of your user' }
   c.logger = Logger.new(STDOUT) # The logger to use from the gem
+  c.timeout_seconds = 30 # The timeout for the requests.
 end
 ```
 
@@ -43,6 +44,8 @@ Configuration
 * `c.user_country` Lambda block returning the country of the user. If not present, will be resolved from his/her IP address. **Optional**
 
 * `c.logger` Instance of `Logger` you want the gem to use. Default to `Logger.new(STDOUT)`. **Optional**
+
+* `c.timeout_seconds` Amount of seconds for the requests. If a request takes longer, it will return an error
 
 Usage by examples
 -----------------

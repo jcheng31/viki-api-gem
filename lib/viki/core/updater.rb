@@ -11,7 +11,8 @@ module Viki::Core
                                          body: body,
                                          headers: headers,
                                          method: "put",
-                                         forbid_reuse: true
+                                         forbid_reuse: true,
+                                         timeout: Viki.timeout_seconds
     end
   end
 end

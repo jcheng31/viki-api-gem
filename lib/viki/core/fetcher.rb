@@ -26,7 +26,8 @@ module Viki::Core
       Typhoeus::Request.new url,
                             headers: default_headers,
                             method: "get",
-                            forbid_reuse: true
+                            forbid_reuse: true,
+                            timeout: Viki.timeout_seconds
     end
 
     private
