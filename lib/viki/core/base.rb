@@ -61,7 +61,6 @@ module Viki::Core
       end
 
       def create(url_options = {}, body = {}, &block)
-        body = serialize_body(body)
         uri = signed_uri(url_options.dup, body)
         Viki.logger.info "#{self.name} creating to the API: #{uri}"
         creator = Viki::Core::Creator.new(uri, body)
@@ -77,7 +76,6 @@ module Viki::Core
       end
 
       def update(url_options = {}, body = {}, &block)
-        body = serialize_body(body)
         uri = signed_uri(url_options.dup, body)
         Viki.logger.info "#{self.name} updating to the API: #{uri}"
         creator = Viki::Core::Updater.new(uri, body)
@@ -93,7 +91,6 @@ module Viki::Core
       end
 
       def destroy(url_options = {}, body = {}, &block)
-        body = serialize_body(body)
         uri = signed_uri(url_options.dup, body)
         Viki.logger.info "#{self.name} destroying to the API: #{uri}"
         destroyer = Viki::Core::Destroyer.new(uri, body)
@@ -109,17 +106,6 @@ module Viki::Core
       end
 
       private
-
-      def serialize_body(body)
-        body.inject({}) do |acc, (k, v)|
-          acc[k] = if v.respond_to?(:read)
-            Base64.encode64(v.read)
-          else
-            v
-          end
-          acc
-        end
-      end
 
       def select_best_path(paths, params)
         return paths.first if paths.length == 1

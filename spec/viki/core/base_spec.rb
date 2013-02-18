@@ -109,18 +109,6 @@ describe Viki::Core::Base do
       test_klass.create(options, body) do
       end
     end
-
-    it 'serializes files' do
-      uri = stub
-      options = stub
-      f = File.open(__FILE__)
-      serialized = Base64.encode64(File.read(__FILE__))
-
-      test_klass.should_receive(:signed_uri).with(options, {"file" => serialized}) { uri }
-      Viki::Core::Creator.should_receive(:new).with(uri, {"file" => serialized}) { stub :queue => nil }
-      test_klass.create(options, {"file" => f}) do
-      end
-    end
   end
 
   describe "#update" do
@@ -133,18 +121,6 @@ describe Viki::Core::Base do
       test_klass.update(options, body) do
       end
     end
-
-    it 'serializes files' do
-      uri = stub
-      options = stub
-      f = File.open(__FILE__)
-      serialized = Base64.encode64(File.read(__FILE__))
-
-      test_klass.should_receive(:signed_uri).with(options, {"file" => serialized}) { uri }
-      Viki::Core::Updater.should_receive(:new).with(uri, {"file" => serialized}) { stub :queue => nil }
-      test_klass.update(options, {"file" => f}) do
-      end
-    end
   end
 
   describe "#destroy" do
@@ -155,18 +131,6 @@ describe Viki::Core::Base do
       test_klass.should_receive(:signed_uri).with(options, body) { uri }
       Viki::Core::Destroyer.should_receive(:new).with(uri, body) { stub :queue => nil }
       test_klass.destroy(options, body) do
-      end
-    end
-
-    it 'serializes files' do
-      uri = stub
-      options = stub
-      f = File.open(__FILE__)
-      serialized = Base64.encode64(File.read(__FILE__))
-
-      test_klass.should_receive(:signed_uri).with(options, {"file" => serialized}) { uri }
-      Viki::Core::Destroyer.should_receive(:new).with(uri, {"file" => serialized}) { stub :queue => nil }
-      test_klass.destroy(options, {"file" => f}) do
       end
     end
   end
