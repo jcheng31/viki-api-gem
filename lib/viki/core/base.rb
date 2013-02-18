@@ -94,7 +94,7 @@ module Viki::Core
 
       def destroy(url_options = {}, body = {}, &block)
         body = serialize_body(body)
-        uri = signed_uri(url_options.dup)
+        uri = signed_uri(url_options.dup, body)
         Viki.logger.info "#{self.name} destroying to the API: #{uri}"
         destroyer = Viki::Core::Destroyer.new(uri, body)
         destroyer.queue &block
