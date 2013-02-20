@@ -174,6 +174,22 @@ Viki::User.fetch(full_id: user_id) do |response|
 end
 ```
 
+* Fetch user roles
+
+```ruby
+Viki::Role.fetch(user_id: user_id) do |response|
+  puts response.inspect
+end
+```
+
+* Fetch container roles (staff)
+
+```ruby
+Viki::Role.fetch(container_id: container_id) do |response|
+  puts response.inspect
+end
+```
+
 * Fetch user about page
 
 ```ruby
@@ -224,6 +240,9 @@ end
 
 Changelog
 ---------
+
+* 0.0.31
+  * Added roles
 
 * 0.0.31
   * Support for timeout configuration

@@ -78,6 +78,7 @@ require 'viki/core/response'
 require 'viki/application'
 
 require 'viki/user'
+require 'viki/role'
 require 'viki/user_about'
 require 'viki/session'
 require 'viki/reset_password_token'
