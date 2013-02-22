@@ -84,6 +84,8 @@ require 'viki/session'
 require 'viki/reset_password_token'
 require 'viki/activity'
 
+require 'viki/master_video'
+
 require 'viki/video'
 require 'viki/episode'
 require 'viki/clip'

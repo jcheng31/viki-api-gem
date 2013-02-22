@@ -74,7 +74,15 @@ end
 Viki::Stream.fetch(video_id: '44699v') do |response|
   puts response.inspect
 end
+```
 
+* Creates a master video
+
+```ruby
+Viki::MasterVideo.create(video_id: '44699v', url: "YOUTUBE_URL") do |response|
+  puts response.inspect
+end
+```
 
 * Fetch trending movies (videos)
 
@@ -250,6 +258,9 @@ end
 
 Changelog
 ---------
+* 0.0.38
+  * Support for master videos
+
 * 0.0.37
   * Support for fetching user activities
 
@@ -261,9 +272,3 @@ Changelog
 
 * 0.0.31
   * Support for timeout configuration
-
-* 0.0.26
-  * Support for Applications
-
-* 0.0.25
-  * Support for About page
