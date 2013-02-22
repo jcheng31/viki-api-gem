@@ -204,6 +204,10 @@ end
 Viki::Session.authenticate('tester@example.com', 'password') do |response|
   puts response.inspect
 end
+
+Viki::Session.authenticate('username', 'password') do |response|
+  puts response.inspect
+end
 ```
 
 * Logout
@@ -241,6 +245,9 @@ end
 Changelog
 ---------
 
+* 0.0.36
+  * Support for login by username
+
 * 0.0.31
   * Added roles
 
@@ -252,6 +259,3 @@ Changelog
 
 * 0.0.25
   * Support for About page
-
-* 0.0.23
-  * Support for full user info

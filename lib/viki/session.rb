@@ -6,10 +6,10 @@ module Viki
     path '/v4/sessions.json'
     path '/v4/sessions/:token.json'
 
-    def self.authenticate(email, password, persist = false, &block)
-      body = {'email' => email, 'password' => password, 'persist' => persist}
+    def self.authenticate(login_id, password, persist = false, &block)
+      body = {'login_id' => login_id, 'password' => password, 'persist' => persist}
       uri = signed_uri({}, body)
-      Viki.logger.info "#{self.name} authenticating #{email} to the API: #{uri}"
+      Viki.logger.info "#{self.name} authenticating #{login_id} to the API: #{uri}"
       creator = Viki::Core::Creator.new(uri, body)
       creator.queue &block
     end
