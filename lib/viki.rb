@@ -82,6 +82,7 @@ require 'viki/role'
 require 'viki/user_about'
 require 'viki/session'
 require 'viki/reset_password_token'
+require 'viki/activity'
 
 require 'viki/video'
 require 'viki/episode'
