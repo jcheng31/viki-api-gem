@@ -55,6 +55,7 @@ module Viki::Core
 
     def default_headers
       {}.tap do |headers|
+        headers['User-Agent'] = 'viki'
         user_ip = Viki.user_ip.call
         headers['X-Forwarded-For'] = user_ip if user_ip
       end
