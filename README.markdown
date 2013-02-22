@@ -240,10 +240,18 @@ Viki::ResetPasswordToken.reset_password!(reset_password_token, password, passwor
   puts response.inspect
 end
 
+* Fetch user activities
 
+```ruby
+Viki::Activity.fetch(user_id: user_id) do | response |
+  puts response.inspect
+end
+```
 
 Changelog
 ---------
+* 0.0.37
+  * Support for fetching user activities
 
 * 0.0.36
   * Support for login by username
