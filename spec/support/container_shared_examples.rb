@@ -21,18 +21,6 @@ shared_examples_for "a container object" do
     end
   end
 
-  describe ".upcoming" do
-    it "shows videos with state 3" do
-      described_class.should_receive(:fetch).with state: '3'
-      described_class.upcoming
-    end
-
-    it "accepts options" do
-      described_class.should_receive(:fetch).with state: '3', a: 1
-      described_class.upcoming(a: 1)
-    end
-  end
-
   describe ".trending" do
     it "sorts by trending" do
       described_class.should_receive(:fetch).with sort: 'trending'
