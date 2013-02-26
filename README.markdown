@@ -310,6 +310,10 @@ end
 
 Changelog
 ---------
+* 0.0.39
+  * Support for container recommendations
+  * Remove container upcoming as a filter since it's now supported as a list
+
 * 0.0.38
   * Support for master videos
 
