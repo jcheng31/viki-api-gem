@@ -74,7 +74,7 @@ end
 Viki::Stream.fetch(video_id: '44699v') do |response|
   puts response.inspect
 end
-
+```
 
 * Fetch trending movies (videos)
 
@@ -104,6 +104,55 @@ end
 
 ```ruby
 Viki::Series.upcoming do |response|
+  puts response.value.inspect
+end
+```
+
+* Fetch multiple ids from container
+
+```ruby
+Viki::Container.fetch(ids:'50c,504c') do |response|
+  puts response.value.inspect
+end
+```
+
+*  Fetch container base on type:
+
+- Film container
+
+```ruby
+Viki::Film.fetch(id:'3466c') do |response|
+  puts response.value.inspect
+end
+```
+
+- Series container
+
+```ruby
+Viki::Series.fetch(id: '50c') do |response|
+  puts response.value.inspect
+end
+
+- News container
+
+```ruby
+Viki::News.fetch(id: '3451c') do |response|
+  puts response.value.inspect
+end
+```
+
+- Artists container
+
+```ruby
+Viki::Artist.fetch(id: '4044c') do |response|
+  puts response.value.inspect
+end
+```
+
+* Fetch recommended containers for a container
+
+```ruby
+Viki::Container.recommendations('3466c') do |response|
   puts response.value.inspect
 end
 ```
@@ -232,6 +281,7 @@ end
 Viki::ResetPasswordToken.forgot_password!(user_email) do |response|
   puts response.inspect
 end
+```
 
 * Update password from reset password token
 
@@ -239,6 +289,7 @@ end
 Viki::ResetPasswordToken.reset_password!(reset_password_token, password, password_confirmation) do |response|
   puts response.inspect
 end
+```
 
 * Fetch user activities
 
@@ -247,6 +298,7 @@ Viki::Activity.fetch(user_id: user_id) do | response |
   puts response.inspect
 end
 ```
+
 
 Changelog
 ---------
