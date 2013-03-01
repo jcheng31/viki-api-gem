@@ -33,7 +33,7 @@ describe Viki::Core::Fetcher do
         fetcher.queue do |response|
           response.value.should be_nil
           error = response.error
-          error.should be_a(Viki::Core::BaseRequest::ErrorResponse)
+          error.should be_a(Viki::Core::ErrorResponse)
           error.status.should == 401
           error.error.should == "an error occurred"
           error.vcode.should == 123

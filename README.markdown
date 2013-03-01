@@ -318,6 +318,9 @@ end
 
 Changelog
 ---------
+* 0.0.42
+  * Errors refactoring
+
 * 0.0.39
   * Support for container recommendations
   * Remove container upcoming as a filter since it's now supported as a list

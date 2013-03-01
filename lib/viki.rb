@@ -74,6 +74,7 @@ require 'viki/core/updater'
 require 'viki/core/destroyer'
 require 'viki/core/base'
 require 'viki/core/response'
+require 'viki/core/error_response'
 
 require 'viki/application'
 

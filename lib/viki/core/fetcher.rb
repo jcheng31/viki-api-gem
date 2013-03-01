@@ -13,7 +13,7 @@ module Viki::Core
         if body
           block.call Viki::Core::Response.new(nil, get_content(body), self)
         else
-          error = ErrorResponse.new(body, 0, url)
+          error = Viki::Core::ErrorResponse.new(body, 0, url)
           Viki.logger.error(error.to_s)
           block.call Viki::Core::Response.new(error, nil, self)
         end

@@ -1,34 +1,5 @@
 module Viki::Core
   class BaseRequest
-    class ErrorResponse < RuntimeError
-      INVALID_TOKENS = [11, 7402]
-
-      attr_accessor :error, :vcode, :status, :url, :json, :body, :details
-
-      def initialize(body, status, url)
-        @body = body
-        @status = status
-        @url = url
-        begin
-          @json = Oj.load(@body.to_s)
-          @error = @json["error"]
-          @vcode = @json["vcode"].to_i
-          @details = @json["details"]
-        rescue Oj::ParseError
-          #ignore
-        end
-      end
-
-      def to_s
-        "Got an error response from the API. URL: '%s'; Status: %s; VCode: %s, Error: %s, Details: %s" %
-          [url, status, vcode, error, details.inspect]
-      end
-
-      def invalid_token?
-        INVALID_TOKENS.include? @vcode
-      end
-    end
-
     attr_reader :url, :body
 
     def initialize(url, body = nil)
@@ -40,7 +11,7 @@ module Viki::Core
       request.tap do |req|
         req.on_complete do |res|
           if is_error?(res)
-            error = ErrorResponse.new(res.body, res.code, @url)
+            error = Viki::Core::ErrorResponse.new(res.body, res.code, @url)
             Viki.logger.error(error.to_s)
             raise error if error.invalid_token?
             on_complete error, nil, &block
