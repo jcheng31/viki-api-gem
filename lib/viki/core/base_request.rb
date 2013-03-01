@@ -10,7 +10,7 @@ module Viki::Core
         @status = status
         @url = url
         begin
-          @json = Oj.load(@body)
+          @json = Oj.load(@body.to_s)
           @error = @json["error"]
           @vcode = @json["vcode"].to_i
           @details = @json["details"]
@@ -45,7 +45,8 @@ module Viki::Core
             raise error if error.invalid_token?
             on_complete error, nil, &block
           else
-            on_complete nil, res.body, &block
+            parsed_body = Oj.load(res.body) rescue nil
+            on_complete nil, parsed_body || res.body, &block
           end
         end
 

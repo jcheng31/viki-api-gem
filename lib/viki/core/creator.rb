@@ -1,8 +1,7 @@
 module Viki::Core
   class Creator < BaseRequest
     def on_complete(error, body, &block)
-      parsed_body = Oj.load(body) rescue nil
-      block.call Viki::Core::Response.new(error, parsed_body)
+      block.call Viki::Core::Response.new(error, body)
     end
 
     def request
