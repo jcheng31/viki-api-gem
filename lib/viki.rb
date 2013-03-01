@@ -111,3 +111,6 @@ require 'viki/search'
 require 'viki/cover'
 require 'viki/country'
 require 'viki/language'
+
+require 'viki/thread'
+require 'viki/message'
