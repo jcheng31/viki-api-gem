@@ -68,6 +68,14 @@ Viki::Episode.fetch(id: "44699v") do |response|
 end
 ```
 
+* Fetch Subtitles
+
+```ruby
+Viki::Stream.fetch(video_id: "44699v", language: "en") do |response|
+  puts response.inspect
+end
+```
+
 * Fetch streams for a video
 
 ```ruby

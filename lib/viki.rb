@@ -94,6 +94,7 @@ require 'viki/music_video'
 require 'viki/news_clip'
 
 require 'viki/stream'
+require 'viki/subtitle'
 
 require 'viki/container'
 require 'viki/artist'
