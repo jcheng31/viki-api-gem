@@ -113,4 +113,5 @@ require 'viki/country'
 require 'viki/language'
 
 require 'viki/thread'
+require 'viki/unread_count'
 require 'viki/message'
