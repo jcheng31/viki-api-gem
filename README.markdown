@@ -318,15 +318,16 @@ end
 * Private message
 
 ```ruby
-Viki::Thread.fetch(user_id: user_id, type: 'inbox') { |r| puts r.inspect }                # Inbox
-Viki::Thread.fetch(user_id: user_id, type: 'inbox', unread: true) { |r| puts r.inspect }  # Unread only
-Viki::Thread.fetch(user_id: user_id, type: 'sent') { |r| puts r.inspect }                 # Sent
-Viki::Thread.fetch(user_id: user_id, id: thread_id) { |r| puts r.inspect }                # List messages
-Viki::Thread.create(user_id: user_id, to: to_id, content: 'hi') { |r| puts r.inspect }    # Create a thread
-Viki::Thread.destroy(user_id: user_id, id: thread_id) { |r| puts r.inspect }               # Delete a thread
-Viki::Thread.update(user_id: user_id, id: thread_id) { |r| puts r.inspect }               # Mark thread as Unread
-Viki::Message.create(user_id: user_id, id: thread_id) { |r| puts r.inspect }              # Reply to a thread
-Viki::UnreadCount.fetch(user_id: user_id) { |r| puts r.inspect }                          # Unread count
+Viki::Thread.fetch(user_id: user_id, type: 'inbox') { |r| puts r.inspect }                  # Inbox
+Viki::Thread.fetch(user_id: user_id, type: 'inbox', unread: true) { |r| puts r.inspect }    # Unread only
+Viki::Thread.fetch(user_id: user_id, type: 'sent') { |r| puts r.inspect }                   # Sent
+Viki::Thread.fetch(user_id: user_id, id: thread_id) { |r| puts r.inspect }                  # List messages
+Viki::Thread.create(user_id: user_id, to: to_id, content: 'hi') { |r| puts r.inspect }      # Create a thread
+Viki::Thread.destroy(user_id: user_id, id: thread_id) { |r| puts r.inspect }                # Delete a thread
+Viki::Thread.update(user_id: user_id, id: thread_id, unread: 'true') { |r| puts r.inspect } # Mark thread as Unread
+Viki::Thread.update(user_id: user_id, id: thread_id, unread: 'false') { |r| puts r.inspect } # Mark thread as Read
+Viki::Message.create(user_id: user_id, id: thread_id) { |r| puts r.inspect }                # Reply to a thread
+Viki::UnreadCount.fetch(user_id: user_id) { |r| puts r.inspect }                            # Unread count
 ```
 
 
