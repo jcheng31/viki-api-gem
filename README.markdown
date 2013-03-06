@@ -333,6 +333,9 @@ Viki::UnreadCount.fetch(user_id: user_id) { |r| puts r.inspect }                
 
 Changelog
 ---------
+* 0.0.45
+  * Change unread count API
+
 * 0.0.44
   * Message unread count
 
@@ -345,12 +348,3 @@ Changelog
 * 0.0.39
   * Support for container recommendations
   * Remove container upcoming as a filter since it's now supported as a list
-
-* 0.0.38
-  * Support for master videos
-
-* 0.0.37
-  * Support for fetching user activities
-
-* 0.0.36
-  * Support for login by username
