@@ -148,6 +148,7 @@ end
 Viki::Series.fetch(id: '50c') do |response|
   puts response.value.inspect
 end
+```
 
 - News container
 
@@ -185,6 +186,14 @@ end
 
 ```ruby
 Viki::Subscription.create({user_id: user_id}, {'resource_id' => container_id}) do |response|
+  puts response.inspect
+end
+```
+
+* List subscribers of a container
+
+```ruby
+Viki::Subscriber.fetch(resource_id: resource_id) do |response|
   puts response.inspect
 end
 ```
@@ -333,6 +342,9 @@ Viki::Thread.unread_count(user_id) { |r| puts r.inspect }                       
 
 Changelog
 ---------
+* 0.0.46
+  * Added API to get subscribers of a container
+
 * 0.0.45
   * Change unread count API
 

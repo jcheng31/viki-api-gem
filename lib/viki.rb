@@ -106,6 +106,7 @@ require 'viki/series'
 require 'viki/list'
 require 'viki/genre'
 require 'viki/subscription'
+require 'viki/subscriber'
 require 'viki/search'
 
 require 'viki/cover'
