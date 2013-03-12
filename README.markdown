@@ -342,6 +342,10 @@ Viki::Thread.unread_count(user_id) { |r| puts r.inspect }                       
 
 Changelog
 ---------
+* 0.0.47
+  * Support for container people
+  * Correct path to update covers
+
 * 0.0.46
   * Added API to get subscribers of a container
 

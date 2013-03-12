@@ -23,4 +23,12 @@ describe Viki::Container, api: true do
       res.should eq resp
     end
   end
+
+  it "fetches people for container" do
+    resp = stub
+    Viki::Container.should_receive(:fetch).with(people_for: '50c').and_yield(resp)
+    Viki::Container.people('50c') do |res|
+      res.should eq resp
+    end
+  end
 end
