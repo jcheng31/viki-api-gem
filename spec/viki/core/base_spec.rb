@@ -54,11 +54,6 @@ describe Viki::Core::Base do
       expect { nested_test_klass.uri }.to raise_error(Viki::Core::Base::InsufficientOptions)
     end
 
-    it "includes the user country" do
-      Viki.stub(:user_country) { lambda { 'it' } }
-      test_klass.uri.to_s.should match("watchable_in=it")
-    end
-
     it "includes the user token" do
       Viki.stub(:user_token) { lambda { '12345' } }
       test_klass.uri.to_s.should match("token=12345")

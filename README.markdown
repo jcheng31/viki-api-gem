@@ -24,7 +24,6 @@ Viki.configure do |c|
   c.user_token = -> { 'the token of your user' }
 
   # Optional
-  c.user_country = -> { 'the country of your user' }
   c.logger = Logger.new(STDOUT) # The logger to use from the gem
   c.timeout_seconds = 30 # The timeout for the requests.
 end
@@ -40,8 +39,6 @@ Configuration
 * `c.user_ip` Lambda block returning the IP address of the user. It is put in the header of the requests to the API as `X-FORWARDED-FOR`. **Required**
 
 * `c.user_token` Lambda block returning the session token of the user. **Required**
-
-* `c.user_country` Lambda block returning the country of the user. If not present, will be resolved from his/her IP address. **Optional**
 
 * `c.logger` Instance of `Logger` you want the gem to use. Default to `Logger.new(STDOUT)`. **Optional**
 
@@ -342,6 +339,9 @@ Viki::Thread.unread_count(user_id) { |r| puts r.inspect }                       
 
 Changelog
 ---------
+* 0.0.48
+  * Removed support for `user_country`
+
 * 0.0.47
   * Support for container people
   * Correct path to update covers
@@ -357,10 +357,3 @@ Changelog
 
 * 0.0.43
   * Support private message
-
-* 0.0.42
-  * Errors refactoring
-
-* 0.0.39
-  * Support for container recommendations
-  * Remove container upcoming as a filter since it's now supported as a list

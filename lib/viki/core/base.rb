@@ -26,7 +26,6 @@ module Viki::Core
       def uri(params = {})
         path = select_best_path(_paths, params)
         path, params = process_ids(path, params)
-        params = process_user_country(params)
         uri = Addressable::URI.join("http#{"s" if @_ssl}://#{Viki.domain}", path)
         query_values = {}
         query_values.merge! uri.query_values if uri.query_values
@@ -131,12 +130,6 @@ module Viki::Core
         end
 
         [path, params]
-      end
-
-      def process_user_country(params)
-        user_country = Viki.user_country.call
-        params["watchable_in"] = user_country if user_country
-        params
       end
     end
   end
