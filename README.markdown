@@ -337,6 +337,7 @@ Viki::Thread.unread_count(user_id) { |r| puts r.inspect }                       
 ```
 
 * Notification
+
 ```ruby
 Viki::Notification.create(container: container_id, content: 'hi') { |r| puts r.inspect }  # Create an announcement
 Viki::Notification.fetch(user_id: user_id) { |r| puts r.inspect }                         # Inbox
