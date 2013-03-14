@@ -336,9 +336,24 @@ Viki::Message.create(user_id: user_id, id: thread_id, content: 'hi') { |r| puts 
 Viki::Thread.unread_count(user_id) { |r| puts r.inspect }                                  # Unread count
 ```
 
+* Notification
+```ruby
+Viki::Notification.create(container: container_id, content: 'hi') { |r| puts r.inspect }  # Create an announcement
+Viki::Notification.fetch(user_id: user_id) { |r| puts r.inspect }                         # Inbox
+Viki::Notification.fetch(user_id: user_id, unread: true) { |r| puts r.inspect }           # Unread
+Viki::Notification.fetch(user_id: user_id, id: notification_id) { |r| puts r.inspect }    # Get notification
+Viki::Notification.update(user_id: user_id, id: notification_id, unread: true) { |r| puts r.inspect }  # Mark as Unread
+Viki::Notification.update(user_id: user_id, id: notification_id, unread: false) { |r| puts r.inspect } # Mark as Read
+Viki::Notification.destroy(user_id: user_id, id: notification_id) { |r| puts r.inspect }  # Delete a notification
+Viki::Notification.unread_count(user_id) { |r| puts r.inspect }                           # Unread count
+```
+
 
 Changelog
 ---------
+* 0.0.49
+  * Support notification
+
 * 0.0.48
   * Removed support for `user_country`
 
@@ -351,9 +366,3 @@ Changelog
 
 * 0.0.45
   * Change unread count API
-
-* 0.0.44
-  * Message unread count
-
-* 0.0.43
-  * Support private message

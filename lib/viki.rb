@@ -112,3 +112,4 @@ require 'viki/language'
 
 require 'viki/thread'
 require 'viki/message'
+require 'viki/notification'
