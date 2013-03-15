@@ -10,8 +10,8 @@ describe Viki::Core::Base do
   describe "#uri" do
     let(:nested_test_klass) {
       Class.new(described_class) do
-        path 'parent/:parent_id/resource.json'
         path 'other/:other_id/parent/:parent_id/resource.json'
+        path 'parent/:parent_id/resource.json'
       end
     }
 

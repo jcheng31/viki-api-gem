@@ -112,7 +112,7 @@ module Viki::Core
 
         paths.sort_by do |path|
           url_params = path.scan(PATH_TOKENS_REGEX).flatten
-          -(url_params & params_keys).length
+          url_params.length > params_keys.length ? 0 : -(url_params & params_keys).length
         end.first
       end
 
