@@ -349,9 +349,15 @@ Viki::Notification.destroy(user_id: user_id, id: notification_id) { |r| puts r.i
 Viki::Notification.unread_count(user_id) { |r| puts r.inspect }                           # Unread count
 ```
 
+* Contribution
+Viki::Contribution.fetch(container_id: container_id) { |r| puts r.inspect } # container specific contributions
+Viki::Contribution.fetch(video_id: video_id) { |r| puts r.inspect }         # video specific contributions
 
 Changelog
 ---------
+* 0.0.51
+  * Support for contributions
+
 * 0.0.49
   * Support notification
 
