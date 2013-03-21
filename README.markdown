@@ -336,7 +336,7 @@ Viki::Message.create(user_id: user_id, id: thread_id, content: 'hi') { |r| puts 
 Viki::Thread.unread_count(user_id) { |r| puts r.inspect }                                  # Unread count
 ```
 
-* Notification
+* [Notification](#notification)
 
 ```ruby
 Viki::Notification.create(container_id: container_id, content: 'hi') { |r| puts r.inspect }  # Create an announcement
@@ -350,8 +350,10 @@ Viki::Notification.unread_count(user_id) { |r| puts r.inspect }                 
 ```
 
 * Contribution
+```ruby
 Viki::Contribution.fetch(container_id: container_id) { |r| puts r.inspect } # container specific contributions
 Viki::Contribution.fetch(video_id: video_id) { |r| puts r.inspect }         # video specific contributions
+```ruby
 
 Changelog
 ---------
