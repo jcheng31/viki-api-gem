@@ -350,10 +350,11 @@ Viki::Notification.unread_count(user_id) { |r| puts r.inspect }                 
 ```
 
 * Contribution
+ 
 ```ruby
 Viki::Contribution.fetch(container_id: container_id) { |r| puts r.inspect } # container specific contributions
 Viki::Contribution.fetch(video_id: video_id) { |r| puts r.inspect }         # video specific contributions
-```ruby
+```
 
 Changelog
 ---------
