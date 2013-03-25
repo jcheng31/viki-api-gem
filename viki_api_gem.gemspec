@@ -5,7 +5,7 @@ require "viki/version"
 Gem::Specification.new do |s|
   s.name        = "viki-api"
   s.version     = Viki::VERSION
-  s.authors     = ["Albert Callarisa Roca", "Fadhli Rahim", "Nuttanart Pornprasitsakul"]
+  s.authors     = ["Albert Callarisa Roca", "Fadhli Rahim", "Nuttanart Pornprasitsakul", "Chin Yong Tang"]
   s.email       = ["engineering@viki.com"]
   s.homepage    = "http://dev.viki.com"
   s.summary     = "A thin wrapper around the Viki V4 API"

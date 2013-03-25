@@ -350,14 +350,32 @@ Viki::Notification.unread_count(user_id) { |r| puts r.inspect }                 
 ```
 
 * Contribution
- 
+
 ```ruby
 Viki::Contribution.fetch(container_id: container_id) { |r| puts r.inspect } # container specific contributions
 Viki::Contribution.fetch(video_id: video_id) { |r| puts r.inspect }         # video specific contributions
 ```
 
+* Title
+```ruby
+Viki::Title.create({container_id: container_id}, {language_code: 'en', title: 'something'}) do |r|    # Create a container title
+  puts r.inspect
+end
+```
+
+* Description
+```ruby
+Viki::Description.create({container_id: container_id}, {language_code: 'en', description: 'something'}) |r|   # Create a container description
+  puts r.inspect
+end
+```
+
+
 Changelog
 ---------
+* 0.0.52
+  * Support for container title and description create
+
 * 0.0.51
   * Support for contributions
 

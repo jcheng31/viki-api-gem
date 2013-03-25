@@ -106,8 +106,10 @@ require 'viki/subscription'
 require 'viki/subscriber'
 require 'viki/search'
 require 'viki/contribution'
-
+require 'viki/title'
+require 'viki/description'
 require 'viki/cover'
+
 require 'viki/country'
 require 'viki/language'
 
