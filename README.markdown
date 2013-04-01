@@ -373,6 +373,9 @@ end
 
 Changelog
 ---------
+* 0.0.53
+  * Correct title and description endpoint
+
 * 0.0.52
   * Support for container title and description create
 
