@@ -12,7 +12,7 @@ describe Viki::Session, api: true do
 
     it 'raises error when the authentication fails' do
       stub_api 'sessions.json', '{"vcode": "404"}',
-               method: :post, response_code: '404'
+               method: :post, response_code: 404
       described_class.authenticate('user', 'pass') do |response|
         response.error.should_not be_nil
       end

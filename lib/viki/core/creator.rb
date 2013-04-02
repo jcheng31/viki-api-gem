@@ -5,13 +5,12 @@ module Viki::Core
     end
 
     def request
-      headers = default_headers.merge({'Content-Type' => "application/json"})
       @request ||= Typhoeus::Request.new url,
                                          body: body,
-                                         headers: headers,
+                                         headers: default_headers,
                                          method: "post",
-                                         forbid_reuse: true,
-                                         timeout: Viki.timeout_seconds
+                                         # forbid_reuse: true,
+                                         timeout: (Viki.timeout_seconds * 1000)
     end
   end
 end

@@ -20,13 +20,12 @@ module Viki::Core
       end
     end
 
-
     def request
       Typhoeus::Request.new url,
                             headers: default_headers,
                             method: "get",
-                            forbid_reuse: true,
-                            timeout: Viki.timeout_seconds
+                            # forbid_reuse: true,
+                            timeout: (Viki.timeout_seconds * 1000)
     end
 
     private

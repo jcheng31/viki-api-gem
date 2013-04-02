@@ -18,11 +18,11 @@ Gem::Specification.new do |s|
 
   # specify any dependencies here; for example:
   s.add_development_dependency "rspec", "~> 2.11"
-  s.add_development_dependency "webmock", "~> 1.9"
+  s.add_development_dependency "webmock", "= 1.8.6"
   s.add_development_dependency "timecop", "~> 0.5"
 
   s.add_runtime_dependency     "oj", "~> 2.0"
-  s.add_runtime_dependency     "typhoeus", "~> 0.5"
+  s.add_runtime_dependency     "typhoeus", "= 0.3.3"
   s.add_runtime_dependency     "addressable", "~> 2.3"
   s.add_runtime_dependency     "viki_utils"
 end
