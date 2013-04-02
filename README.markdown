@@ -121,6 +121,14 @@ Viki::Series.upcoming do |response|
 end
 ```
 
+* Fetch container summary
+
+```ruby
+Viki::ContainerSummary.fetch(id: '50c') do |response|
+  puts response.value.inspect
+end
+```
+
 * Fetch multiple ids from container
 
 ```ruby
@@ -241,6 +249,14 @@ Viki::User.fetch(id: user_id) do |response|
   puts response.inspect
 end
 Viki::User.fetch(full_id: user_id) do |response|
+  puts response.inspect
+end
+```
+
+* Fetch user summary
+
+```ruby
+Viki::UserSummary.fetch(id: user_id) do |response|
   puts response.inspect
 end
 ```
@@ -373,6 +389,8 @@ end
 
 Changelog
 ---------
+* 0.0.57
+  * Added ContainerSummary and UserSummary
 * 0.0.53
   * Correct title and description endpoint
 
