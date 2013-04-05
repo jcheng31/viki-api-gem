@@ -344,18 +344,18 @@ Viki::Thread.fetch(user_id: user_id, type: 'inbox') { |r| puts r.inspect }      
 Viki::Thread.fetch(user_id: user_id, type: 'inbox', unread: true) { |r| puts r.inspect }   # Unread only
 Viki::Thread.fetch(user_id: user_id, type: 'sent') { |r| puts r.inspect }                  # Sent
 Viki::Thread.fetch(user_id: user_id, id: thread_id) { |r| puts r.inspect }                 # List messages
-Viki::Thread.create(user_id: user_id, to: to_id, content: 'hi') { |r| puts r.inspect }     # Create a thread
+Viki::Thread.create({user_id: user_id}, to: to_id, content: 'hi') { |r| puts r.inspect }   # Create a thread
 Viki::Thread.destroy(user_id: user_id, id: thread_id) { |r| puts r.inspect }               # Delete a thread
 Viki::Thread.update(user_id: user_id, id: thread_id, unread: 'true') { |r| puts r.inspect }# Mark thread as Unread
 Viki::Thread.update(user_id: user_id, id: thread_id, unread: 'false') { |r| puts r.inspect } # Mark thread as Read
-Viki::Message.create(user_id: user_id, id: thread_id, content: 'hi') { |r| puts r.inspect }# Reply to a thread
+Viki::Message.create({user_id: user_id}, id: thread_id, content: 'hi') { |r| puts r.inspect }# Reply to a thread
 Viki::Thread.unread_count(user_id) { |r| puts r.inspect }                                  # Unread count
 ```
 
 * [Notification](#notification)
 
 ```ruby
-Viki::Notification.create(container_id: container_id, content: 'hi') { |r| puts r.inspect }  # Create an announcement
+Viki::Notification.create({container_id: container_id}, content: 'hi') { |r| puts r.inspect }  # Create an announcement
 Viki::Notification.fetch(user_id: user_id) { |r| puts r.inspect }                         # Inbox
 Viki::Notification.fetch(user_id: user_id, unread: true) { |r| puts r.inspect }           # Unread
 Viki::Notification.fetch(user_id: user_id, id: notification_id) { |r| puts r.inspect }    # Get notification
@@ -373,6 +373,7 @@ Viki::Contribution.fetch(video_id: video_id) { |r| puts r.inspect }         # vi
 ```
 
 * Title
+
 ```ruby
 Viki::Title.create({container_id: container_id}, {language_code: 'en', title: 'something'}) do |r|    # Create a container title
   puts r.inspect
@@ -380,6 +381,7 @@ end
 ```
 
 * Description
+
 ```ruby
 Viki::Description.create({container_id: container_id}, {language_code: 'en', description: 'something'}) |r|   # Create a container description
   puts r.inspect
