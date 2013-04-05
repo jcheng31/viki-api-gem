@@ -10,7 +10,7 @@ module Viki::Core
       @status = status.to_i
       @url = url
       begin
-        @json = Oj.load(@body.to_s)
+        @json = Oj.load(@body.to_s, mode: :compat, symbol_keys: false)
         @error = @json["error"]
         @vcode = @json["vcode"].to_i
         @details = @json["details"]
