@@ -337,6 +337,15 @@ Viki::Activity.fetch(user_id: user_id) do | response |
 end
 ```
 
+* Fetch activities
+
+```ruby
+Viki::Activity.fetch(type: 'all') do | response |
+  puts response.inspect
+end
+```
+See http://dev.viki.com/v4/activities/ for type params details
+
 * Private message
 
 ```ruby
@@ -391,6 +400,8 @@ end
 
 Changelog
 ---------
+* 0.0.60
+  * Support for activities endpoint
 * 0.0.57
   * Added ContainerSummary and UserSummary
 * 0.0.53
