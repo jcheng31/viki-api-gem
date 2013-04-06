@@ -8,4 +8,12 @@ describe Viki::Activity, api: true do
     Viki.run
     activities.should eq ['1a', '2a']
   end
+
+  it "fetches activities" do
+    stub_api 'activities.json', '["1a", "2a"]'
+    activities = nil
+    described_class.fetch(type: 'all'){|response| activities = response.value }
+    Viki.run
+    activities.should eq ['1a', '2a']
+  end
 end
