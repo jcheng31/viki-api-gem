@@ -17,9 +17,9 @@ describe Viki::Contribution, api: true do
     end
   end
 
-  it "loads video contributions" do
-    stub_api 'videos/42v/contributions.json', Oj.dump([contribution])
-    described_class.fetch(video_id: '42v') do |response|
+  it "loads user contributions" do
+    stub_api 'users/42u/contributions.json', Oj.dump([contribution])
+    described_class.fetch(user_id: '42u') do |response|
       response.value.should == [contribution]
     end
   end

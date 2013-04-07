@@ -374,11 +374,11 @@ Viki::Notification.destroy(user_id: user_id, id: notification_id) { |r| puts r.i
 Viki::Notification.unread_count(user_id) { |r| puts r.inspect }                           # Unread count
 ```
 
-* Contribution
+* [Contribution](#contribution)
 
 ```ruby
 Viki::Contribution.fetch(container_id: container_id) { |r| puts r.inspect } # container specific contributions
-Viki::Contribution.fetch(video_id: video_id) { |r| puts r.inspect }         # video specific contributions
+Viki::Contribution.fetch(user_id: user_id) { |r| puts r.inspect }           # user specific contributions
 ```
 
 * Title
@@ -400,31 +400,17 @@ end
 
 Changelog
 ---------
+* 0.0.61
+  * Support user contributions
+
 * 0.0.60
   * Support for activities endpoint
+
 * 0.0.57
   * Added ContainerSummary and UserSummary
+
 * 0.0.53
   * Correct title and description endpoint
 
 * 0.0.52
   * Support for container title and description create
-
-* 0.0.51
-  * Support for contributions
-
-* 0.0.49
-  * Support notification
-
-* 0.0.48
-  * Removed support for `user_country`
-
-* 0.0.47
-  * Support for container people
-  * Correct path to update covers
-
-* 0.0.46
-  * Added API to get subscribers of a container
-
-* 0.0.45
-  * Change unread count API
