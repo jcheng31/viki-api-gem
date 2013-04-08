@@ -397,16 +397,23 @@ Viki::Description.create({container_id: container_id}, {language_code: 'en', des
 end
 ```
 
-* Video Creation
+* Video Creation/Update
 
 ```ruby
 Viki::video.create({container_id: container_id}, {type: 'episode', url: 'something'}) |r|   # Create a video
+  puts r.inspect
+end
+
+Viki::video.update({container_id: container_id, video_id: video_id}, {type: 'episode', url: 'something', part: 2}) |r|   # Update a video
   puts r.inspect
 end
 ```
 
 Changelog
 ---------
+* 0.0.63
+  * Support video update via containers/:container_id/videos/:video_id.json
+
 * 0.0.62
   * Support video creation via containers/:container_id/videos.json
 
