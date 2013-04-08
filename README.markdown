@@ -397,9 +397,19 @@ Viki::Description.create({container_id: container_id}, {language_code: 'en', des
 end
 ```
 
+* Video Creation
+
+```ruby
+Viki::video.create({container_id: container_id}, {type: 'episode', url: 'something'}) |r|   # Create a video
+  puts r.inspect
+end
+```
 
 Changelog
 ---------
+* 0.0.62
+  * Support video creation via containers/:container_id/videos.json
+
 * 0.0.61
   * Support user contributions
 
