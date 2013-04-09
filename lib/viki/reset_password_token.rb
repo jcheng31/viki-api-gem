@@ -10,7 +10,7 @@ module Viki
       options = {'reset_password_token' => reset_password_token,
                  'password' => password,
                  'password_confirmation' => password_confirmation}
-      self.destroy({}, options, &block)
+      self.update({}, options, &block)
     end
   end
 end

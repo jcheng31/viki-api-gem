@@ -12,7 +12,7 @@ describe Viki::ResetPasswordToken, api: true do
 
   it "resets the password" do
     response = stub
-    described_class.should_receive(:destroy).
+    described_class.should_receive(:update).
       with({}, {"reset_password_token" => '12345',
                 "password" => 'pass',
                 "password_confirmation" => 'pass_conf'}).

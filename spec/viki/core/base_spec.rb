@@ -119,13 +119,12 @@ describe Viki::Core::Base do
   end
 
   describe "#destroy" do
-    it "constructs a destroyer from the signed_uri and the body" do
+    it "constructs a destroyer from the signed_uri" do
       uri = stub
       options = stub
-      body = stub.as_null_object
-      test_klass.should_receive(:signed_uri).with(options, body) { uri }
-      Viki::Core::Destroyer.should_receive(:new).with(uri, body) { stub :queue => nil }
-      test_klass.destroy(options, body) do
+      test_klass.should_receive(:signed_uri).with(options) { uri }
+      Viki::Core::Destroyer.should_receive(:new).with(uri) { stub :queue => nil }
+      test_klass.destroy(options) do
       end
     end
   end

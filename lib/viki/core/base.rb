@@ -89,17 +89,17 @@ module Viki::Core
         response
       end
 
-      def destroy(url_options = {}, body = {}, &block)
-        uri = signed_uri(url_options.dup, body)
+      def destroy(url_options = {}, &block)
+        uri = signed_uri(url_options.dup)
         Viki.logger.info "#{self.name} destroying to the API: #{uri}"
-        destroyer = Viki::Core::Destroyer.new(uri, body)
+        destroyer = Viki::Core::Destroyer.new(uri)
         destroyer.queue &block
         destroyer
       end
 
-      def destroy_sync(url_options = {}, body = {})
+      def destroy_sync(url_options = {})
         response = nil
-        destroy(url_options, body) { |r| response = r }
+        destroy(url_options) { |r| response = r }
         Viki.run
         response
       end
