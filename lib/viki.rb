@@ -94,6 +94,7 @@ require 'viki/news_clip'
 
 require 'viki/stream'
 require 'viki/subtitle'
+require 'viki/subtitle_completion'
 
 require 'viki/container'
 require 'viki/container_summary'
