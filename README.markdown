@@ -419,6 +419,9 @@ end
 
 Changelog
 ---------
+* 0.0.65
+  * Support subtitle completions
+
 * 0.0.63
   * Support video update via containers/:container_id/videos/:video_id.json
 
@@ -430,12 +433,3 @@ Changelog
 
 * 0.0.60
   * Support for activities endpoint
-
-* 0.0.57
-  * Added ContainerSummary and UserSummary
-
-* 0.0.53
-  * Correct title and description endpoint
-
-* 0.0.52
-  * Support for container title and description create
