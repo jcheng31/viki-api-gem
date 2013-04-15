@@ -32,9 +32,9 @@ end
 Configuration
 -------------
 
-* `c.salt` Must contain you salt. Default to `ENV["VIKI_API_SALT"]`. Either in config or using `ENV`, it is **required**.
+* `c.salt` Must contain your salt. Default to `ENV["VIKI_API_SALT"]`. Either in config or using `ENV`, it is **required**.
 
-* `c.app_id` Must contain you application id. Default to `ENV["VIKI_API_APP_ID"]`. Either in config or using `ENV`, it is **required**.
+* `c.app_id` Must contain your application id. Default to `ENV["VIKI_API_APP_ID"]`. Either in config or using `ENV`, it is **required**.
 
 * `c.user_ip` Lambda block returning the IP address of the user. It is put in the header of the requests to the API as `X-FORWARDED-FOR`. **Required**
 
@@ -68,7 +68,15 @@ end
 * Fetch Subtitles
 
 ```ruby
-Viki::Stream.fetch(video_id: "44699v", language: "en") do |response|
+Viki::Subtitle.fetch(video_id: "44699v", language: "en") do |response|
+  puts response.inspect
+end
+```
+
+* Fetch Subtitle_completion
+
+```ruby
+Viki::SubtitleCompletion.fetch(video_id: "44699v") do |response|
   puts response.inspect
 end
 ```
