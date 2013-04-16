@@ -179,6 +179,15 @@ Viki::Artist.fetch(id: '4044c') do |response|
 end
 ```
 
+- Artist - Fetching casts information
+
+```ruby
+Viki::Artist.casts_for(artist_id: '4044c') do |response|
+  puts response.value.inspect
+end
+```
+
+
 * Fetch recommended containers for a container
 
 ```ruby
@@ -419,6 +428,9 @@ end
 
 Changelog
 ---------
+* 0.0.67
+  * Support for artist casts information
+
 * 0.0.65
   * Support subtitle completions
 
