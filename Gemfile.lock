@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    viki-api (0.0.67)
+    viki-api (0.0.68)
       addressable (~> 2.3)
       oj (~> 2.0)
       typhoeus (= 0.3.3)

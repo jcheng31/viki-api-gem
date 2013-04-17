@@ -305,11 +305,11 @@ end
 * Login
 
 ```ruby
-Viki::Session.authenticate('tester@example.com', 'password') do |response|
+Viki::Session.authenticate('tester@example.com', 'password', {}) do |response|
   puts response.inspect
 end
 
-Viki::Session.authenticate('username', 'password') do |response|
+Viki::Session.authenticate('username', 'password', {}) do |response|
   puts response.inspect
 end
 ```
@@ -428,6 +428,9 @@ end
 
 Changelog
 ---------
+* 0.0.68
+  * Support for adding extra params for Sessions call
+
 * 0.0.67
   * Support for artist casts information
 
