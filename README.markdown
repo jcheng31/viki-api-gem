@@ -391,6 +391,12 @@ Viki::Notification.destroy(user_id: user_id, id: notification_id) { |r| puts r.i
 Viki::Notification.unread_count(user_id) { |r| puts r.inspect }                           # Unread count
 ```
 
+* Notification + Private message count
+
+```ruby
+Viki::Alert.unread_count(user_id) { |r| puts r.inspect }
+```
+
 * [Contribution](#contribution)
 
 ```ruby
@@ -428,6 +434,9 @@ end
 
 Changelog
 ---------
+* 1.0.0
+  * Support notification + private message count
+
 * 0.0.68
   * Support for adding extra params for Sessions call
 
@@ -436,15 +445,3 @@ Changelog
 
 * 0.0.65
   * Support subtitle completions
-
-* 0.0.63
-  * Support video update via containers/:container_id/videos/:video_id.json
-
-* 0.0.62
-  * Support video creation via containers/:container_id/videos.json
-
-* 0.0.61
-  * Support user contributions
-
-* 0.0.60
-  * Support for activities endpoint
