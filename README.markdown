@@ -182,7 +182,7 @@ end
 - Artist - Fetching casts information
 
 ```ruby
-Viki::Artist.casts_for(artist_id: '4044c') do |response|
+Viki::Artist.casts_for('4044c') do |response|
   puts response.value.inspect
 end
 ```
