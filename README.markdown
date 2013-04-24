@@ -434,6 +434,9 @@ end
 
 Changelog
 ---------
+* 1.0.1
+  * Support 1st level subtitle completions resource.
+
 * 1.0.0
   * Support notification + private message count
 
