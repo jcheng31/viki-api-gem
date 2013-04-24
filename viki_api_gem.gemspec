@@ -24,5 +24,5 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency     "oj", "~> 2.0"
   s.add_runtime_dependency     "typhoeus", "= 0.3.3"
   s.add_runtime_dependency     "addressable", "~> 2.3"
-  s.add_runtime_dependency     "viki_utils"
+  s.add_runtime_dependency     "viki_utils", "0.0.7"
 end
