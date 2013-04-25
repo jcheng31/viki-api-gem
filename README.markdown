@@ -76,7 +76,7 @@ end
 * Fetch Subtitle_completion
 
 ```ruby
-Viki::SubtitleCompletion.fetch(video_id: "44699v") do |response|
+Viki::SubtitleCompletion.fetch(video_ids: "44699v,44700v") do |response|
   puts response.inspect
 end
 ```
