@@ -69,7 +69,10 @@ end
 
 ```ruby
 Viki::Subtitle.fetch(video_id: "44699v", language: "en") do |response|
-  puts response.inspect
+  puts response.inspect  # SRT format
+end
+Viki::Subtitle.fetch(video_id: "44699v", language: "en", format: 'json') do |response|
+  puts response.inspect  # JSON format
 end
 ```
 
