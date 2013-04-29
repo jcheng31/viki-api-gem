@@ -1,5 +1,6 @@
 module Viki
   class Subtitle < Viki::Core::Base
-    path 'v4/videos/:video_id/subtitles/:language.srt'
+    path 'v4/videos/:video_id/subtitles/:language.:format'
+    default format: 'srt'
   end
 end
