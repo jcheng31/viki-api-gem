@@ -8,7 +8,7 @@ module Viki::Core
     class InsufficientOptions < RuntimeError
     end
 
-    PATH_TOKENS_REGEX = /\/:(\w+)/
+    PATH_TOKENS_REGEX = /:(\w+)/
     END_OF_PATH_REGEX = /(\/\w+)(\.\w+)?$/
 
     class << self
@@ -23,7 +23,17 @@ module Viki::Core
         @_paths.push path
       end
 
+      def default(default_values)
+        @_defaults ||= {}
+        @_defaults.merge!(default_values)
+      end
+
+      def _defaults
+        @_defaults or {}
+      end
+
       def uri(params = {})
+        params = _defaults.merge(params)
         path = select_best_path(_paths, params)
         path, params = process_ids(path, params)
         uri = Addressable::URI.join("http#{"s" if @_ssl}://#{Viki.domain}", path)

@@ -50,6 +50,12 @@ describe Viki::Core::Base do
         "/other/other_id/parent/parent_id/resource.json"
     end
 
+    it "uses default value if required value is not provided" do
+      nested_test_klass.default parent_id: 'default_value'
+      nested_test_klass.uri(other_id: 'other_id').path.should == "/other/other_id/parent/default_value/resource.json"
+      nested_test_klass.uri.path.should == "/parent/default_value/resource.json"
+    end
+
     it "requires the parents for nested resources" do
       expect { nested_test_klass.uri }.to raise_error(Viki::Core::Base::InsufficientOptions)
     end
