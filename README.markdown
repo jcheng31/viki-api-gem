@@ -437,7 +437,7 @@ end
 
 Changelog
 ---------
-* 1.0.2
+* 1.1.1
   * Support timed comments
 
 * 1.0.1
