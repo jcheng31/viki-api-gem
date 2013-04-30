@@ -437,6 +437,9 @@ end
 
 Changelog
 ---------
+* 1.0.2
+  * Support timed comments
+
 * 1.0.1
   * Support 1st level subtitle completions resource.
 
