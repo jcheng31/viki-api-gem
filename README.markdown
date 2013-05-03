@@ -84,6 +84,17 @@ Viki::SubtitleCompletion.fetch(video_ids: "44699v,44700v") do |response|
 end
 ```
 
+* Block languages
+
+```ruby
+Viki::BlockedLanguages.fetch(container_id: '5269c') do |response|
+  puts response.inspect
+end
+Viki::BlockedLanguages.create({ container_id: '5269c'}, { 'languages' => 'tr,vi' }) do |response|
+  puts response.inspect
+end
+```
+
 * Fetch streams for a video
 
 ```ruby
@@ -437,6 +448,9 @@ end
 
 Changelog
 ---------
+* 1.1.2
+  * Support blocked languages
+
 * 1.1.1
   * Support timed comments
 
@@ -445,12 +459,3 @@ Changelog
 
 * 1.0.0
   * Support notification + private message count
-
-* 0.0.68
-  * Support for adding extra params for Sessions call
-
-* 0.0.67
-  * Support for artist casts information
-
-* 0.0.65
-  * Support subtitle completions
