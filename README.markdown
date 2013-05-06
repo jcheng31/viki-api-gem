@@ -103,6 +103,18 @@ Viki::Stream.fetch(video_id: '44699v') do |response|
 end
 ```
 
+* Fetch hardsub streams for a video
+
+```ruby
+Viki::HardsubStream.fetch(video_id: '44699v') do |response|
+  puts response.inspect
+end
+
+Viki::HardsubStream.fetch(video_id: '44699v', language: 'en') do |response|
+  puts response.inspect
+end
+```
+
 * Creates a master video
 
 ```ruby
@@ -448,6 +460,9 @@ end
 
 Changelog
 ---------
+* 1.1.3
+  * Support hardsub streams
+
 * 1.1.2
   * Support blocked languages
 

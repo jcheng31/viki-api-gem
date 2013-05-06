@@ -93,6 +93,7 @@ require 'viki/music_video'
 require 'viki/news_clip'
 
 require 'viki/stream'
+require 'viki/hardsub_stream'
 require 'viki/subtitle'
 require 'viki/subtitle_completion'
 require 'viki/blocked_languages'
