@@ -479,8 +479,11 @@ end
 
 Changelog
 ---------
-* 1.1.4
+* 1.1.5
   * Support Timed Comment delete
+
+* 1.1.4
+  * Support ReplaceStream
 
 * 1.1.3
   * Support hardsub streams
