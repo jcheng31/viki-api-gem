@@ -466,8 +466,22 @@ Viki::video.update({container_id: container_id, video_id: video_id}, {type: 'epi
 end
 ```
 
+* Timed Comments
+
+```ruby
+Viki::TimedComment.fetch(video_id: "44699v", language: "en") do |response|
+  puts response.inspect  # SRT format
+end
+Viki::TimedComment.destroy(video_id: "44699v", timed_comment_id: "42tc") do |response|
+  puts response.inspect  # JSON format
+end
+```
+
 Changelog
 ---------
+* 1.1.4
+  * Support Timed Comment delete
+
 * 1.1.3
   * Support hardsub streams
 
