@@ -123,6 +123,14 @@ Viki::MasterVideo.create(video_id: '44699v', url: "YOUTUBE_URL") do |response|
 end
 ```
 
+* Replace Streams
+
+```ruby
+Viki::ReplaceStream.update(old_video_id: '44699v', new_video_id: '45566v') do |response|
+  puts response.inspect
+end
+```
+
 * Fetch trending movies (videos)
 
 ```ruby
