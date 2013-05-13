@@ -4,7 +4,6 @@ module Viki
     path "v4/videos/:recommended_for/recommendations.json"
     path "v4/containers/:container_id/videos.json"
     path "v4/containers/:container_id/videos/:video_id.json"
-    path "v4/videos/:video_id.json"
 
     def self.trending(options = {}, &block)
       self.fetch(options.merge(sort: 'trending'), &block)
