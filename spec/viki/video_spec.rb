@@ -36,9 +36,9 @@ describe Viki::Video, api: true do
     end
   end
 
-  it "updates videos via videos/:video_id.json" do
+  it "updates videos via videos/:id.json" do
     stub_api 'videos/42v.json', json_fixture(:video), { method: :put }
-    described_class.update({ video_id: "42v" }, { }) do |response|
+    described_class.update({ id: "42v" }, { }) do |response|
       video = response.value
       video.should be_a_kind_of(Hash)
       video.keys.should include('titles')
