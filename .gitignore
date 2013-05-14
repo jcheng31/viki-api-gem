@@ -1,3 +1,4 @@
 .idea
 .rvmrc
 pkg
+.DS_Store
