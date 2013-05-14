@@ -10,4 +10,15 @@ describe Viki::Title, api: true do
     Viki.run
     stub.should have_been_made
   end
+
+  it "up-sert a video title" do
+    stub = stub_request('post', %r{.*/videos/42v/titles.json.*}).
+        with(body: Oj.dump({'title' => "This is Sparta!", 'language_code' => "kr", }))
+
+    described_class.create({video_id: "42v"}, {'title' => "This is Sparta!", 'language_code' => 'kr'}) do
+    end
+    Viki.run
+    stub.should have_been_made
+  end
+
 end

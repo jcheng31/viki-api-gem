@@ -444,12 +444,20 @@ Viki::Contribution.fetch(user_id: user_id) { |r| puts r.inspect }           # us
 Viki::Title.create({container_id: container_id}, {language_code: 'en', title: 'something'}) do |r|    # Create a container title
   puts r.inspect
 end
+
+Viki::Title.create({video_id: video_id}, {language_code: 'en', title: 'something'}) do |r|    # Create a video title
+  puts r.inspect
+end
 ```
 
 * Description
 
 ```ruby
 Viki::Description.create({container_id: container_id}, {language_code: 'en', description: 'something'}) |r|   # Create a container description
+  puts r.inspect
+end
+
+Viki::Description.create({video_id: video_id}, {language_code: 'en', description: 'something'}) |r|   # Create a container description
   puts r.inspect
 end
 ```
@@ -479,6 +487,9 @@ end
 
 Changelog
 ---------
+* 1.1.8
+  * Support video titles and descriptions
+
 * 1.1.5
   * Support Timed Comment delete
 
