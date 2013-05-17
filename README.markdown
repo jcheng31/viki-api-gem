@@ -434,8 +434,9 @@ Viki::Alert.unread_count(user_id) { |r| puts r.inspect }
 * [Contribution](#contribution)
 
 ```ruby
-Viki::Contribution.fetch(container_id: container_id) { |r| puts r.inspect } # container specific contributions
-Viki::Contribution.fetch(user_id: user_id) { |r| puts r.inspect }           # user specific contributions
+Viki::Contribution.fetch(container_id: container_id) { |r| puts r.inspect }         # container specific contributions
+Viki::Contribution.fetch(user_id: user_id) { |r| puts r.inspect }                   # user specific contributions
+Viki::RemoveContribution.remove_user_contributions(user_id) { |r| puts r.inspect }  # remove user's contributions 
 ```
 
 * Title
