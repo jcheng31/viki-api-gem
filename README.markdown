@@ -84,6 +84,14 @@ Viki::SubtitleCompletion.fetch(video_ids: "44699v,44700v") do |response|
 end
 ```
 
+* Fetch Subtitle_history
+
+```ruby
+Viki::SubtitleHistory.fetch(user_id: "1u") do |response|
+  puts response.inspect
+end
+```
+
 * Block languages
 
 ```ruby
