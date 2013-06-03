@@ -495,6 +495,9 @@ end
 
 Changelog
 ---------
+* 1.1.11
+  * Reduce timeout to 10 seconds
+
 * 1.1.8
   * Support video titles and descriptions
 

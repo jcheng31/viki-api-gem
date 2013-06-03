@@ -54,7 +54,7 @@ module Viki
       @logger.level = ::Logger::INFO
       @user_ip = lambda { }
       @user_token = lambda { }
-      @timeout_seconds = 30
+      @timeout_seconds = 10
     end
   end
 end
