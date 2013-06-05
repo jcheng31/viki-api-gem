@@ -493,6 +493,22 @@ Viki::TimedComment.destroy(video_id: "44699v", timed_comment_id: "42tc") do |res
 end
 ```
 
+* Translations
+
+```ruby
+Viki::Translation.random(origin_language: 'en', target_language: 'es') do |response| # get random translation
+  puts r.inspect
+end
+
+Viki::Translation.rating(origin_subtitle_id: '1s', target_subtitle_id: '2s', like: true) do |response| # like a translation
+  puts r.inspect
+end
+
+Viki::Translation.rating(origin_subtitle_id: '1s', target_subtitle_id: '2s', like: false, suggested_content: 'something') do |response| # dislike a translation with suggestion
+  puts r.inspect
+end
+```
+
 Changelog
 ---------
 * 1.1.11
