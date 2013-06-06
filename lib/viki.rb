@@ -86,6 +86,7 @@ require 'viki/activity'
 require 'viki/master_video'
 require 'viki/replace_streams'
 require 'viki/encode_jobs'
+require 'viki/image'
 
 require 'viki/video'
 require 'viki/episode'
