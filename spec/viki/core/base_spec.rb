@@ -14,6 +14,14 @@ describe Viki::Core::Base do
         path 'parent/:parent_id/resource.json'
       end
     }
+    let(:named_paths_test_klass) {
+      Class.new(described_class) do
+        path 'other/:other_id/parent/:parent_id/resource.json', name: "path1"
+        path 'parent/:parent_id/resource.json', name: "path1"
+        path 'useless/:useless_id/resource.json', name: "path2"
+        path 'default/:default_id/resource.json'
+      end
+    }
 
     subject { test_klass.uri }
 
@@ -43,11 +51,25 @@ describe Viki::Core::Base do
       path.should == "/parent/parent_id/resource.json"
     end
 
-    it "uses the path with more matches" do
-      nested_test_klass.uri(parent_id: 'parent_id').path.should ==
+    xit "uses the path with more matches" do
+      nested_test_klass.uri(parent_id: 'parent_id', fail: "1").path.should ==
         "/parent/parent_id/resource.json"
       nested_test_klass.uri(other_id: 'other_id', parent_id: 'parent_id').path.should ==
         "/other/other_id/parent/parent_id/resource.json"
+    end
+
+    it "uses named paths" do
+      named_paths_test_klass.uri(other_id: '123', parent_id: '234', named_path: 'path1').path.should ==
+        "/other/123/parent/234/resource.json"
+      named_paths_test_klass.uri(parent_id: '234', named_path: 'path1').path.should ==
+        "/parent/234/resource.json"
+
+      expect { named_paths_test_klass.uri(useless_id: '234', named_path: 'path1') }.to raise_error(Viki::Core::Base::InsufficientOptions)
+      expect { named_paths_test_klass.uri(default_id: '234', named_path: 'path1') }.to raise_error(Viki::Core::Base::InsufficientOptions)
+      expect { named_paths_test_klass.uri(named_path: 'path2') }.to raise_error(Viki::Core::Base::InsufficientOptions)
+
+      named_paths_test_klass.uri(useless_id: '234', named_path: 'path2').path.should ==
+        "/useless/234/resource.json"
     end
 
     it "uses default value if required value is not provided" do
