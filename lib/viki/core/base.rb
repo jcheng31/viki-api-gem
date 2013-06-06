@@ -10,6 +10,7 @@ module Viki::Core
 
     PATH_TOKENS_REGEX = /:(\w+)/
     END_OF_PATH_REGEX = /(\/\w+)(\.\w+)?$/
+    DEFAULT_NAME = "NONAME"
 
     class << self
       attr_accessor :_paths, :_ssl
@@ -18,9 +19,11 @@ module Viki::Core
         @_ssl = true
       end
 
-      def path(path)
-        @_paths ||= []
-        @_paths.push path
+      def path(path, options = {})
+        name = options.fetch(:name, DEFAULT_NAME)
+        @_paths ||= {}
+        @_paths[name] ||= []
+        @_paths[name].push path
       end
 
       def default(default_values)
@@ -116,7 +119,10 @@ module Viki::Core
 
       private
 
-      def select_best_path(paths, params)
+      def select_best_path(all_paths, params)
+        name = params.delete(:named_path) || DEFAULT_NAME
+        paths = all_paths[name]
+
         return paths.first if paths.length == 1
         params_keys = params.keys.map(&:to_s)
 
