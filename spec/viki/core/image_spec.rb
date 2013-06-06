@@ -3,7 +3,7 @@ require "spec_helper"
 describe Viki::Image, api: true do
   describe 'update' do
     it 'updates the image' do
-      stub_api 'image.json', '[]', method: :put
+      stub_api 'images.json', '[]', method: :put
       described_class.update("video_id" => '123v', "url" => '145v') do |response|
         response.error.should be_nil
       end
@@ -12,7 +12,7 @@ describe Viki::Image, api: true do
 
     describe 'fetch' do
     it 'fetched the images' do
-      stub_api 'image.json', '[]', method: :get
+      stub_api 'images.json', '[]', method: :get
       described_class.fetch("video_id" => '123v') do |response|
         response.error.should be_nil
       end
