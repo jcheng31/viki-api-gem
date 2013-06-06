@@ -370,6 +370,8 @@ end
 Viki::Session.fetch(token: user_token) do |response|
   puts response.inspect
 end
+# The gem will throw Viki::Core::ErrorResponse in case of invalid token, 
+# instead of return error object as in other methods
 ```
 
 * Send reset password
