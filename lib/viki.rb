@@ -1,5 +1,4 @@
-require 'logger'
-require_relative 'logger'
+require 'viki/logger'
 require 'oj'
 require 'typhoeus'
 require 'ostruct'
@@ -34,7 +33,7 @@ module Viki
     @app_id = configurator.app_id
     @domain = configurator.domain
     @timeout_seconds = configurator.timeout_seconds
-    @logger = Viki::Logger.new(configurator.logger)
+    @logger = configurator.logger
     @user_ip = configurator.user_ip
     @user_token = configurator.user_token
     @hydra = Typhoeus::Hydra.new
@@ -42,14 +41,19 @@ module Viki
   end
 
   class Configurator
-    attr_accessor :salt, :app_id, :domain, :logger, :user_ip, :user_token, :timeout_seconds
+    attr_reader :logger
+    attr_accessor :salt, :app_id, :domain, :user_ip, :user_token, :timeout_seconds
+
+    def logger=(v)
+      @logger.level = Viki::Logger::FATAL if v.nil?
+    end
 
     def initialize
       @salt = ENV["VIKI_API_SALT"]
       @app_id = ENV["VIKI_API_APP_ID"]
       @domain = ENV["VIKI_API_DOMAIN"]
-      @logger = ::Logger.new(STDOUT)
-      @logger.level = ::Logger::INFO
+      @logger = Viki::Logger.new(STDOUT)
+      @logger.level = Viki::Logger::INFO
       @user_ip = lambda { }
       @user_token = lambda { }
       @timeout_seconds = 10
