@@ -36,7 +36,9 @@ module Viki::Core
         params = build_params(params)
         path, params = build_path(_paths, params)
         path = "/#{params.delete(:api_version)}#{path}.#{params.delete(:format)}"
-        uri = Addressable::URI.join("http#{"s" if @_ssl}://#{Viki.domain}", path)
+        domain = "http#{"s" if @_ssl}://#{params.delete(:manage) == true ? Viki.manage : Viki.domain}"
+        uri = Addressable::URI.join(domain, path)
+
         query_values = {}
         query_values.merge! uri.query_values if uri.query_values
         query_values.merge! params

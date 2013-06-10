@@ -1,5 +1,6 @@
 ENV["RAILS_ENV"] ||= 'test'
 ENV['VIKI_API_DOMAIN'] = 'api.dev.viki.io'
+ENV['VIKI_MANAGE_DOMAIN'] = 'manage.dev.viki.io'
 ENV['VIKI_API_APP_ID'] = '70000a'
 ENV['VIKI_API_SALT'] = 'apples'
 

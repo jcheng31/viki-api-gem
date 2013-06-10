@@ -14,6 +14,7 @@ describe Viki::Core::Base do
         path "/parent/:parent_id/resource"
       end
     }
+
     let(:named_paths_test_klass) {
       Class.new(described_class) do
         path "/other/:other_id/parent/:parent_id/resource", name: "path1"
@@ -34,7 +35,13 @@ describe Viki::Core::Base do
 
     it "includes the options" do
       url = test_klass.uri(hello: 'world').to_s
-      url.should match("hello=world")
+      url.to_s.should ==  "http://api.dev.viki.io/v4/path/to/resource.json?app=70000a&hello=world"
+    end
+
+    it "can use manage domain" do
+      url = test_klass.uri(container_id: '50c', manage: true)
+      url.to_s.should == "http://manage.dev.viki.io/v4/path/to/resource.json?app=70000a&container_id=50c"
+
     end
 
     it "doesn't include the options used to replace the path" do

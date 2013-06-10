@@ -9,7 +9,7 @@ require 'base64'
 
 module Viki
   class << self
-    attr_accessor :salt, :app_id, :domain, :logger, :user_ip, :user_token, :signer, :hydra, :timeout_seconds
+    attr_accessor :salt, :app_id, :domain, :manage, :logger, :user_ip, :user_token, :signer, :hydra, :timeout_seconds
   end
 
   def self.run
@@ -32,6 +32,7 @@ module Viki
     @salt = configurator.salt
     @app_id = configurator.app_id
     @domain = configurator.domain
+    @manage = configurator.manage
     @timeout_seconds = configurator.timeout_seconds
     @logger = configurator.logger
     @user_ip = configurator.user_ip
@@ -42,7 +43,7 @@ module Viki
 
   class Configurator
     attr_reader :logger
-    attr_accessor :salt, :app_id, :domain, :user_ip, :user_token, :timeout_seconds
+    attr_accessor :salt, :app_id, :domain, :manage, :user_ip, :user_token, :timeout_seconds
 
     def logger=(v)
       @logger.level = Viki::Logger::FATAL if v.nil?
@@ -52,6 +53,7 @@ module Viki
       @salt = ENV["VIKI_API_SALT"]
       @app_id = ENV["VIKI_API_APP_ID"]
       @domain = ENV["VIKI_API_DOMAIN"]
+      @manage = ENV["VIKI_MANAGE_DOMAIN"]
       @logger = Viki::Logger.new(STDOUT)
       @logger.level = Viki::Logger::INFO
       @user_ip = lambda { }
