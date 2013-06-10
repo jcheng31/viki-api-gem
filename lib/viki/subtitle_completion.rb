@@ -1,5 +1,3 @@
-module Viki
-  class SubtitleCompletion < Viki::Core::Base
-    path 'v4/subtitle_completions.json'
-  end
+class Viki::SubtitleCompletion < Viki::Core::Base
+  path "/subtitle_completions"
 end

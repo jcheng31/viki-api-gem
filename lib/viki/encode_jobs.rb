@@ -1,5 +1,3 @@
-module Viki
-  class EncodeJob < Core::Base
-    path 'v4/encode_jobs.json'
-  end
+class Viki::EncodeJob < Viki::Core::Base
+  path "/encode_jobs"
 end

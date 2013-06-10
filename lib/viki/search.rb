@@ -1,5 +1,3 @@
-module Viki
-  class Search < Viki::Core::Base
-    path "v4/search.json"
-  end
+class Viki::Search < Viki::Core::Base
+  path "/search"
 end

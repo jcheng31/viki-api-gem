@@ -3,30 +3,30 @@ require 'spec_helper'
 describe Viki::Core::Base do
   let(:test_klass) {
     Class.new(described_class) do
-      path 'path/to/resource.json'
+      path "/path/to/resource"
     end
   }
 
   describe "#uri" do
     let(:nested_test_klass) {
       Class.new(described_class) do
-        path 'other/:other_id/parent/:parent_id/resource.json'
-        path 'parent/:parent_id/resource.json'
+        path "/other/:other_id/parent/:parent_id/resource"
+        path "/parent/:parent_id/resource"
       end
     }
     let(:named_paths_test_klass) {
       Class.new(described_class) do
-        path 'other/:other_id/parent/:parent_id/resource.json', name: "path1"
-        path 'parent/:parent_id/resource.json', name: "path1"
-        path 'useless/:useless_id/resource.json', name: "path2"
-        path 'default/:default_id/resource.json'
+        path "/other/:other_id/parent/:parent_id/resource", name: "path1"
+        path "/parent/:parent_id/resource", name: "path1"
+        path "/useless/:useless_id/resource", name: "path2"
+        path "/default/:default_id/resource"
       end
     }
 
     subject { test_klass.uri }
 
     its(:authority) { should == Viki.domain }
-    its(:path) { should == "/path/to/resource.json" }
+    its(:path) { should == "/v4/path/to/resource.json" }
 
     it 'includes the app' do
       subject.query_values["app"].should == Viki.app_id
@@ -43,39 +43,39 @@ describe Viki::Core::Base do
     end
 
     it "includes the 'id' param as a resource url" do
-      test_klass.uri(id: 'object_id').path.should == "/path/to/resource/object_id.json"
+      test_klass.uri(id: 'object_id').path.should == "/v4/path/to/resource/object_id.json"
     end
 
     it "replaces the parents ids for nested resources" do
       path = nested_test_klass.uri(parent_id: 'parent_id').path
-      path.should == "/parent/parent_id/resource.json"
+      path.should == "/v4/parent/parent_id/resource.json"
     end
 
-    xit "uses the path with more matches" do
+    it "uses the path with more matches" do
       nested_test_klass.uri(parent_id: 'parent_id', fail: "1").path.should ==
-        "/parent/parent_id/resource.json"
+        "/v4/parent/parent_id/resource.json"
       nested_test_klass.uri(other_id: 'other_id', parent_id: 'parent_id').path.should ==
-        "/other/other_id/parent/parent_id/resource.json"
+        "/v4/other/other_id/parent/parent_id/resource.json"
     end
 
     it "uses named paths" do
       named_paths_test_klass.uri(other_id: '123', parent_id: '234', named_path: 'path1').path.should ==
-        "/other/123/parent/234/resource.json"
+        "/v4/other/123/parent/234/resource.json"
       named_paths_test_klass.uri(parent_id: '234', named_path: 'path1').path.should ==
-        "/parent/234/resource.json"
+        "/v4/parent/234/resource.json"
 
       expect { named_paths_test_klass.uri(useless_id: '234', named_path: 'path1') }.to raise_error(Viki::Core::Base::InsufficientOptions)
       expect { named_paths_test_klass.uri(default_id: '234', named_path: 'path1') }.to raise_error(Viki::Core::Base::InsufficientOptions)
       expect { named_paths_test_klass.uri(named_path: 'path2') }.to raise_error(Viki::Core::Base::InsufficientOptions)
 
       named_paths_test_klass.uri(useless_id: '234', named_path: 'path2').path.should ==
-        "/useless/234/resource.json"
+        "/v4/useless/234/resource.json"
     end
 
     it "uses default value if required value is not provided" do
       nested_test_klass.default parent_id: 'default_value'
-      nested_test_klass.uri(other_id: 'other_id').path.should == "/other/other_id/parent/default_value/resource.json"
-      nested_test_klass.uri.path.should == "/parent/default_value/resource.json"
+      nested_test_klass.uri(other_id: 'other_id').path.should == "/v4/other/other_id/parent/default_value/resource.json"
+      nested_test_klass.uri.path.should == "/v4/parent/default_value/resource.json"
     end
 
     it "requires the parents for nested resources" do

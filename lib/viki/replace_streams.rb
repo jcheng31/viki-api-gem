@@ -1,5 +1,3 @@
-module Viki
-  class ReplaceStream < Core::Base
-    path 'v4/replace_streams.json'
-  end
+class Viki::ReplaceStream < Viki::Core::Base
+  path "/replace_streams"
 end

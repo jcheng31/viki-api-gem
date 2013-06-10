@@ -1,23 +1,21 @@
-module Viki
-  class Language < Viki::Core::Base
-    EMPTY = {}
-    path 'v4/languages.json'
+class Viki::Language < Viki::Core::Base
+  EMPTY = {}
+  path "/languages"
 
-    def self.find(language_code)
-      all[language_code]
-    end
+  def self.find(language_code)
+    all[language_code]
+  end
 
-    def self.codes
-      all.keys
-    end
+  def self.codes
+    all.keys
+  end
 
-    def self.all
-      return @languages if @languages && @languages != EMPTY
-      fetch do |response|
-        @languages = response.value || EMPTY
-      end
-      Viki.run
-      @languages
+  def self.all
+    return @languages if @languages && @languages != EMPTY
+    fetch do |response|
+      @languages = response.value || EMPTY
     end
+    Viki.run
+    @languages
   end
 end

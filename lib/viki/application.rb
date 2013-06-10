@@ -1,5 +1,3 @@
-module Viki
-  class Application < Viki::Core::Base
-    path 'v4/applications.json'
-  end
+class Viki::Application < Viki::Core::Base
+  path '/applications'
 end

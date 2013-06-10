@@ -1,5 +1,3 @@
-module Viki
-  class Image  < Core::Base
-    path 'v4/images.json'
-  end
+class Viki::Image < Viki::Core::Base
+  path "/images"
 end

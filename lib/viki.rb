@@ -1,4 +1,5 @@
 require 'logger'
+require_relative 'logger'
 require 'oj'
 require 'typhoeus'
 require 'ostruct'
@@ -6,6 +7,7 @@ require 'openssl'
 require 'addressable/uri'
 require 'viki_utils'
 require 'base64'
+
 module Viki
   class << self
     attr_accessor :salt, :app_id, :domain, :logger, :user_ip, :user_token, :signer, :hydra, :timeout_seconds
@@ -20,7 +22,7 @@ module Viki
       @hydra.run
     end
   ensure
-    @hydra = new_hydra
+    @hydra = Typhoeus::Hydra.new
   end
 
   def self.configure(&block)
@@ -35,12 +37,8 @@ module Viki
     @logger = Viki::Logger.new(configurator.logger)
     @user_ip = configurator.user_ip
     @user_token = configurator.user_token
-    @hydra = new_hydra
+    @hydra = Typhoeus::Hydra.new
     nil
-  end
-
-  def self.new_hydra
-    Typhoeus::Hydra.new
   end
 
   class Configurator
@@ -59,72 +57,76 @@ module Viki
   end
 end
 
-require 'viki/logger'
-require 'viki/version'
-
 Viki::configure{}
 
-require 'viki/core/base_request'
-require 'viki/core/fetcher'
-require 'viki/core/creator'
-require 'viki/core/updater'
-require 'viki/core/destroyer'
-require 'viki/core/base'
-require 'viki/core/response'
-require 'viki/core/error_response'
+['core', '', 'container', 'video'].each do |dir|
+  Dir[File.join(File.dirname(__FILE__), "viki/#{dir}", '*.rb')].each { |f| require f }
+end
+# require 'viki/version'
 
-require 'viki/application'
+# Viki::configure{}
 
-require 'viki/user'
-require 'viki/user_summary'
-require 'viki/role'
-require 'viki/user_about'
-require 'viki/session'
-require 'viki/reset_password_token'
-require 'viki/activity'
+# require 'viki/core/base_request'
+# require 'viki/core/fetcher'
+# require 'viki/core/creator'
+# require 'viki/core/updater'
+# require 'viki/core/destroyer'
+# require 'viki/core/base'
+# require 'viki/core/response'
+# require 'viki/core/error_response'
 
-require 'viki/master_video'
-require 'viki/replace_streams'
-require 'viki/encode_jobs'
-require 'viki/image'
+# require 'viki/application'
 
-require 'viki/video'
-require 'viki/episode'
-require 'viki/clip'
-require 'viki/movie'
-require 'viki/music_video'
-require 'viki/news_clip'
+# require 'viki/user'
+# require 'viki/user_summary'
+# require 'viki/role'
+# require 'viki/user_about'
+# require 'viki/session'
+# require 'viki/reset_password_token'
+# require 'viki/activity'
 
-require 'viki/stream'
-require 'viki/hardsub_stream'
-require 'viki/subtitle'
-require 'viki/subtitle_completion'
-require 'viki/blocked_languages'
+# require 'viki/master_video'
+# require 'viki/replace_streams'
+# require 'viki/encode_jobs'
+# require 'viki/image'
 
-require 'viki/container'
-require 'viki/container_summary'
-require 'viki/artist'
-require 'viki/film'
-require 'viki/news'
-require 'viki/series'
+# require 'viki/video'
+# require 'viki/episode'
+# require 'viki/clip'
+# require 'viki/movie'
+# require 'viki/music_video'
+# require 'viki/news_clip'
 
-require 'viki/list'
-require 'viki/genre'
-require 'viki/subscription'
-require 'viki/subscriber'
-require 'viki/search'
-require 'viki/contribution'
-require 'viki/title'
-require 'viki/description'
-require 'viki/cover'
+# require 'viki/stream'
+# require 'viki/hardsub_stream'
+# require 'viki/subtitle'
+# require 'viki/subtitle_completion'
+# require 'viki/blocked_languages'
 
-require 'viki/country'
-require 'viki/language'
+# require 'viki/container'
+# require 'viki/container_summary'
+# require 'viki/artist'
+# require 'viki/film'
+# require 'viki/news'
+# require 'viki/series'
 
-require 'viki/thread'
-require 'viki/message'
-require 'viki/notification'
-require 'viki/alert'
-require 'viki/timed_comment'
-require 'viki/subtitle_history'
-require 'viki/translation'
+# require 'viki/list'
+# require 'viki/genre'
+# require 'viki/subscription'
+# require 'viki/subscriber'
+# require 'viki/search'
+# require 'viki/contribution'
+# require 'viki/title'
+# require 'viki/description'
+# require 'viki/cover'
+
+# require 'viki/country'
+# require 'viki/language'
+
+# require 'viki/thread'
+# require 'viki/message'
+# require 'viki/notification'
+# require 'viki/alert'
+# require 'viki/timed_comment'
+# require 'viki/subtitle_history'
+# require 'viki/translation'

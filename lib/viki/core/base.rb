@@ -11,6 +11,7 @@ module Viki::Core
     PATH_TOKENS_REGEX = /:(\w+)/
     END_OF_PATH_REGEX = /(\/\w+)(\.\w+)?$/
     DEFAULT_NAME = "NONAME"
+    DEFAULT_PARAMS = {format: 'json', api_version: 'v4'}
 
     class << self
       attr_accessor :_paths, :_ssl
@@ -27,18 +28,14 @@ module Viki::Core
       end
 
       def default(default_values)
-        @_defaults ||= {}
+        @_defaults ||= DEFAULT_PARAMS.dup
         @_defaults.merge!(default_values)
       end
 
-      def _defaults
-        @_defaults or {}
-      end
-
       def uri(params = {})
-        params = _defaults.merge(params)
-        path = select_best_path(_paths, params)
-        path, params = process_ids(path, params)
+        params = build_params(params)
+        path, params = build_path(_paths, params)
+        path = "/#{params.delete(:api_version)}#{path}.#{params.delete(:format)}"
         uri = Addressable::URI.join("http#{"s" if @_ssl}://#{Viki.domain}", path)
         query_values = {}
         query_values.merge! uri.query_values if uri.query_values
@@ -119,33 +116,40 @@ module Viki::Core
 
       private
 
-      def select_best_path(all_paths, params)
+      def build_params(params)
+        @_defaults ||= DEFAULT_PARAMS
+        @_defaults.merge(params)
+      end
+
+      def build_path(all_paths, params)
         name = params.delete(:named_path) || DEFAULT_NAME
         paths = all_paths[name]
 
-        return paths.first if paths.length == 1
-        params_keys = params.keys.map(&:to_s)
-
-        paths.sort_by do |path|
-          url_params = path.scan(PATH_TOKENS_REGEX).flatten
-          url_params.length > params_keys.length ? 0 : -(url_params & params_keys).length
-        end.first
-      end
-
-      def process_ids(path, params)
-        to_replace = path.scan(PATH_TOKENS_REGEX).flatten
-        to_replace.each do |id_field|
-          value = params.delete(id_field.to_sym)
-          raise Viki::Core::Base::InsufficientOptions unless value
-          path = path.gsub(":#{id_field}", value)
+        #It calculates how many symbols from the URL are provided by the params
+        #and returns the path that has all the required symbols and the maximum
+        #number of them.
+        final_path = nil
+        final_length = 0
+        final_params = []
+        paths.each do |path|
+          url_params = path.scan(PATH_TOKENS_REGEX).flatten.map(&:to_sym)
+          total_params = url_params.length
+          valid_params = url_params.map {|a| params.has_key?(a) ? 1 : 0}.reduce(&:+).to_i
+          next unless total_params - valid_params == 0
+          if total_params >= final_length
+            final_path = path.dup
+            final_params = url_params
+            final_length = total_params
+          end
         end
+
+        raise Viki::Core::Base::InsufficientOptions if final_path.nil?
+        final_params.each {|p| final_path.gsub!(":#{p}", params.delete(p))}
 
         resource_id = params.delete(:id)
-        if resource_id
-          path = path.gsub END_OF_PATH_REGEX, "\\1/#{resource_id}\\2"
-        end
+        final_path.gsub!(END_OF_PATH_REGEX, "\\1/#{resource_id}\\2") unless resource_id.nil?
 
-        [path, params]
+        [final_path, params]
       end
     end
   end

@@ -1,5 +1,3 @@
-module Viki
-  class Message < Core::Base
-    path "v4/users/:user_id/threads/:thread_id/messages.json"
-  end
+class Viki::Message < Viki::Core::Base
+  path "/users/:user_id/threads/:thread_id/messages"
 end

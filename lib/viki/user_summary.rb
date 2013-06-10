@@ -1,5 +1,3 @@
-module Viki
-  class UserSummary < Viki::Core::Base
-    path '/v4/users/:id/summary.json'
-  end
+class Viki::UserSummary < Viki::Core::Base
+  path "/users/:id/summary"
 end

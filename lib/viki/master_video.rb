@@ -1,5 +1,3 @@
-module Viki
-  class MasterVideo < Core::Base
-    path 'v4/master_videos.json'
-  end
+class Viki::MasterVideo < Viki::Core::Base
+  path "/master_videos"
 end

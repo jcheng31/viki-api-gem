@@ -1,5 +1,3 @@
-module Viki
-  class SubtitleHistory < Core::Base
-    path 'v4/users/:user_id/subtitle_histories.json'
-  end
+class Viki::SubtitleHistory < Viki::Core::Base
+  path "/users/:user_id/subtitle_histories"
 end

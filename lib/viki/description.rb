@@ -1,6 +1,4 @@
-module Viki
-  class Description < Core::Base
-    path "v4/containers/:container_id/descriptions.json"
-    path "v4/videos/:video_id/descriptions.json"
-  end
+class Viki::Description < Viki::Core::Base
+  path "/containers/:container_id/descriptions"
+  path "/videos/:video_id/descriptions"
 end

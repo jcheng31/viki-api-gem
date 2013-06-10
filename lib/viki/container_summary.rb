@@ -1,5 +1,3 @@
-module Viki
-  class ContainerSummary < Viki::Core::Base
-    path 'v4/containers/:id/summary.json'
-  end
+class Viki::ContainerSummary < Viki::Core::Base
+  path '/containers/:id/summary'
 end

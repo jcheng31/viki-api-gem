@@ -1,5 +1,3 @@
-module Viki
-  class Role < Viki::Core::Base
-    path '/v4/roles.json'
-  end
+class Viki::Role < Viki::Core::Base
+  path "/roles"
 end

@@ -1,6 +1,4 @@
-module Viki
-  class Title < Core::Base
-    path "v4/containers/:container_id/titles.json"
-    path "v4/videos/:video_id/titles.json"
-  end
+class Viki::Title < Viki::Core::Base
+  path "/containers/:container_id/titles"
+  path "/videos/:video_id/titles"
 end
