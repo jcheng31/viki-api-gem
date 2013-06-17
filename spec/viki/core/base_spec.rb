@@ -33,6 +33,11 @@ describe Viki::Core::Base do
       subject.query_values["app"].should == Viki.app_id
     end
 
+    it 'includes the app' do
+      url = test_klass.uri(app: '9001').to_s
+      url.should match("app=9001")
+    end
+
     it "includes the options" do
       url = test_klass.uri(hello: 'world').to_s
       url.to_s.should ==  "http://api.dev.viki.io/v4/path/to/resource.json?app=70000a&hello=world"
@@ -116,6 +121,16 @@ describe Viki::Core::Base do
 
     its(:query_values) { should have_key("t") }
     its(:query_values) { should have_key("sig") }
+  end
+
+  describe "#signed_uri override" do
+    it 'uses the provided secret' do
+      double = double('signer')
+      Viki::UriSigner.should_receive(:new).with('9001').and_return(double)
+      double.should_receive(:sign_request).with('http://api.dev.viki.io/v4/path/to/resource.json?app=70000a', nil).and_return('blah?test')
+      url = test_klass.signed_uri(secret: '9001').to_s
+      url.should == "blah?test"
+    end
   end
 
   describe "#fetch" do
