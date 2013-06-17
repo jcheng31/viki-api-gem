@@ -1,0 +1,29 @@
+[
+  { "id": "1y", 
+    "type": "episode", 
+    "position": "pre-roll", 
+    "start": 0, 
+    "url": "http://pubads.g.doubleclick.net/preroll"
+  },
+  { 
+    "id": "2y", 
+    "type": "episode", 
+    "position": "mid-roll", 
+    "start": 480000, 
+    "url": "http://pubads.g.doubleclick.net/midroll"
+  },
+  { 
+    "id": "3y", 
+    "type": "episode", 
+    "position": "mid-roll", 
+    "start": 960000, 
+    "url": "http://pubads.g.doubleclick.net/midroll"
+  },
+  { 
+    "id": "4y", 
+    "type": "episode", 
+    "position": "post-roll",
+    "start": 356400000,
+    "url": "http://pubads.g.doubleclick.net/postroll" 
+  }
+]
