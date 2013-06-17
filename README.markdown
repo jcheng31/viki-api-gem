@@ -370,7 +370,7 @@ end
 Viki::Session.fetch(token: user_token) do |response|
   puts response.inspect
 end
-# The gem will throw Viki::Core::ErrorResponse in case of invalid token, 
+# The gem will throw Viki::Core::ErrorResponse in case of invalid token,
 # instead of return error object as in other methods
 ```
 
@@ -513,6 +513,9 @@ end
 
 Changelog
 ---------
+* 1.1.14
+  * Include option for Manage.io service. Refactoring and speeding up overall library.
+
 * 1.1.11
   * Reduce timeout to 10 seconds
 
