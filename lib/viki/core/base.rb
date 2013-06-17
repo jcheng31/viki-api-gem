@@ -42,7 +42,7 @@ module Viki::Core
         query_values = {}
         query_values.merge! uri.query_values if uri.query_values
         query_values.merge! params
-        query_values[:app] = Viki.app_id
+        query_values[:app] = params[:app] || Viki.app_id
 
         token = Viki.user_token && Viki.user_token.call
         query_values[:token] = token if token && !token.empty?
@@ -52,7 +52,8 @@ module Viki::Core
       end
 
       def signed_uri(params = {}, body = nil)
-        Viki.signer.sign_request(uri(params).to_s, body)
+        signer = params[:secret] ? Viki::UriSigner.new(params.delete(:secret)) : Viki.signer
+        signer.sign_request(uri(params).to_s, body)
       end
 
       def fetch(url_options = {}, &block)
