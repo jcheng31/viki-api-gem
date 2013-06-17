@@ -3,8 +3,9 @@ module ApiStub
     params = (options[:params] || {}).merge(app: Viki.app_id)
     req_method = (options[:method] || 'get').to_s
     response_code = options[:response_code] || 200
+    domain = options[:manage] ? Viki.manage : Viki.domain
 
-    stub_request(req_method, "http://api.dev.viki.io/v4/#{path}").
+    stub_request(req_method, "http://#{domain}/v4/#{path}").
       with(query: hash_including(:sig, :t, params),
            headers: {'Content-Type'=>'application/json', 'User-Agent'=>'viki'},
            body: anything).

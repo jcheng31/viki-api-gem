@@ -14,7 +14,7 @@ module Viki::Core
     DEFAULT_PARAMS = {format: 'json', api_version: 'v4'}
 
     class << self
-      attr_accessor :_paths, :_ssl
+      attr_accessor :_paths, :_ssl, :_manage
 
       def use_ssl
         @_ssl = true
@@ -25,6 +25,10 @@ module Viki::Core
         @_paths ||= {}
         @_paths[name] ||= []
         @_paths[name].push path
+
+        manage = options.fetch(:manage, false)
+        @_manage ||= []
+        @_manage << path if manage
       end
 
       def default(default_values)
@@ -34,7 +38,7 @@ module Viki::Core
 
       def uri(params = {})
         params = build_params(params)
-        path, params = build_path(_paths, params)
+        path, params = build_path(params)
         path = "/#{params.delete(:api_version)}#{path}.#{params.delete(:format)}"
         domain = "http#{"s" if @_ssl}://#{params.delete(:manage) == true ? Viki.manage : Viki.domain}"
         uri = Addressable::URI.join(domain, path)
@@ -124,9 +128,10 @@ module Viki::Core
         @_defaults.merge(params)
       end
 
-      def build_path(all_paths, params)
+      def build_path(params)
         name = params.delete(:named_path) || DEFAULT_NAME
-        paths = all_paths[name]
+        paths = @_paths[name].dup
+        paths.reject! {|p| @_manage.include?(p) && !params.has_key?(:manage)}
 
         #It calculates how many symbols from the URL are provided by the params
         #and returns the path that has all the required symbols and the maximum

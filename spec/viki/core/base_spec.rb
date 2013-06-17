@@ -4,6 +4,7 @@ describe Viki::Core::Base do
   let(:test_klass) {
     Class.new(described_class) do
       path "/path/to/resource"
+      path "/manage/:an_id/resource", manage: true
     end
   }
 
@@ -41,12 +42,6 @@ describe Viki::Core::Base do
     it "includes the options" do
       url = test_klass.uri(hello: 'world').to_s
       url.to_s.should ==  "http://api.dev.viki.io/v4/path/to/resource.json?app=70000a&hello=world"
-    end
-
-    it "can use manage domain" do
-      url = test_klass.uri(container_id: '50c', manage: true)
-      url.to_s.should == "http://manage.dev.viki.io/v4/path/to/resource.json?app=70000a&container_id=50c"
-
     end
 
     it "doesn't include the options used to replace the path" do
@@ -109,6 +104,23 @@ describe Viki::Core::Base do
       test_klass.uri.to_s.should start_with("https")
       test_klass._ssl = false
       test_klass.uri.to_s.should_not start_with("https")
+    end
+
+    describe "manage" do
+      it "can use manage domain" do
+        url = test_klass.uri(container_id: '50c', manage: true)
+        url.to_s.should == "http://manage.dev.viki.io/v4/path/to/resource.json?app=70000a&container_id=50c"
+      end
+
+      it "can access a manage domain with manage" do
+        url = test_klass.uri(an_id: '50c', manage: true)
+        url.to_s.should == "http://manage.dev.viki.io/v4/manage/50c/resource.json?app=70000a"
+      end
+
+      it "cannot access a manage domain without manage" do
+        url = test_klass.uri(an_id: '50c')
+        url.to_s.should == "http://api.dev.viki.io/v4/path/to/resource.json?an_id=50c&app=70000a"
+      end
     end
   end
 

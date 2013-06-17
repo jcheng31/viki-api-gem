@@ -513,8 +513,11 @@ end
 
 Changelog
 ---------
+* 1.1.15
+  * Holdbacks endpoint for manage.viki.io. Possibility to add client_id/secret on runtime.
+
 * 1.1.14
-  * Include option for Manage.io service. Refactoring and speeding up overall library.
+  * Include option for manage.viki.io service. Refactoring and speeding up overall library.
 
 * 1.1.11
   * Reduce timeout to 10 seconds
