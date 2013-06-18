@@ -65,6 +65,15 @@ end
 
 Viki::configure{}
 
-['core', '', 'container', 'video'].each do |dir|
+require 'viki/core/base_request'
+require 'viki/core/fetcher'
+require 'viki/core/creator'
+require 'viki/core/updater'
+require 'viki/core/destroyer'
+require 'viki/core/base'
+require 'viki/core/response'
+require 'viki/core/error_response'
+
+['', 'container', 'video'].each do |dir|
   Dir[File.join(File.dirname(__FILE__), "viki/#{dir}", '*.rb')].each { |f| require f }
 end
