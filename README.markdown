@@ -495,6 +495,14 @@ Viki::TimedComment.destroy(video_id: "44699v", timed_comment_id: "42tc") do |res
 end
 ```
 
+* Ads
+
+```ruby
+Viki::Ad.fetch(video_id: '44699v') do |response|
+  puts response.inspect
+end
+```
+
 * Translations
 
 ```ruby
