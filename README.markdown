@@ -150,7 +150,7 @@ end
 * Encode Video
 
 ```ruby
-Viki::EncodeJob.create(video_id: '44699v') do |response|
+Viki::EncodeJob.create(video_id: '44699v', profile: 'All') do |response|
   puts response.inspect
 end
 ```
