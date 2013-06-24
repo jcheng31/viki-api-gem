@@ -42,7 +42,9 @@ Configuration
 
 * `c.logger` Instance of `Logger` you want the gem to use. Default to `Logger.new(STDOUT)`. **Optional**
 
-* `c.timeout_seconds` Amount of seconds for the requests. If a request takes longer, it will return an error
+* `c.timeout_seconds` Amount of timeout seconds for the requests. If a request takes longer, it will return an error
+
+* `c.timeout_seconds_post` Amount of timeout seconds specifically for POST and PUT request. If a request takes longer, it will return an error
 
 Usage by examples
 -----------------
@@ -521,6 +523,12 @@ end
 
 Changelog
 ---------
+* 1.1.18
+  * Ability to configure different time out seconds for POST and PUT request
+  
+* 1.1.17
+  * Ability to fetch ads for video id
+
 * 1.1.15
   * Holdbacks endpoint for manage.viki.io. Possibility to add client_id/secret on runtime.
 
