@@ -523,9 +523,12 @@ end
 
 Changelog
 ---------
+* 1.1.19
+  * Fix recommdations to recommendations in containers.rb
+
 * 1.1.18
   * Ability to configure different time out seconds for POST and PUT request
-  
+
 * 1.1.17
   * Ability to fetch ads for video id
 

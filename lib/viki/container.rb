@@ -1,6 +1,6 @@
 class Viki::Container < Viki::Core::Base
   path '/containers'
-  path '/containers/:recommended_for/recommations'
+  path '/containers/:recommended_for/recommendations'
   path '/containers/:people_for/people'
 
   def self.popular(options = {}, &block)
