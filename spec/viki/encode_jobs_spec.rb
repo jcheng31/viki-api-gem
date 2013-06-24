@@ -14,6 +14,7 @@ describe Viki::EncodeJob, api: true do
 			stub_api 'encode_jobs.json', '[]', method: :post
 			described_class.create("video_id" => '123v') do |response|
 				response.error.should be_nil
+        response.value.should be_a_kind_of(Array)
 			end
 		end
 	end

@@ -15,7 +15,7 @@ describe Viki::MasterVideo, api: true do
 			stub_api 'master_videos.json', json_fixture(:master_videos) , {:params => {video_id: '123v'}}
 			described_class.fetch("video_id" => '123v') do |response|
 				jobs = response.value
-				jobs.should be eq 
+				jobs.should be_a_kind_of(Hash)
 			end
 		end
 	end
