@@ -131,6 +131,30 @@ Viki::MasterVideo.create(video_id: '44699v', url: "YOUTUBE_URL") do |response|
 end
 ```
 
+* Get Master Video
+
+```ruby
+Viki::MasterVideo.fetch(video_id: '44699v') do |response|
+  puts response.inspect
+end
+```
+
+* Get Encoding Presets
+
+```ruby
+Viki::EncodingPreset.fetch do |response|
+  puts response.inspect
+end
+```
+
+* Encode Video
+
+```ruby
+Viki::EncodeJob.create(video_id: '44699v') do |response|
+  puts response.inspect
+end
+```
+
 * Replace Streams
 
 ```ruby
