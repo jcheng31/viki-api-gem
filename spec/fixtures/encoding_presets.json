@@ -1,18 +1,18 @@
 [
-    {
-     "label":"360p",
-     "width":640, 
-     "height":360, 
-     "keyframe_interval":300,
-     "max_frame_rate":30,
-     "video_bitrate":700 
+ {
+   "label":"360p",
+   "width":640, 
+   "height":360, 
+   "keyframe_interval":300,
+   "max_frame_rate":30,
+   "video_bitrate":700 
  },  
  {
-     "label":"480p",
-     "width":720,
-     "height":480,
-     "keyframe_interval":300,
-     "max_frame_rate":30,
-     "video_bitrate":1000
+   "label":"480p",
+   "width":720,
+   "height":480,
+   "keyframe_interval":300,
+   "max_frame_rate":30,
+   "video_bitrate":1000
  }
- ]
+]
