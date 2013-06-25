@@ -545,50 +545,36 @@ Viki::Translation.rating(origin_subtitle_id: '1s', target_subtitle_id: '2s', lik
 end
 ```
 
+Testing Tool
+------------
+
+#### Async Stub
+Stub value will not be returned immediately when method get called, instead it will be recored and will be returned later when `Viki.run` get called.
+
+###### Setup
+Add this line to spec_helper.rb
+```ruby
+require 'viki_stub'
+```
+###### Use
+Use `async_stub` in replace of `stub`. Example:
+```ruby
+Viki::User.async_stub(....).with(....).and_yield(...)
+```
+###### Limitation
+Only works with built-in RSpec mock framwork
+
 Changelog
 ---------
+* 1.3.0
+  * New feature: Async stub
+
 * 1.2.0
   * Upgrade Typhoeus. Enable memoize
+
 * 1.1.20
   * Support for encoding APIs
+
 * 1.1.19
   * Fix recommdations to recommendations in containers.rb
 
-* 1.1.18
-  * Ability to configure different time out seconds for POST and PUT request
-
-* 1.1.17
-  * Ability to fetch ads for video id
-
-* 1.1.15
-  * Holdbacks endpoint for manage.viki.io. Possibility to add client_id/secret on runtime.
-
-* 1.1.14
-  * Include option for manage.viki.io service. Refactoring and speeding up overall library.
-
-* 1.1.11
-  * Reduce timeout to 10 seconds
-
-* 1.1.8
-  * Support video titles and descriptions
-
-* 1.1.5
-  * Support Timed Comment delete
-
-* 1.1.4
-  * Support ReplaceStream
-
-* 1.1.3
-  * Support hardsub streams
-
-* 1.1.2
-  * Support blocked languages
-
-* 1.1.1
-  * Support timed comments
-
-* 1.0.1
-  * Support 1st level subtitle completions resource.
-
-* 1.0.0
-  * Support notification + private message count
