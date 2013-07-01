@@ -547,6 +547,10 @@ end
 
 Changelog
 ---------
+* 1.2.0
+  * Upgrade Typhoeus. Enable memoize
+* 1.1.20
+  * Support for encoding APIs
 * 1.1.19
   * Fix recommdations to recommendations in containers.rb
 

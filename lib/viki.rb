@@ -65,6 +65,10 @@ module Viki
   end
 end
 
+Typhoeus.configure do |config|
+  config.memoize = true
+end
+
 Viki::configure{}
 
 require 'viki/core/base_request'
