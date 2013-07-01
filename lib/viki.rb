@@ -9,7 +9,7 @@ require 'base64'
 
 module Viki
   class << self
-    attr_accessor :salt, :app_id, :domain, :manage, :logger, :user_ip, :user_token, :signer, :hydra, :timeout_seconds, :timeout_seconds_post
+    attr_accessor :salt, :app_id, :domain, :manage, :logger, :user_ip, :user_token, :signer, :hydra, :timeout_seconds, :timeout_seconds_post, :cache, :cache_ns, :cache_seconds
   end
 
   def self.run
@@ -38,13 +38,16 @@ module Viki
     @logger = configurator.logger
     @user_ip = configurator.user_ip
     @user_token = configurator.user_token
+    @cache = configurator.cache
+    @cache_ns = configurator.cache_ns
+    @cache_seconds = configurator.cache_seconds
     @hydra = Typhoeus::Hydra.new
     nil
   end
 
   class Configurator
     attr_reader :logger
-    attr_accessor :salt, :app_id, :domain, :manage, :user_ip, :user_token, :timeout_seconds, :timeout_seconds_post
+    attr_accessor :salt, :app_id, :domain, :manage, :user_ip, :user_token, :timeout_seconds, :timeout_seconds_post, :cache, :cache_ns, :cache_seconds
 
     def logger=(v)
       @logger.level = Viki::Logger::FATAL if v.nil?
@@ -61,6 +64,9 @@ module Viki
       @user_token = lambda { }
       @timeout_seconds = 5
       @timeout_seconds_post = 10
+      @cache = nil
+      @cache_ns = "viki-api-gem"
+      @cache_seconds = 5
     end
   end
 end

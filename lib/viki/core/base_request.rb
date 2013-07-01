@@ -25,8 +25,8 @@ module Viki::Core
       end
     end
 
-    def default_headers
-      {}.tap do |headers|
+    def default_headers(params_hash = {})
+      params_hash.tap do |headers|
         headers['User-Agent'] = 'viki'
         headers['Content-Type'] = 'application/json'
         user_ip = Viki.user_ip.call
