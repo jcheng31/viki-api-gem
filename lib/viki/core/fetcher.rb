@@ -7,12 +7,12 @@ module Viki::Core
     IGNORED_PARAMS = ['t', 'sig', TOKEN_FIELD]
 
     def queue(&block)
-      super && return unless Viki.cache
+      super && return unless cacheable && Viki.cache
 
       cached = Viki.cache.get(cache_key(url))
       if cached
         parsed_body = Oj.load(cached, mode: :compat, symbol_keys: false) rescue nil
-        block.call(nil, get_content(parsed_body))
+        block.call Viki::Core::Response.new(nil, parsed_body, self)
       else
         super
       end
@@ -23,8 +23,8 @@ module Viki::Core
         block.call Viki::Core::Response.new(error, nil, self)
       else
         if body
-          if Viki.cache
-            Viki.cache.set(cache_key(url), body)
+          if cacheable && Viki.cache
+            Viki.cache.set(cache_key(url), Oj.dump(get_content(body), mode: :compat))
             Viki.cache.expire(cache_key(url), Viki.cache_seconds)
           end
           block.call Viki::Core::Response.new(nil, get_content(body), self)
@@ -66,7 +66,8 @@ module Viki::Core
       cache_key = parsed_url.path
 
       if parsed_url.query_values
-        user_role = parsed_url.query_values[TOKEN_FIELD].to_s.split("|")[1]
+        token = parsed_url.query_values[TOKEN_FIELD]
+        user_role = token.nil? ? 0 : token[-1, 1]
         cache_key += "-@role=#{user_role}" if user_role
 
         parsed_url.query_values.
