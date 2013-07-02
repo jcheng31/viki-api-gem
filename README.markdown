@@ -24,6 +24,9 @@ Viki.configure do |c|
   c.user_token = -> { 'the token of your user' }
 
   # Optional
+  c.cache = YOUR_REDIS_INSTANCE
+  c.cache_ns = 'namespace_for_your_redis_cache_keys'
+  c.cache_time = 30 # seconds to cache
   c.logger = Logger.new(STDOUT) # The logger to use from the gem
   c.timeout_seconds = 30 # The timeout for the requests.
 end
@@ -45,6 +48,12 @@ Configuration
 * `c.timeout_seconds` Amount of timeout seconds for the requests. If a request takes longer, it will return an error
 
 * `c.timeout_seconds_post` Amount of timeout seconds specifically for POST and PUT request. If a request takes longer, it will return an error
+
+* `c.cache` =  Redis instance where the gem will store cached responses from the API. Default to nil. **Optional**
+
+* `c.cache_ns` Namespace for the cache keys stored in Redis. Default to `viki-api-gem-cache`. **Optional**
+
+*  `c.cache_time` Seconds to cache responses from the API. Default to 30. **Optional**
 
 Usage by examples
 -----------------
