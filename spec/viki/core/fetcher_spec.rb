@@ -111,7 +111,7 @@ describe Viki::Core::Fetcher do
         end
       end
 
-      xit "ignores t, sig and token parameters" do
+      it "ignores t, sig and token parameters" do
         Viki.stub(:cache) { cache }
         stub_request("get", "http://example.com/path?other=a&t=123&sig=abc&token=123").to_return(body: Oj.dump(content, mode: :compat), status: status)
         stub_request("get", "http://example.com/path?other=b&t=123&sig=abc&token=123").to_return(body: Oj.dump(content, mode: :compat), status: status)
@@ -127,7 +127,7 @@ describe Viki::Core::Fetcher do
         end
       end
 
-       xit 'uses the second part of the user token for caching, ignoring the rest' do
+      it 'uses the second part of the user token for caching, ignoring the rest' do
         Viki.stub(:cache) { cache }
         stub_request("get", "http://example.com/path?token=12%7Ca%7C34").to_return(:body => Oj.dump(content))
         stub_request("get", "http://example.com/path?token=12%7Cb%7C34").to_return(:body => Oj.dump(content))
