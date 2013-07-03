@@ -1,4 +1,5 @@
 class Viki::Alert < Viki::Core::Base
+  cacheable
   path "/users/:user_id/alerts"
 
   def self.unread_count(user_id, &block)

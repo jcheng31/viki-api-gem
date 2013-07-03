@@ -12,7 +12,13 @@ module Viki::Core
       cached = Viki.cache.get(cache_key(url))
       if cached
         parsed_body = Oj.load(cached, mode: :compat, symbol_keys: false) rescue nil
-        block.call Viki::Core::Response.new(nil, parsed_body, self)
+        if parsed_body
+          block.call Viki::Core::Response.new(nil, parsed_body, self)
+        else
+          error = Viki::Core::ErrorResponse.new(body, 0, url)
+          Viki.logger.error(error.to_s)
+          block.call Viki::Core::Response.new(error, nil, self)
+        end
       else
         super
       end
