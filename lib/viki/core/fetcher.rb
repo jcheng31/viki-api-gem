@@ -30,8 +30,7 @@ module Viki::Core
       else
         if body
           if cacheable && Viki.cache
-            Viki.cache.set(cache_key(url), Oj.dump(get_content(body), mode: :compat))
-            Viki.cache.expire(cache_key(url), Viki.cache_seconds)
+            Viki.cache.setex(cache_key(url), Viki.cache_seconds, Oj.dump(get_content(body), mode: :compat))
           end
           block.call Viki::Core::Response.new(nil, get_content(body), self)
         else

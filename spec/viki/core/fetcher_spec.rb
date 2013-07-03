@@ -82,7 +82,7 @@ describe Viki::Core::Fetcher do
       let(:fetcher) { Viki::Core::Fetcher.new("http://example.com/path", nil, true) }
       let(:cache) do
         {}.tap { |c|
-          def c.set(k, v)
+          def c.setex(k, s, v)
             self[k] = v
           end
 
