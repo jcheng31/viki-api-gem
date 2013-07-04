@@ -2,7 +2,7 @@ module Viki::Core
   class BaseRequest
     attr_reader :url, :body, :cacheable
 
-    def initialize(url, body = nil, cache = false)
+    def initialize(url, body = nil, cache = {})
       @cacheable = cache
       @url = url.to_s
       @body = body ? Oj.dump(body, mode: :compat) : nil

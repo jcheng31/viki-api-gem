@@ -79,7 +79,7 @@ describe Viki::Core::Fetcher do
     end
 
     describe "caching" do
-      let(:fetcher) { Viki::Core::Fetcher.new("http://example.com/path", nil, true) }
+      let(:fetcher) { Viki::Core::Fetcher.new("http://example.com/path", nil, {cache_seconds: 5}) }
       let(:cache) do
         {}.tap { |c|
           def c.setex(k, s, v)
@@ -117,8 +117,8 @@ describe Viki::Core::Fetcher do
         stub_request("get", "http://example.com/path?other=a&t=123&sig=abc&token=123").to_return(body: Oj.dump(content, mode: :compat), status: status)
         stub_request("get", "http://example.com/path?other=b&t=123&sig=abc&token=123").to_return(body: Oj.dump(content, mode: :compat), status: status)
 
-        Viki::Core::Fetcher.new("http://example.com/path?other=a&t=123&sig=abc&token=123", nil, true).queue do
-          Viki::Core::Fetcher.new("http://example.com/path?other=b&t=123&sig=abc&token=123", nil, true).queue do
+        Viki::Core::Fetcher.new("http://example.com/path?other=a&t=123&sig=abc&token=123", nil, {cache_seconds: 5}).queue do
+          Viki::Core::Fetcher.new("http://example.com/path?other=b&t=123&sig=abc&token=123", nil, {cache_seconds: 5}).queue do
             WebMock.should have_requested("get", "http://example.com/path?other=a&t=123&sig=abc&token=123").once
             WebMock.should have_requested("get", "http://example.com/path?other=b&t=123&sig=abc&token=123").once
           end
@@ -130,8 +130,8 @@ describe Viki::Core::Fetcher do
         stub_request("get", "http://example.com/path?token=1234").to_return(:body => Oj.dump(content))
         stub_request("get", "http://example.com/path?token=1234").to_return(:body => Oj.dump(content))
 
-        Viki::Core::Fetcher.new("http://example.com/path?token=1234", nil, true).queue do
-          Viki::Core::Fetcher.new("http://example.com/path?token=1234", nil, true).queue do
+        Viki::Core::Fetcher.new("http://example.com/path?token=1234", nil, {cache_seconds: 5}).queue do
+          Viki::Core::Fetcher.new("http://example.com/path?token=1234", nil, {cache_seconds: 5}).queue do
             WebMock.should have_requested("get", "http://example.com/path?token=1234").once
             WebMock.should have_requested("get", "http://example.com/path?token=1234").once
           end

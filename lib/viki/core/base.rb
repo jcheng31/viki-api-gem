@@ -16,8 +16,9 @@ module Viki::Core
     class << self
       attr_accessor :_paths, :_ssl, :_manage, :_cacheable
 
-      def cacheable
-        @_cacheable = true
+      def cacheable(opts = {})        
+        cache_seconds = opts.delete(:cache_seconds) || Viki.cache_seconds                     
+        @_cacheable = {cache_seconds: cache_seconds}
       end
 
       def use_ssl
