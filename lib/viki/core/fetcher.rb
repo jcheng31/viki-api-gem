@@ -7,7 +7,7 @@ module Viki::Core
     IGNORED_PARAMS = ['t', 'sig', TOKEN_FIELD]
 
     def queue(&block)
-      super && return unless cacheable && Viki.cache
+      super && return unless Viki.cache && !cacheable.empty? 
 
       cached = Viki.cache.get(cache_key(url))
       if cached
@@ -29,8 +29,8 @@ module Viki::Core
         block.call Viki::Core::Response.new(error, nil, self)
       else
         if body
-          if cacheable && Viki.cache
-            Viki.cache.setex(cache_key(url), Viki.cache_seconds, Oj.dump(get_content(body), mode: :compat))
+          if Viki.cache && !cacheable.empty? 
+            Viki.cache.setex(cache_key(url), cacheable[:cache_seconds], Oj.dump(get_content(body), mode: :compat))
           end
           block.call Viki::Core::Response.new(nil, get_content(body), self)
         else
