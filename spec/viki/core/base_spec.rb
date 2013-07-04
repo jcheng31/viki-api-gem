@@ -154,6 +154,16 @@ describe Viki::Core::Base do
       test_klass.fetch(options) do
       end
     end
+
+    it "contructs a fetcher initializer with cacheble option when klass cacheable is true" do
+      test_klass.cacheable
+      uri = stub
+      options = stub
+      test_klass.should_receive(:signed_uri).with(options) { uri }
+      Viki::Core::Fetcher.should_receive(:new).with(uri, nil, true) { stub :queue => nil }
+      test_klass.fetch(options) do
+      end
+    end
   end
 
   describe "#create" do

@@ -1,4 +1,5 @@
 class Viki::Language < Viki::Core::Base
+  cacheable
   EMPTY = {}
   path "/languages"
 

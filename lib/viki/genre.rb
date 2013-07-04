@@ -1,4 +1,5 @@
 class Viki::Genre < Viki::Core::Base
+  cacheable
   path "/:resource/genres"
   # Consumes v4 genres endpoint
   # Available resource are 'movies', 'series', 'music_videos'

@@ -77,5 +77,66 @@ describe Viki::Core::Fetcher do
         end
       end
     end
+
+    describe "caching" do
+      let(:fetcher) { Viki::Core::Fetcher.new("http://example.com/path", nil, true) }
+      let(:cache) do
+        {}.tap { |c|
+          def c.setex(k, s, v)
+            self[k] = v
+          end
+
+          def c.get(k)
+            self[k]
+          end
+
+          def c.expire(k, s)
+          end
+        }
+      end
+
+      it "caches the API requests" do
+        Viki.stub(:cache) { cache }
+        fetcher.queue do
+          fetcher.queue do
+            WebMock.should have_requested("get", "http://example.com/path").once
+          end
+        end
+      end
+
+      it "doesn't cache if caching is not setup" do
+        fetcher.queue do
+          fetcher.queue do
+            WebMock.should have_requested("get", "http://example.com/path").twice
+          end
+        end
+      end
+
+      it "ignores t, sig and token parameters" do
+        Viki.stub(:cache) { cache }
+        stub_request("get", "http://example.com/path?other=a&t=123&sig=abc&token=123").to_return(body: Oj.dump(content, mode: :compat), status: status)
+        stub_request("get", "http://example.com/path?other=b&t=123&sig=abc&token=123").to_return(body: Oj.dump(content, mode: :compat), status: status)
+
+        Viki::Core::Fetcher.new("http://example.com/path?other=a&t=123&sig=abc&token=123", nil, true).queue do
+          Viki::Core::Fetcher.new("http://example.com/path?other=b&t=123&sig=abc&token=123", nil, true).queue do
+            WebMock.should have_requested("get", "http://example.com/path?other=a&t=123&sig=abc&token=123").once
+            WebMock.should have_requested("get", "http://example.com/path?other=b&t=123&sig=abc&token=123").once
+          end
+        end
+      end
+
+      it 'uses the last character of the user token for caching, ignoring the rest' do
+        Viki.stub(:cache) { cache }
+        stub_request("get", "http://example.com/path?token=1234").to_return(:body => Oj.dump(content))
+        stub_request("get", "http://example.com/path?token=1234").to_return(:body => Oj.dump(content))
+
+        Viki::Core::Fetcher.new("http://example.com/path?token=1234", nil, true).queue do
+          Viki::Core::Fetcher.new("http://example.com/path?token=1234", nil, true).queue do
+            WebMock.should have_requested("get", "http://example.com/path?token=1234").once
+            WebMock.should have_requested("get", "http://example.com/path?token=1234").once
+          end
+        end
+      end
+    end
   end
 end

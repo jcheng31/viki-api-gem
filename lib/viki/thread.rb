@@ -1,4 +1,5 @@
 class Viki::Thread < Viki::Core::Base
+  cacheable
   path "/users/:user_id/threads"
 
   def self.unread_count(user_id, &block)

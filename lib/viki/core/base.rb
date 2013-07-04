@@ -14,7 +14,11 @@ module Viki::Core
     DEFAULT_PARAMS = {format: 'json', api_version: 'v4'}
 
     class << self
-      attr_accessor :_paths, :_ssl, :_manage
+      attr_accessor :_paths, :_ssl, :_manage, :_cacheable
+
+      def cacheable
+        @_cacheable = true
+      end
 
       def use_ssl
         @_ssl = true
@@ -63,7 +67,12 @@ module Viki::Core
       def fetch(url_options = {}, &block)
         uri = signed_uri(url_options.dup)
         Viki.logger.info "#{self.name} fetching from the API: #{uri}"
-        fetcher = Viki::Core::Fetcher.new(uri)
+
+        if @_cacheable
+          fetcher = Viki::Core::Fetcher.new(uri, nil, @_cacheable)
+        else
+          fetcher = Viki::Core::Fetcher.new(uri)
+        end
 
         fetcher.queue &block
         fetcher
