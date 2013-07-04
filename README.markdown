@@ -575,10 +575,15 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.4.2
+  * Ability to fetch list of countries by resource type
+
 * 1.4.1
   * Ability to pass cache seconds arguments to cacheable method 
+
 * 1.4.0
   * Abilty to set cacheable for non-holdbacks endpoint
+
 * 1.3.0
   * New feature: Async stub
 
