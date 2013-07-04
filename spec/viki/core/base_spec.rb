@@ -155,14 +155,22 @@ describe Viki::Core::Base do
       end
     end
 
-    it "contructs a fetcher initializer with cacheble option when klass cacheable is true" do
+    it "contructs a fetcher initializer with cacheble option when cacheable is present" do
       test_klass.cacheable
       uri = stub
       options = stub
       test_klass.should_receive(:signed_uri).with(options) { uri }
-      Viki::Core::Fetcher.should_receive(:new).with(uri, nil, true) { stub :queue => nil }
-      test_klass.fetch(options) do
-      end
+      Viki::Core::Fetcher.should_receive(:new).with(uri, nil, {cache_seconds: 5}) { stub :queue => nil }
+      test_klass.fetch(options) {}
+    end
+
+    it "cacheable can accept argument for cache expiry time" do
+      test_klass.cacheable(cache_seconds: 30)
+      uri = stub
+      options = stub
+      test_klass.should_receive(:signed_uri).with(options) { uri }
+      Viki::Core::Fetcher.should_receive(:new).with(uri, nil, {cache_seconds: 30}) { stub :queue => nil }
+      test_klass.fetch(options) {}
     end
   end
 
