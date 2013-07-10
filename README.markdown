@@ -552,6 +552,10 @@ end
 Viki::Translation.rating(origin_subtitle_id: '1s', target_subtitle_id: '2s', like: false, suggested_content: 'something') do |response| # dislike a translation with suggestion
   puts r.inspect
 end
+
+Viki::Translation.report(subtitle_id: '1s') do |response| # report a subtitle
+  puts r.inspect
+end
 ```
 
 Testing Tool
