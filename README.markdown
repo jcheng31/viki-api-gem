@@ -575,11 +575,13 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.4.3
+  * Bugfix - parsed cache content not initialized get_content of body
 * 1.4.2
   * Ability to fetch list of countries by resource type
 
 * 1.4.1
-  * Ability to pass cache seconds arguments to cacheable method 
+  * Ability to pass cache seconds arguments to cacheable method
 
 * 1.4.0
   * Abilty to set cacheable for non-holdbacks endpoint
