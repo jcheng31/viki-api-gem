@@ -579,8 +579,12 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.4.4
+  * Subtitle reporting
+
 * 1.4.3
   * Bugfix - parsed cache content not initialized get_content of body
+
 * 1.4.2
   * Ability to fetch list of countries by resource type
 
