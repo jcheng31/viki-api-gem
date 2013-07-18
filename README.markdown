@@ -590,6 +590,9 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.4.5
+  * Caption
+
 * 1.4.4
   * Subtitle reporting
 
