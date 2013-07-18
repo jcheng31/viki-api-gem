@@ -558,6 +558,17 @@ Viki::Translation.report(subtitle_id: '1s') do |response| # report a subtitle
 end
 ```
 
+* Captions
+
+```ruby
+Viki::Caption.random(origin_language: 'en', target_language: 'es') do |response| # get random caption
+  puts r.inspect
+end
+
+Viki::Caption.create(origin_subtitle_id: '1s', language: 'ko', content: 'new caption') do |response| # create a caption
+  puts r.inspect
+end
+
 Testing Tool
 ------------
 
