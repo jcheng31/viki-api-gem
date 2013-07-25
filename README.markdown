@@ -590,6 +590,9 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.4.6
+  * Leaaderboard
+
 * 1.4.5
   * Caption
 
@@ -601,22 +604,4 @@ Changelog
 
 * 1.4.2
   * Ability to fetch list of countries by resource type
-
-* 1.4.1
-  * Ability to pass cache seconds arguments to cacheable method
-
-* 1.4.0
-  * Abilty to set cacheable for non-holdbacks endpoint
-
-* 1.3.0
-  * New feature: Async stub
-
-* 1.2.0
-  * Upgrade Typhoeus. Enable memoize
-
-* 1.1.20
-  * Support for encoding APIs
-
-* 1.1.19
-  * Fix recommdations to recommendations in containers.rb
 
