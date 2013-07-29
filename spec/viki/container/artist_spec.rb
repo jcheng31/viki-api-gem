@@ -13,7 +13,7 @@ describe Viki::Artist, api: true do
       casts.should eq ['1a', '2a']
     end
     it "using the cast_for class method" do
-      resp = stub
+      resp = double
       described_class.should_receive(:fetch).with(artist_id: '129c').and_yield(resp)
       Viki::Artist.casts_for('129c') do |res|
         res.should eq resp

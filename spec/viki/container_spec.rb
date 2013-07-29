@@ -17,7 +17,7 @@ describe Viki::Container, api: true do
   end
 
   it "fetches recommendations for container" do
-    resp = stub
+    resp = double
     Viki::Container.should_receive(:fetch).with(recommended_for: '50c').and_yield(resp)
     Viki::Container.recommendations('50c') do |res|
       res.should eq resp
@@ -25,7 +25,7 @@ describe Viki::Container, api: true do
   end
 
   it "fetches people for container" do
-    resp = stub
+    resp = double
     Viki::Container.should_receive(:fetch).with(people_for: '50c').and_yield(resp)
     Viki::Container.people('50c') do |res|
       res.should eq resp

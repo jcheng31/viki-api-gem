@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.required_ruby_version = '>= 1.9.3'
 
-  s.add_development_dependency "rspec", "~> 2.11"
+  s.add_development_dependency "rspec", "= 2.13.0"
   s.add_development_dependency "webmock", "~> 1.12.3"
   s.add_development_dependency "timecop", "~> 0.5"
 

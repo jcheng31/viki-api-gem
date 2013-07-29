@@ -147,40 +147,40 @@ describe Viki::Core::Base do
 
   describe "#fetch" do
     it "constructs a fetcher from the signed_uri" do
-      uri = stub
-      options = stub
+      uri = double
+      options = double
       test_klass.should_receive(:signed_uri).with(options) { uri }
-      Viki::Core::Fetcher.should_receive(:new).with(uri) { stub :queue => nil }
+      Viki::Core::Fetcher.should_receive(:new).with(uri) { double :queue => nil }
       test_klass.fetch(options) do
       end
     end
 
     it "contructs a fetcher initializer with cacheble option when cacheable is present" do
       test_klass.cacheable
-      uri = stub
-      options = stub
+      uri = double
+      options = double
       test_klass.should_receive(:signed_uri).with(options) { uri }
-      Viki::Core::Fetcher.should_receive(:new).with(uri, nil, {cache_seconds: 5}) { stub :queue => nil }
+      Viki::Core::Fetcher.should_receive(:new).with(uri, nil, {cache_seconds: 5}) { double :queue => nil }
       test_klass.fetch(options) {}
     end
 
     it "cacheable can accept argument for cache expiry time" do
       test_klass.cacheable(cache_seconds: 30)
-      uri = stub
-      options = stub
+      uri = double
+      options = double
       test_klass.should_receive(:signed_uri).with(options) { uri }
-      Viki::Core::Fetcher.should_receive(:new).with(uri, nil, {cache_seconds: 30}) { stub :queue => nil }
+      Viki::Core::Fetcher.should_receive(:new).with(uri, nil, {cache_seconds: 30}) { double :queue => nil }
       test_klass.fetch(options) {}
     end
   end
 
   describe "#create" do
     it "constructs a creator from the signed_uri and the body" do
-      uri = stub
-      options = stub
-      body = stub.as_null_object
+      uri = double
+      options = double
+      body = double.as_null_object
       test_klass.should_receive(:signed_uri).with(options, body) { uri }
-      Viki::Core::Creator.should_receive(:new).with(uri, body) { stub :queue => nil }
+      Viki::Core::Creator.should_receive(:new).with(uri, body) { double :queue => nil }
       test_klass.create(options, body) do
       end
     end
@@ -188,11 +188,11 @@ describe Viki::Core::Base do
 
   describe "#update" do
     it "constructs a updater from the signed_uri and the body" do
-      uri = stub
-      options = stub
-      body = stub.as_null_object
+      uri = double
+      options = double
+      body = double.as_null_object
       test_klass.should_receive(:signed_uri).with(options, body) { uri }
-      Viki::Core::Updater.should_receive(:new).with(uri, body) { stub :queue => nil }
+      Viki::Core::Updater.should_receive(:new).with(uri, body) { double :queue => nil }
       test_klass.update(options, body) do
       end
     end
@@ -200,10 +200,10 @@ describe Viki::Core::Base do
 
   describe "#destroy" do
     it "constructs a destroyer from the signed_uri" do
-      uri = stub
-      options = stub
+      uri = double
+      options = double
       test_klass.should_receive(:signed_uri).with(options) { uri }
-      Viki::Core::Destroyer.should_receive(:new).with(uri) { stub :queue => nil }
+      Viki::Core::Destroyer.should_receive(:new).with(uri) { double :queue => nil }
       test_klass.destroy(options) do
       end
     end
