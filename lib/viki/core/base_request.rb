@@ -11,6 +11,7 @@ module Viki::Core
     def queue(&block)
       request.tap do |req|
         req.on_complete do |res|
+          Viki.logger.info "[API Request] [Responded] #{@url} #{res.time}s"
           if is_error?(res)
             error = Viki::Core::ErrorResponse.new(res.body, res.code, @url)
             Viki.logger.error(error.to_s)

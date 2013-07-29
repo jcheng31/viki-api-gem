@@ -59,7 +59,7 @@ module Viki
       @domain = ENV["VIKI_API_DOMAIN"]
       @manage = ENV["VIKI_MANAGE_DOMAIN"]
       @logger = Viki::Logger.new(STDOUT)
-      @logger.level = Viki::Logger::INFO
+      @logger.level = (ENV["VIKI_API_LOG_LEVEL"] || Viki::Logger::INFO).to_i
       @user_ip = lambda { }
       @user_token = lambda { }
       @timeout_seconds = 5

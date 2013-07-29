@@ -7,6 +7,8 @@ module Viki::Core
     IGNORED_PARAMS = ['t', 'sig', TOKEN_FIELD]
 
     def queue(&block)
+      Viki.logger.info "[API Request] [Cacheable] #{@url} "
+
       super && return unless Viki.cache && !cacheable.empty?
 
       cached = Viki.cache.get(cache_key(url))

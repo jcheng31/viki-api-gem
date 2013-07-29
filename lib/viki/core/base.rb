@@ -16,8 +16,8 @@ module Viki::Core
     class << self
       attr_accessor :_paths, :_ssl, :_manage, :_cacheable
 
-      def cacheable(opts = {})        
-        cache_seconds = opts.delete(:cache_seconds) || Viki.cache_seconds                     
+      def cacheable(opts = {})
+        cache_seconds = opts.delete(:cache_seconds) || Viki.cache_seconds
         @_cacheable = {cache_seconds: cache_seconds}
       end
 
@@ -67,7 +67,7 @@ module Viki::Core
 
       def fetch(url_options = {}, &block)
         uri = signed_uri(url_options.dup)
-        Viki.logger.info "#{self.name} fetching from the API: #{uri}"
+        Viki.logger.debug "#{self.name} fetching from the API: #{uri}"
 
         if @_cacheable
           fetcher = Viki::Core::Fetcher.new(uri, nil, @_cacheable)
@@ -88,7 +88,7 @@ module Viki::Core
 
       def create(url_options = {}, body = {}, &block)
         uri = signed_uri(url_options.dup, body)
-        Viki.logger.info "#{self.name} creating to the API: #{uri}"
+        Viki.logger.debug "#{self.name} creating to the API: #{uri}"
         creator = Viki::Core::Creator.new(uri, body)
         creator.queue &block
         creator
@@ -103,7 +103,7 @@ module Viki::Core
 
       def update(url_options = {}, body = {}, &block)
         uri = signed_uri(url_options.dup, body)
-        Viki.logger.info "#{self.name} updating to the API: #{uri}"
+        Viki.logger.debug "#{self.name} updating to the API: #{uri}"
         creator = Viki::Core::Updater.new(uri, body)
         creator.queue &block
         creator
@@ -118,7 +118,7 @@ module Viki::Core
 
       def destroy(url_options = {}, &block)
         uri = signed_uri(url_options.dup)
-        Viki.logger.info "#{self.name} destroying to the API: #{uri}"
+        Viki.logger.debug "#{self.name} destroying to the API: #{uri}"
         destroyer = Viki::Core::Destroyer.new(uri)
         destroyer.queue &block
         destroyer

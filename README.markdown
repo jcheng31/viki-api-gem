@@ -590,6 +590,9 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.4.7
+  * Log api response time in request
+
 * 1.4.6
   * Leaaderboard
 
