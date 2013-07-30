@@ -590,6 +590,9 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.4.9
+  * Content owner
+
 * 1.4.8
   * Log api response time in request
 
@@ -598,13 +601,4 @@ Changelog
 
 * 1.4.5
   * Caption
-
-* 1.4.4
-  * Subtitle reporting
-
-* 1.4.3
-  * Bugfix - parsed cache content not initialized get_content of body
-
-* 1.4.2
-  * Ability to fetch list of countries by resource type
 
