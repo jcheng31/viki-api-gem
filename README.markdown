@@ -590,6 +590,9 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.5.0
+  * Invoices
+
 * 1.4.9
   * Content owner
 
