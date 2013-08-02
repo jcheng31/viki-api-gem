@@ -590,6 +590,9 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.5.1
+  * Do not cache fetcher request if request have nocache=true parameter
+
 * 1.5.0
   * Invoices
 

@@ -112,6 +112,17 @@ describe Viki::Core::Fetcher do
         end
       end
 
+      it "doesn't cache if request has nocache=true" do
+        stub_request("get", "http://example.com/path?nocache=true").
+            to_return(body: Oj.dump(content, mode: :compat), status: status)
+        nocache_fetcher = Viki::Core::Fetcher.new("http://example.com/path?nocache=true", nil, {cache_seconds: 5})
+        nocache_fetcher.queue do
+          nocache_fetcher.queue do
+            WebMock.should have_requested("get", "http://example.com/path?nocache=true").twice
+          end
+        end
+      end
+
       it "ignores t, sig and token parameters" do
         Viki.stub(:cache) { cache }
         stub_request("get", "http://example.com/path?other=a&t=123&sig=abc&token=123").to_return(body: Oj.dump(content, mode: :compat), status: status)

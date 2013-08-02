@@ -9,6 +9,7 @@ module Viki::Core
     def queue(&block)
       Viki.logger.info "[API Request] [Cacheable] #{@url} "
 
+      super && return if @url.include?("nocache=true")
       super && return unless Viki.cache && !cacheable.empty?
 
       cached = Viki.cache.get(cache_key(url))

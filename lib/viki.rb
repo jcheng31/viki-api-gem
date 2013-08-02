@@ -9,7 +9,8 @@ require 'base64'
 
 module Viki
   class << self
-    attr_accessor :salt, :app_id, :domain, :manage, :logger, :user_ip, :user_token, :signer, :hydra, :timeout_seconds, :timeout_seconds_post, :cache, :cache_ns, :cache_seconds
+    attr_accessor :salt, :app_id, :domain, :manage, :logger, :user_ip, :user_token, :signer, :hydra,
+                  :timeout_seconds, :timeout_seconds_post, :cache, :cache_ns, :cache_seconds
   end
 
   def self.run
