@@ -10,7 +10,7 @@ module Viki::Core
                                          headers: default_headers,
                                          method: "put",
                                          # forbid_reuse: true,
-                                         timeout: (Viki.timeout_seconds_post * 1000)
+                                         timeout: (Viki.timeout_seconds_post)
     end
   end
 end

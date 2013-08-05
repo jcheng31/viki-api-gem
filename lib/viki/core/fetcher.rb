@@ -49,7 +49,7 @@ module Viki::Core
                             headers: default_headers,
                             method: "get",
                             # forbid_reuse: true,
-                            timeout: (Viki.timeout_seconds * 1000)
+                            timeout: (Viki.timeout_seconds)
     end
 
     private

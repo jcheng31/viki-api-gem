@@ -590,6 +590,9 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.5.2
+  * Fix timeout issue. Typhoeus expect timeout in milliseconds
+
 * 1.5.1
   * Do not cache fetcher request if request have nocache=true parameter
 
