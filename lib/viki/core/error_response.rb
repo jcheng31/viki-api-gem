@@ -15,7 +15,7 @@ module Viki::Core
         @vcode = @json["vcode"].to_i
         @details = @json["details"]
       rescue Oj::ParseError
-        #ignore
+        Viki.logger.info "Couldn't parse json. Body: #{@body.to_s}. Object: #{self}"
       end
     end
 

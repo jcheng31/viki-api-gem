@@ -14,7 +14,11 @@ module Viki::Core
 
       cached = Viki.cache.get(cache_key(url))
       if cached
-        parsed_body = Oj.load(cached, mode: :compat, symbol_keys: false) rescue nil
+        begin
+          parsed_body = Oj.load(cached, mode: :compat, symbol_keys: false)
+        rescue
+          Viki.logger.info "Couldn't parse json. Body: #{@body.to_s}. Object: #{self}"
+        end
         if parsed_body
           block.call Viki::Core::Response.new(nil, get_content(parsed_body), self)
         else

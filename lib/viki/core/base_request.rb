@@ -18,7 +18,11 @@ module Viki::Core
             raise error if error.invalid_token?
             on_complete error, nil, &block
           else
-            parsed_body = Oj.load(res.body, mode: :compat, symbol_keys: false) rescue nil
+            begin
+              parsed_body = Oj.load(res.body, mode: :compat, symbol_keys: false)
+            rescue
+              Viki.logger.info "Couldn't parse json. Body: #{@body.to_s}. Object: #{self}"
+            end
             on_complete nil, parsed_body || res.body, &block
           end
         end
