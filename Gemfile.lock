@@ -46,5 +46,4 @@ DEPENDENCIES
   rspec (= 2.13.0)
   timecop (~> 0.5)
   viki-api!
-  viki_utils
   webmock (~> 1.12.3)
