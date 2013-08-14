@@ -590,6 +590,9 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.5.4
+  * Change dependency specifications to 'more than'
+
 * 1.5.2
   * Fix timeout issue. Typhoeus expect timeout in milliseconds
 
