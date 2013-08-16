@@ -4,6 +4,7 @@ class Viki::Translation < Viki::Core::Base
   RANDOM = 'random'
   REPORT = 'report'
 
+  path "/translations"
   path "/translations/random", name: RANDOM
   path "/translations/:target_subtitle_id/like", name: LIKE
   path "/translations/:target_subtitle_id/dislike", name: DISLIKE
