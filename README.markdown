@@ -541,6 +541,10 @@ end
 * Translations
 
 ```ruby
+Viki::Translation.fetch(origin_language: 'en', target_language: 'es') do |response| # get translations
+  puts r.inspect
+end
+
 Viki::Translation.random(origin_language: 'en', target_language: 'es') do |response| # get random translation
   puts r.inspect
 end

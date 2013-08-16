@@ -1,6 +1,17 @@
 require 'spec_helper'
 
 describe Viki::Translation, api: true do
+  describe "index" do
+    it "returns translations for languages" do
+      stub = stub_request('get', %r{.*/translations.json.*}).with(:query => hash_including({'origin_language' => 'en', 'target_language' => 'ko'}))
+
+      described_class.fetch(origin_language: 'en', target_language: 'ko') do
+      end
+      Viki.run
+      stub.should have_been_made
+    end
+  end
+
   describe "random" do
     it 'returns subtitles for each languages' do
       stub = stub_request('get', %r{.*/translations/random.json.*}).with(:query => hash_including({'origin_language' => 'en', 'target_language' => 'ko'}))
