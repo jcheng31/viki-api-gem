@@ -42,4 +42,15 @@ describe Viki::Translation, api: true do
       stub.should have_been_made
     end
   end
+
+  describe "languages" do
+    it 'returns languages for translations' do
+      stub = stub_request('get', %r{.*/translations/languages.json.*})
+      described_class.languages do
+      end
+
+      Viki.run
+      stub.should have_been_made
+    end
+  end
 end
