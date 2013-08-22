@@ -442,6 +442,16 @@ end
 ```
 See http://dev.viki.com/v4/activities/ for type params details
 
+* Fetch user likes
+
+```ruby
+Viki::Like.fetch(user_id: user_id) do | response |
+  puts response.inspect
+end
+```
+See http://dev.viki.com/v4/likes/ for type params details
+
+
 * Private message
 
 ```ruby
