@@ -1,17 +1,6 @@
 require 'spec_helper'
 
 describe Viki::Translation, api: true do
-  describe "random" do
-    it 'returns subtitles for each languages' do
-      stub = stub_request('get', %r{.*/translations/random.json.*}).with(:query => hash_including({'origin_language' => 'en', 'target_language' => 'ko'}))
-
-      described_class.random(origin_language: 'en', target_language: 'ko') do
-      end
-      Viki.run
-      stub.should have_been_made
-    end
-  end
-
   describe "rating" do
     it 'likes a subtitle content if like is true' do
       stub = stub_request('post', %r{.*/translations/1s/like.json.*}).with(:query => hash_including({'origin_subtitle_id' => '2s'}))

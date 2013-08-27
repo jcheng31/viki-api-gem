@@ -541,10 +541,6 @@ end
 * Translations
 
 ```ruby
-Viki::Translation.random(origin_language: 'en', target_language: 'es') do |response| # get random translation
-  puts r.inspect
-end
-
 Viki::Translation.rating(origin_subtitle_id: '1s', target_subtitle_id: '2s', like: true) do |response| # like a translation
   puts r.inspect
 end
