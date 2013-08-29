@@ -599,6 +599,9 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.5.8
+  * Mark as candidate endpoint
+
 * 1.5.4
   * Change dependency specifications to 'more than'
 
@@ -623,3 +626,4 @@ Changelog
 * 1.4.5
   * Caption
 
+                      
