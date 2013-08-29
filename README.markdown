@@ -599,6 +599,9 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.5.9
+  * Fix OJ response breakage
+
 * 1.5.8
   * Mark as candidate endpoint
 
