@@ -11,9 +11,11 @@ module Viki::Core
       @url = url
       begin
         @json = Oj.load(@body.to_s, mode: :compat, symbol_keys: false)
-        @error = @json["error"]
-        @vcode = @json["vcode"].to_i
-        @details = @json["details"]
+        if @json
+          @error = @json["error"]
+          @vcode = @json["vcode"].to_i
+          @details = @json["details"]
+        end
       rescue Oj::ParseError
         Viki.logger.info "Couldn't parse json. Body: #{@body.to_s}. Object: #{self}"
       end
