@@ -1,20 +1,14 @@
 class Viki::Translation < Viki::Core::Base
   LIKE = 'like'
   DISLIKE = 'dislike'
-  RANDOM = 'random'
   REPORT = 'report'
   LANGUAGES = 'languages'
 
   path "/translations"
-  path "/translations/random", name: RANDOM
   path "/translations/:target_subtitle_id/like", name: LIKE
   path "/translations/:target_subtitle_id/dislike", name: DISLIKE
   path "/translations/:subtitle_id/report", name: REPORT
   path "/translations/languages", name: LANGUAGES
-
-  def self.random(options = {}, &block)
-    self.fetch(options.merge(named_path: RANDOM), &block)
-  end
 
   def self.rating(options = {}, &block)
     preference = options.delete(:like) ? LIKE : DISLIKE
