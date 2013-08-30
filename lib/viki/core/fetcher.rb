@@ -79,6 +79,7 @@ module Viki::Core
 
       if parsed_url.query_values
         token = parsed_url.query_values[TOKEN_FIELD]
+        #TODO use rindex token.length to get
         user_role = token.nil? ? 0 : token[-1, 1]
         cache_key += "-@role=#{user_role}" if user_role
 
