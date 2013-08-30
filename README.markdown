@@ -479,8 +479,9 @@ Viki::Alert.unread_count(user_id) { |r| puts r.inspect }
 * [Contribution](#contribution)
 
 ```ruby
-Viki::Contribution.fetch(container_id: container_id) { |r| puts r.inspect } # container specific contributions
-Viki::Contribution.fetch(user_id: user_id) { |r| puts r.inspect }           # user specific contributions
+Viki::Contribution.fetch(container_id: container_id) { |r| puts r.inspect }   # container specific contributions
+Viki::Contribution.fetch(user_id: user_id) { |r| puts r.inspect }             # user specific contributions
+Viki::Contribution.mark_as_candidate(user_id: user_id) { |r| puts r.inspect } # apply to be a contributor
 ```
 
 * Title
@@ -545,10 +546,6 @@ Viki::Translation.fetch(origin_language: 'en', target_language: 'es') do |respon
   puts r.inspect
 end
 
-Viki::Translation.random(origin_language: 'en', target_language: 'es') do |response| # get random translation
-  puts r.inspect
-end
-
 Viki::Translation.rating(origin_subtitle_id: '1s', target_subtitle_id: '2s', like: true) do |response| # like a translation
   puts r.inspect
 end
@@ -602,6 +599,12 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.5.9
+  * Fix OJ response breakage
+
+* 1.5.8
+  * Mark as candidate endpoint
+
 * 1.5.4
   * Change dependency specifications to 'more than'
 
@@ -626,3 +629,4 @@ Changelog
 * 1.4.5
   * Caption
 
+                      

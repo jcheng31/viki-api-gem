@@ -23,4 +23,11 @@ describe Viki::Contribution, api: true do
       response.value.should == [contribution]
     end
   end
+
+  it "marks a user as a condidate" do
+    stub = stub_request('put', %r{.*/users/42u/contributions/mark_as_candidate.json.*})
+    described_class.mark_as_candidate(user_id: '42u') {}
+    Viki.run
+    stub.should have_been_made
+  end
 end
