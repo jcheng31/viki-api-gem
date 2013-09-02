@@ -599,6 +599,9 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.6.1
+  * Downgraded typhoeus version. (seg fault errors after upgrade)
+
 * 1.5.9
   * Fix OJ response breakage
 
