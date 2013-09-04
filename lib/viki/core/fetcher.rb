@@ -79,11 +79,13 @@ module Viki::Core
 
       if parsed_url.query_values
         token = parsed_url.query_values[TOKEN_FIELD]
-        rindex_token = token.rindex("_") # get the last occurence of `_`
-        token_role = rindex_token.nil? ? 0 : token[rindex_token + 1, token.length]
-        user_role = token.nil? ? 0 : token_role
-
-        cache_key += "-@role=#{user_role}" if user_role
+        user_role = 0
+        if token
+          rindex_token = token.rindex("_")
+          token_role = rindex_token.nil? ? 0 : token[rindex_token + 1, token.length]
+          user_role = token_role
+        end
+        cache_key += "-@role=#{user_role}"
 
         parsed_url.query_values.
           reject { |k, _| IGNORED_PARAMS.include?(k) }.
