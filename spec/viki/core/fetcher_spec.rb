@@ -138,13 +138,13 @@ describe Viki::Core::Fetcher do
 
       it 'uses the last character of the user token for caching, ignoring the rest' do
         Viki.stub(:cache) { cache }
-        stub_request("get", "http://example.com/path?token=1234").to_return(:body => Oj.dump(content))
-        stub_request("get", "http://example.com/path?token=1234").to_return(:body => Oj.dump(content))
+        stub_request("get", "http://example.com/path?token=1234_13").to_return(:body => Oj.dump(content))
+        stub_request("get", "http://example.com/path?token=1234_13").to_return(:body => Oj.dump(content))
 
-        Viki::Core::Fetcher.new("http://example.com/path?token=1234", nil, {cache_seconds: 5}).queue do
-          Viki::Core::Fetcher.new("http://example.com/path?token=1234", nil, {cache_seconds: 5}).queue do
-            WebMock.should have_requested("get", "http://example.com/path?token=1234").once
-            WebMock.should have_requested("get", "http://example.com/path?token=1234").once
+        Viki::Core::Fetcher.new("http://example.com/path?token=1234_13", nil, {cache_seconds: 5}).queue do
+          Viki::Core::Fetcher.new("http://example.com/path?token=1234_13", nil, {cache_seconds: 5}).queue do
+            WebMock.should have_requested("get", "http://example.com/path?token=1234_13").once
+            WebMock.should have_requested("get", "http://example.com/path?token=1234_13").once
           end
         end
       end

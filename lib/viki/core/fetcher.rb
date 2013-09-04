@@ -79,8 +79,10 @@ module Viki::Core
 
       if parsed_url.query_values
         token = parsed_url.query_values[TOKEN_FIELD]
-        #TODO use rindex token.length to get
-        user_role = token.nil? ? 0 : token[-1, 1]
+        rindex_token = token.rindex("_") # get the last occurence of `_`
+        token_role = rindex_token.nil? ? 0 : token[rindex_token + 1, token.length]
+        user_role = token.nil? ? 0 : token_role
+
         cache_key += "-@role=#{user_role}" if user_role
 
         parsed_url.query_values.
