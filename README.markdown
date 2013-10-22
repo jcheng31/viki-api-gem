@@ -599,6 +599,9 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.6.4
+  * Support for referrals endpoint
+
 * 1.6.1
   * Downgraded typhoeus version. (seg fault errors after upgrade)
 
