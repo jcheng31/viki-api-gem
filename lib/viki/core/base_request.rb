@@ -13,7 +13,12 @@ module Viki::Core
         req.on_complete do |res|
           Viki.logger.info "[API Request] [Responded] #{@url} #{res.time}s"
           if is_error?(res)
-            error = Viki::Core::ErrorResponse.new(res.body, res.code, @url)
+            if res.timed_out?
+              error = Viki::Core::TimeoutErrorResponse.new(@url)
+            else
+              error = Viki::Core::ErrorResponse.new(res.body, res.code, @url)
+            end
+
             Viki.logger.error(error.to_s)
             raise error if error.invalid_token?
             on_complete error, nil, &block

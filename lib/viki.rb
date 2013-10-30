@@ -86,6 +86,7 @@ require 'viki/core/destroyer'
 require 'viki/core/base'
 require 'viki/core/response'
 require 'viki/core/error_response'
+require 'viki/core/timeout_error_response'
 
 ['', 'container', 'video'].each do |dir|
   Dir[File.join(File.dirname(__FILE__), "viki/#{dir}", '*.rb')].each { |f| require f }
