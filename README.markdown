@@ -599,6 +599,9 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.7.2
+  * Support for time out errors
+
 * 1.6.4
   * Support for referrals endpoint
 
