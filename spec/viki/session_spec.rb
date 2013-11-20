@@ -22,7 +22,7 @@ describe Viki::Session, api: true do
       stub_request("post", "http://api.dev.viki.io/v4/sessions.json").
           with(query: hash_including(:sig, :t, params),
                headers: {'Content-Type' => 'application/json', 'User-Agent' => 'viki'},
-               body: hash_including("sign" => "me_in","login_id"=> "user", "password"=> "pass")).
+	       body: hash_including("sign" => "me_in","username"=> "user", "password"=> "pass")).
           to_return(body: '{"token" : "123456"}', status: 200)
 
       described_class.authenticate('user', 'pass', {sign: 'me_in'}) do |response|
