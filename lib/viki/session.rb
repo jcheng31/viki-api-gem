@@ -1,5 +1,6 @@
 class Viki::Session < Viki::Core::Base
   class AuthenticationError; end
+  default api_version: 'v5'
   
   path "/sessions"
   path "/sessions/:token"
