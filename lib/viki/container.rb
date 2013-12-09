@@ -2,6 +2,7 @@ class Viki::Container < Viki::Core::Base
   path '/containers'
   path '/containers/:recommended_for/recommendations'
   path '/containers/:people_for/people'
+  path '/verticals/:vertical_id/containers', api_version: "v5"
 
   def self.popular(options = {}, &block)
     self.fetch(options.merge(sort: 'views_recent'), &block)

@@ -31,4 +31,13 @@ describe Viki::Container, api: true do
       res.should eq resp
     end
   end
+
+  it "fetched all containers from a vertical" do
+    stub_api 'verticals/1vp/containers.json', json_fixture(:containers), {api_version: "v5"}
+    described_class.fetch(vertical_id: "1vp") do |response|
+      containers = response.value
+      containers.should be_a_kind_of(Array)
+      containers.first.keys.should include 'titles'
+    end
+  end
 end
