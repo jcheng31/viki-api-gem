@@ -2,12 +2,12 @@ require 'spec_helper'
 
 describe Viki::Container, api: true do
   describe 'list' do
-    before { stub_api 'containers.json', json_fixture(:containers) }
+    before { stub_api 'containers.json', json_fixture(:containers), api_version: "v5" }
     it_behaves_like "a container object"
   end
 
   it "fetches single container" do
-    stub_api 'containers/1411c.json', json_fixture(:container)
+    stub_api 'containers/1411c.json', json_fixture(:container), api_version: "v5"
     described_class.fetch(id: "1411c") do |response|
       video = response.value
       video.should be_a_kind_of(Hash)
@@ -35,7 +35,7 @@ describe Viki::Container, api: true do
   end
 
   it "fetched all containers from a vertical" do
-    stub_api 'verticals/1vp/containers.json', json_fixture(:containers), {api_version: "v5"}
+    stub_api 'verticals/1vp/containers.json', json_fixture(:containers), api_version: "v5"
     described_class.fetch(vertical_id: "1vp") do |response|
       containers = response.value
       containers.should be_a_kind_of(Array)

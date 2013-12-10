@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 describe Viki::Artist, api: true do
-  before { stub_api 'artists.json', json_fixture(:artists) }
+  before { stub_api 'artists.json', json_fixture(:artists), api_version: "v5"}
   it_behaves_like "a container object"
 
   context "fetches casts" do
     it do
-      stub_api 'artists/129c/casts.json', '["1a", "2a"]'
+      stub_api 'artists/129c/casts.json', '["1a", "2a"]', api_version: "v5"
       casts = nil
       described_class.fetch(artist_id: '129c') { |response| casts = response.value }
       Viki.run
