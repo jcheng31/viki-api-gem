@@ -1,7 +1,7 @@
 class Viki::Container < Viki::Core::Base
-  path '/containers'
-  path '/containers/:recommended_for/recommendations'
-  path '/containers/:people_for/people'
+  path '/containers', api_version: "v5"
+  path '/containers/:recommended_for/recommendations', api_version: "v5"
+  path '/containers/:people_for/people', api_version: "v5"
   path '/verticals/:vertical_id/containers', api_version: "v5"
 
   def self.popular(options = {}, &block)

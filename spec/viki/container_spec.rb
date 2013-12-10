@@ -11,7 +11,9 @@ describe Viki::Container, api: true do
     described_class.fetch(id: "1411c") do |response|
       video = response.value
       video.should be_a_kind_of(Hash)
-      video.keys.should include('titles')
+      expect(video.keys).to include('titles')
+      expect(video.keys).to include('verticals')
+      expect(video.keys).to include('paywall')
     end
     Viki.run
   end
