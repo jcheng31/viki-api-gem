@@ -599,6 +599,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.7.4
+  * Add support for user redemptions endpoint
 * 1.7.3
   * Add support for gift cards endpoint
 
