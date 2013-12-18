@@ -1,3 +1,3 @@
 class Viki::News < Viki::Container
-  path "/news"
+  path "/news", api_version: "v5"
 end

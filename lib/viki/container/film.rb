@@ -1,3 +1,3 @@
 class Viki::Film < Viki::Container
-  path "/films"
+  path "/films", api_version: "v5"
 end

@@ -19,7 +19,7 @@ describe Viki::Video, api: true do
   # end
 
   it "create videos via containers/:container_id/videos" do
-    stub_api 'containers/42c/videos.json', json_fixture(:video), {method: :post}
+    stub_api 'containers/42c/videos.json', json_fixture(:video), {method: :post, api_version: "v5"}
     described_class.create({container_id: "42c"}, {}) do |response|
       video = response.value
       video.should be_a_kind_of(Hash)
