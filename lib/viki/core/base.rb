@@ -11,7 +11,8 @@ module Viki::Core
     PATH_TOKENS_REGEX = /:(\w+)/
     END_OF_PATH_REGEX = /(\/\w+)(\.\w+)?$/
     DEFAULT_NAME = "NONAME"
-    DEFAULT_PARAMS = {format: 'json', api_version: 'v4'}
+    DEFAULT_PARAMS = {format: 'json'}
+    DEFAULT_API_VERSION = "v4"
 
     class << self
       attr_accessor :_paths, :_ssl, :_manage, :_cacheable
@@ -26,6 +27,8 @@ module Viki::Core
       end
 
       def path(path, options = {})
+        api_version = options.fetch(:api_version, DEFAULT_API_VERSION)
+        path = api_version + path
         name = options.fetch(:name, DEFAULT_NAME)
         @_paths ||= {}
         @_paths[name] ||= []
@@ -44,7 +47,7 @@ module Viki::Core
       def uri(params = {})
         params = build_params(params)
         path, params = build_path(params)
-        path = "/#{params.delete(:api_version)}#{path}.#{params.delete(:format)}"
+        path = "/#{path}.#{params.delete(:format)}"
         domain = "http#{"s" if @_ssl}://#{params.delete(:manage) == true ? Viki.manage : Viki.domain}"
         uri = Addressable::URI.join(domain, path)
 

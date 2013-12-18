@@ -1,4 +1,4 @@
 class Viki::Clip < Viki::Video
-  path "/clips"
-  path "/containers/:container_id/clips"
+  path "/clips", api_version: "v5"
+  path "/containers/:container_id/clips", api_version: "v5"
 end

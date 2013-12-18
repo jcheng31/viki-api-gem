@@ -1,8 +1,8 @@
 class Viki::Video < Viki::Core::Base
-  path "/videos"
-  path "/videos/:recommended_for/recommendations"
-  path "/containers/:container_id/videos"
-  path "/containers/:container_id/videos/:video_id"
+  path "/videos", api_version: "v5"
+  path "/videos/:recommended_for/recommendations", api_version: "v5"
+  path "/containers/:container_id/videos", api_version: "v5"
+  path "/containers/:container_id/videos/:video_id", api_version: "v5"
 
   def self.trending(options = {}, &block)
     self.fetch(options.merge(sort: 'trending'), &block)

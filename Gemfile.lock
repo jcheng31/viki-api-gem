@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    viki-api (1.7.4)
+    viki-api (1.7.5)
       addressable (>= 2.3)
       ethon (= 0.6.0)
       oj (>= 2.0)
@@ -20,7 +20,7 @@ GEM
       mime-types (~> 1.18)
     ffi (1.9.3)
     mime-types (1.25.1)
-    oj (2.2.3)
+    oj (2.4.3)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
