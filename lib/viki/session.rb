@@ -1,9 +1,8 @@
 class Viki::Session < Viki::Core::Base
   class AuthenticationError; end
-  default api_version: 'v5'
-  
-  path "/sessions"
-  path "/sessions/:token"
+
+  path "/sessions", api_version: "v5"
+  path "/sessions/:token", api_version: "v5"
 
   def self.authenticate(login_id, password, params = {}, &block)
     body = params.merge({'username' => login_id, 'password' => password, persist: false})
