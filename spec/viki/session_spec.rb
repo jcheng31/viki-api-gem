@@ -58,4 +58,54 @@ describe Viki::Session, api: true do
       end
     end
   end
+
+  describe ".fetch" do
+    it 'calls v5 endpoint' do
+      params = {app: Viki.app_id}
+      stub_request("get", "http://api.dev.viki.io/v5/sessions/token.json")
+        .with(query: hash_including(:sig, :t, params), headers: {'Content-Type'=>'application/json', 'User-Agent'=>'viki'})
+        .to_return(:status => 200, :body => "", :headers => {})
+
+      described_class.fetch(token: 'token') do |res|
+        res.error.should be_nil
+      end
+    end
+  end
+
+  describe ".update" do
+    it 'calls v4 endpoint' do
+      params = {app: Viki.app_id}
+      stub_request("put", "http://api.dev.viki.io/v4/sessions/token.json")
+        .with(query: hash_including(:sig, :t, params), headers: {'Content-Type'=>'application/json', 'User-Agent'=>'viki'})
+        .to_return(:status => 200, :body => "", :headers => {})
+
+      described_class.update(token: 'token') do |res|
+        res.error.should be_nil
+      end
+    end
+  end
+
+  describe ".fetch_sync" do
+    it 'calls v5 endpoint' do
+      params = {app: Viki.app_id}
+      stub_request("get", "http://api.dev.viki.io/v5/sessions/token.json")
+        .with(query: hash_including(:sig, :t, params), headers: {'Content-Type'=>'application/json', 'User-Agent'=>'viki'})
+        .to_return(:status => 200, :body => "", :headers => {})
+
+      res = described_class.fetch_sync(token: 'token')
+      res.error.should be_nil
+    end
+  end
+
+  describe ".update_sync" do
+    it 'calls v4 endpoint' do
+      params = {app: Viki.app_id}
+      stub_request("put", "http://api.dev.viki.io/v4/sessions/token.json")
+        .with(query: hash_including(:sig, :t, params), headers: {'Content-Type'=>'application/json', 'User-Agent'=>'viki'})
+        .to_return(:status => 200, :body => "", :headers => {})
+
+      res = described_class.update_sync(token: 'token')
+      res.error.should be_nil
+    end
+  end
 end
