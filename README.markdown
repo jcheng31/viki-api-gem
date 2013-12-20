@@ -599,6 +599,9 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.7.6
+  * Add support for v5 sessions
+  * Fix backward compatiblity for containers & videos update
 * 1.7.5
   * Add support for v5 vertical
 * 1.7.4
