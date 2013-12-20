@@ -42,4 +42,89 @@ describe Viki::Container, api: true do
       containers.first.keys.should include 'titles'
     end
   end
+
+  describe "create" do
+    it "makes a POST request to v4" do
+      params = {app: Viki.app_id}
+      stub_request("post", "http://api.dev.viki.io/v4/containers.json").
+          with(query: hash_including(:sig, :t, params),
+               headers: {'Content-Type' => 'application/json', 'User-Agent' => 'viki'},
+               body: hash_including("key"=> "value")).
+          to_return(body: '', status: 200)
+
+      described_class.create({}, {"key" => "value"}) do |res|
+        res.error.should be_nil
+      end
+    end
+  end
+
+  describe "create_sync" do
+    it "makes a POST request to v4" do
+      params = {app: Viki.app_id}
+      stub_request("post", "http://api.dev.viki.io/v4/containers.json").
+          with(query: hash_including(:sig, :t, params),
+               headers: {'Content-Type' => 'application/json', 'User-Agent' => 'viki'},
+               body: hash_including("key"=> "value")).
+          to_return(body: '', status: 200)
+
+      res = described_class.create_sync({}, {"key" => "value"})
+      res.error.should be_nil
+    end
+  end
+
+  describe "update" do
+    it "makes a PUT request to v4" do
+      params = {app: Viki.app_id}
+      stub_request("put", "http://api.dev.viki.io/v4/containers/1c.json").
+          with(query: hash_including(:sig, :t, params),
+               headers: {'Content-Type' => 'application/json', 'User-Agent' => 'viki'},
+               body: hash_including("key"=> "value")).
+          to_return(body: '', status: 200)
+
+      described_class.update({id: '1c'}, {"key" => "value"}) do |res|
+        res.error.should be_nil
+      end
+    end
+  end
+
+  describe "update_sync" do
+    it "makes a PUT request to v4" do
+      params = {app: Viki.app_id}
+      stub_request("put", "http://api.dev.viki.io/v4/containers/1c.json").
+          with(query: hash_including(:sig, :t, params),
+               headers: {'Content-Type' => 'application/json', 'User-Agent' => 'viki'},
+               body: hash_including("key"=> "value")).
+          to_return(body: '', status: 200)
+
+      res = described_class.update_sync({id: '1c'}, {"key" => "value"})
+      res.error.should be_nil
+    end
+  end
+
+  describe "destroy" do
+    it "makes a DELETE request to v4" do
+      params = {app: Viki.app_id}
+      stub_request("delete", "http://api.dev.viki.io/v4/containers/1c.json").
+          with(query: hash_including(:sig, :t, params),
+               headers: {'Content-Type' => 'application/json', 'User-Agent' => 'viki'}).
+          to_return(status: 200, :body => "", :headers => {})
+
+      described_class.destroy({id: '1c'}) do |res|
+        res.error.should be_nil
+      end
+    end
+  end
+
+  describe "destroy_sync" do
+    it "makes a PUT request to v4" do
+      params = {app: Viki.app_id}
+      stub_request("delete", "http://api.dev.viki.io/v4/containers/1c.json").
+          with(query: hash_including(:sig, :t, params),
+               headers: {'Content-Type' => 'application/json', 'User-Agent' => 'viki'}).
+          to_return(body: '', status: 200, :headers => {})
+
+      res = described_class.destroy_sync({id: '1c'})
+      res.error.should be_nil
+    end
+  end
 end
