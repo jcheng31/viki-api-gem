@@ -1,5 +1,4 @@
 class Viki::Container < Viki::Core::Base
-
   class << self
     def fetch(url_options = {}, &block)
       path '/containers', api_version: "v5"
