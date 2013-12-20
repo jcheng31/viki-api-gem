@@ -31,24 +31,28 @@ class Viki::Video < Viki::Core::Base
     def destroy(url_options = {}, &block)
       path '/videos', api_version: "v4"
       path "/containers/:container_id/videos", api_version: "v4"
+      path "/containers/:container_id/videos/:video_id", api_version: "v4"
       super
     end
 
     def destroy_sync(url_options = {})
       path '/videos', api_version: "v4"
       path "/containers/:container_id/videos", api_version: "v4"
+      path "/containers/:container_id/videos/:video_id", api_version: "v4"
       super
     end
 
     def update(url_options = {}, body = {}, &block)
       path '/videos', api_version: "v4"
       path "/containers/:container_id/videos", api_version: "v4"
+      path "/containers/:container_id/videos/:video_id", api_version: "v4"
       super
     end
 
     def update_sync(url_options = {}, body = {})
       path '/videos', api_version: "v4"
       path "/containers/:container_id/videos", api_version: "v4"
+      path "/containers/:container_id/videos/:video_id", api_version: "v4"
       super
     end
   end
