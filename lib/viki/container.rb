@@ -1,8 +1,53 @@
 class Viki::Container < Viki::Core::Base
-  path '/containers', api_version: "v5"
-  path '/containers/:recommended_for/recommendations', api_version: "v5"
-  path '/containers/:people_for/people', api_version: "v5"
-  path '/verticals/:vertical_id/containers', api_version: "v5"
+
+  class << self
+    def fetch(url_options = {}, &block)
+      path '/containers', api_version: "v5"
+      path '/containers/:recommended_for/recommendations', api_version: "v5"
+      path '/containers/:people_for/people', api_version: "v5"
+      path '/verticals/:vertical_id/containers', api_version: "v5"
+      super
+    end
+
+    def fetch_sync(url_options = {})
+      path '/containers', api_version: "v5"
+      path '/containers/:recommended_for/recommendations', api_version: "v5"
+      path '/containers/:people_for/people', api_version: "v5"
+      path '/verticals/:vertical_id/containers', api_version: "v5"
+      super
+    end
+
+    def create(url_options = {}, body = {}, &block)
+      path '/containers', api_version: "v4"
+      super
+    end
+
+    def create_sync(url_options = {}, body = {})
+      path '/containers', api_version: "v4"
+      super
+    end
+
+    def destroy(url_options = {}, &block)
+      path '/containers', api_version: "v4"
+      super
+    end
+
+    def destroy_sync(url_options = {})
+      path '/containers', api_version: "v4"
+      super
+    end
+
+    def update(url_options = {}, body = {}, &block)
+      path '/containers', api_version: "v4"
+      super
+    end
+
+    def update_sync(url_options = {}, body = {})
+      path '/containers', api_version: "v4"
+      super
+    end
+  end
+
 
   def self.popular(options = {}, &block)
     self.fetch(options.merge(sort: 'views_recent'), &block)
