@@ -599,6 +599,9 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.7.7
+  * Move Vertical centric path to vertical.rb
+  * Revert video.rb and container.rb to v4
 * 1.7.6
   * Add support for v5 sessions
   * Fix backward compatiblity for containers & videos update
