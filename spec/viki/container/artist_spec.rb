@@ -6,7 +6,7 @@ describe Viki::Artist, api: true do
 
   context "fetches casts" do
     it do
-      stub_api 'artists/129c/casts.json', '["1a", "2a"]', api_version: "v5"
+      stub_api 'artists/129c/casts.json', '["1a", "2a"]', api_version: "v4"
       casts = nil
       described_class.fetch(artist_id: '129c') { |response| casts = response.value }
       Viki.run

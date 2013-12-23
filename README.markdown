@@ -599,6 +599,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.7.8
+  * artist cast endpoint to be v4
 * 1.7.7
   * Move Vertical centric path to vertical.rb
   * Revert video.rb and container.rb to v4
