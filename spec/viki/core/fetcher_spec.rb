@@ -18,7 +18,7 @@ describe Viki::Core::Fetcher do
     end
 
     it "sends the user IP as X-FORWARDED-FOR" do
-      Viki.should_receive(:user_ip) { lambda { "1.2.3.4" } }
+      Viki.stub(:user_ip) { lambda { "1.2.3.4" } }
       fetcher.queue do
         WebMock.should have_requested("get", "http://example.com/path").
                          with(:headers => {'X-Forwarded-For' => "1.2.3.4"})

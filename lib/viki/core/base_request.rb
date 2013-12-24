@@ -11,7 +11,7 @@ module Viki::Core
     def queue(&block)
       request.tap do |req|
         req.on_complete do |res|
-          Viki.logger.info "[API Request] [Responded] #{@url} #{res.time}s"
+          Viki.logger.info "[API Request] [Responded] [#{Viki.user_ip[]}] #{@url} #{res.time}s"
           if is_error?(res)
             if res.timed_out?
               error = Viki::Core::TimeoutErrorResponse.new(@url)

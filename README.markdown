@@ -599,18 +599,26 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.7.9
+  * Request info logs IP
+
 * 1.7.8
   * artist cast endpoint to be v4
+
 * 1.7.7
   * Move Vertical centric path to vertical.rb
   * Revert video.rb and container.rb to v4
+
 * 1.7.6
   * Add support for v5 sessions
   * Fix backward compatiblity for containers & videos update
+
 * 1.7.5
   * Add support for v5 vertical
+
 * 1.7.4
   * Add support for user redemptions endpoint
+
 * 1.7.3
   * Add support for gift cards endpoint
 
