@@ -73,7 +73,7 @@ describe Viki::Session, api: true do
   end
 
   describe ".update" do
-    it 'calls v4 endpoint' do
+    it 'calls v5 endpoint' do
       params = {app: Viki.app_id}
       stub_request("put", "http://api.dev.viki.io/v5/sessions/token.json")
 	.with(query: hash_including(:sig, :t, params), headers: {'Content-Type'=>'application/json', 'User-Agent'=>'viki'})
@@ -98,7 +98,7 @@ describe Viki::Session, api: true do
   end
 
   describe ".update_sync" do
-    it 'calls v4 endpoint' do
+    it 'calls v5 endpoint' do
       params = {app: Viki.app_id}
       stub_request("put", "http://api.dev.viki.io/v5/sessions/token.json")
 	.with(query: hash_including(:sig, :t, params), headers: {'Content-Type'=>'application/json', 'User-Agent'=>'viki'})
