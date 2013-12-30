@@ -599,6 +599,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.8.0
+  * support for session PUT v5
 * 1.7.9
   * Request info logs IP
 
