@@ -11,7 +11,8 @@ module Viki::Core
     PATH_TOKENS_REGEX = /:(\w+)/
     END_OF_PATH_REGEX = /(\/\w+)(\.\w+)?$/
     DEFAULT_NAME = "NONAME"
-    DEFAULT_PARAMS = {format: 'json'}
+    JSON_FORMAT = "json"
+    DEFAULT_PARAMS = {format: JSON_FORMAT}
     DEFAULT_API_VERSION = "v4"
 
     class << self
@@ -69,13 +70,14 @@ module Viki::Core
       end
 
       def fetch(url_options = {}, &block)
+        format = get_format(url_options)
         uri = signed_uri(url_options.dup)
         Viki.logger.debug "#{self.name} fetching from the API: #{uri}"
 
         if @_cacheable
-          fetcher = Viki::Core::Fetcher.new(uri, nil, @_cacheable)
+          fetcher = Viki::Core::Fetcher.new(uri, nil, format, @_cacheable)
         else
-          fetcher = Viki::Core::Fetcher.new(uri)
+          fetcher = Viki::Core::Fetcher.new(uri, nil, format)
         end
 
         fetcher.queue &block
@@ -90,9 +92,10 @@ module Viki::Core
       end
 
       def create(url_options = {}, body = {}, &block)
+        format = get_format(url_options)
         uri = signed_uri(url_options.dup, body)
         Viki.logger.debug "#{self.name} creating to the API: #{uri}"
-        creator = Viki::Core::Creator.new(uri, body)
+        creator = Viki::Core::Creator.new(uri, body, format)
         creator.queue &block
         creator
       end
@@ -105,9 +108,10 @@ module Viki::Core
       end
 
       def update(url_options = {}, body = {}, &block)
+        format = get_format(url_options)
         uri = signed_uri(url_options.dup, body)
         Viki.logger.debug "#{self.name} updating to the API: #{uri}"
-        creator = Viki::Core::Updater.new(uri, body)
+        creator = Viki::Core::Updater.new(uri, body, format)
         creator.queue &block
         creator
       end
@@ -120,9 +124,10 @@ module Viki::Core
       end
 
       def destroy(url_options = {}, &block)
+        format = get_format(url_options)
         uri = signed_uri(url_options.dup)
         Viki.logger.debug "#{self.name} destroying to the API: #{uri}"
-        destroyer = Viki::Core::Destroyer.new(uri)
+        destroyer = Viki::Core::Destroyer.new(uri, nil, format)
         destroyer.queue &block
         destroyer
       end
@@ -135,6 +140,10 @@ module Viki::Core
       end
 
       private
+
+      def get_format(params)
+        params[:format] || DEFAULT_PARAMS[:format] || JSON_FORMAT
+      end
 
       def build_params(params)
         @_defaults ||= DEFAULT_PARAMS

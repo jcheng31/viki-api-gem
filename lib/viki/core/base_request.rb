@@ -2,9 +2,12 @@ module Viki::Core
   class BaseRequest
     attr_reader :url, :body, :cacheable
 
-    def initialize(url, body = nil, cache = {})
+    JSON_FORMAT = "json"
+
+    def initialize(url, body = nil, format="json", cache = {})
       @cacheable = cache
       @url = url.to_s
+      @format = format
       @body = body ? Oj.dump(body, mode: :compat) : nil
     end
 
@@ -23,12 +26,18 @@ module Viki::Core
             raise error if error.invalid_token?
             on_complete error, nil, &block
           else
-            begin
-              parsed_body = Oj.load(res.body, mode: :compat, symbol_keys: false)
-            rescue
-              Viki.logger.info "Couldn't parse json. Body: #{@body.to_s}. Object: #{self}"
+            if @format == JSON_FORMAT
+              begin
+                parsed_body = Oj.load(res.body, mode: :compat, symbol_keys: false)
+                on_complete nil, parsed_body, &block
+              rescue
+                Viki.logger.info "Couldn't parse json. Body: #{@body.to_s}. Response body: #{res.body.to_s} Object: #{self}"
+                error = Viki::Core::ErrorResponse.new(res.body, 0, @url)
+                on_complete error, nil, &block
+              end
+            else
+              on_complete nil, res.body, &block
             end
-            on_complete nil, parsed_body || res.body, &block
           end
         end
 
