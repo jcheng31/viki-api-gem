@@ -149,8 +149,9 @@ describe Viki::Core::Base do
     it "constructs a fetcher from the signed_uri" do
       uri = double
       options = double
+      options.should_receive(:[]).with(:format).and_return "json"
       test_klass.should_receive(:signed_uri).with(options) { uri }
-      Viki::Core::Fetcher.should_receive(:new).with(uri) { double :queue => nil }
+      Viki::Core::Fetcher.should_receive(:new).with(uri, nil, 'json') { double :queue => nil }
       test_klass.fetch(options) do
       end
     end
@@ -159,8 +160,9 @@ describe Viki::Core::Base do
       test_klass.cacheable
       uri = double
       options = double
+      options.should_receive(:[]).with(:format).and_return "json"
       test_klass.should_receive(:signed_uri).with(options) { uri }
-      Viki::Core::Fetcher.should_receive(:new).with(uri, nil, {cache_seconds: 5}) { double :queue => nil }
+      Viki::Core::Fetcher.should_receive(:new).with(uri, nil, 'json', {cache_seconds: 5}) { double :queue => nil }
       test_klass.fetch(options) {}
     end
 
@@ -168,8 +170,9 @@ describe Viki::Core::Base do
       test_klass.cacheable(cache_seconds: 30)
       uri = double
       options = double
+      options.should_receive(:[]).with(:format).and_return "json"
       test_klass.should_receive(:signed_uri).with(options) { uri }
-      Viki::Core::Fetcher.should_receive(:new).with(uri, nil, {cache_seconds: 30}) { double :queue => nil }
+      Viki::Core::Fetcher.should_receive(:new).with(uri, nil, 'json', {cache_seconds: 30}) { double :queue => nil }
       test_klass.fetch(options) {}
     end
   end
@@ -178,9 +181,10 @@ describe Viki::Core::Base do
     it "constructs a creator from the signed_uri and the body" do
       uri = double
       options = double
+      options.should_receive(:[]).with(:format).and_return "json"
       body = double.as_null_object
       test_klass.should_receive(:signed_uri).with(options, body) { uri }
-      Viki::Core::Creator.should_receive(:new).with(uri, body) { double :queue => nil }
+      Viki::Core::Creator.should_receive(:new).with(uri, body, 'json') { double :queue => nil }
       test_klass.create(options, body) do
       end
     end
@@ -190,9 +194,10 @@ describe Viki::Core::Base do
     it "constructs a updater from the signed_uri and the body" do
       uri = double
       options = double
+      options.should_receive(:[]).with(:format).and_return "json"
       body = double.as_null_object
       test_klass.should_receive(:signed_uri).with(options, body) { uri }
-      Viki::Core::Updater.should_receive(:new).with(uri, body) { double :queue => nil }
+      Viki::Core::Updater.should_receive(:new).with(uri, body, 'json') { double :queue => nil }
       test_klass.update(options, body) do
       end
     end
@@ -202,8 +207,9 @@ describe Viki::Core::Base do
     it "constructs a destroyer from the signed_uri" do
       uri = double
       options = double
+      options.should_receive(:[]).with(:format).and_return "json"
       test_klass.should_receive(:signed_uri).with(options) { uri }
-      Viki::Core::Destroyer.should_receive(:new).with(uri) { double :queue => nil }
+      Viki::Core::Destroyer.should_receive(:new).with(uri, nil, "json") { double :queue => nil }
       test_klass.destroy(options) do
       end
     end

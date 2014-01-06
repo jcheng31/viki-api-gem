@@ -64,7 +64,7 @@ describe Viki::Session, api: true do
       params = {app: Viki.app_id}
       stub_request("get", "http://api.dev.viki.io/v5/sessions/token.json")
 	.with(query: hash_including(:sig, :t, params), headers: {'Content-Type'=>'application/json', 'User-Agent'=>'viki'})
-	.to_return(:status => 200, :body => "", :headers => {})
+	.to_return(:status => 200, :body => '{}', :headers => {})
 
       described_class.fetch(token: 'token') do |res|
 	res.error.should be_nil
@@ -90,7 +90,7 @@ describe Viki::Session, api: true do
       params = {app: Viki.app_id}
       stub_request("get", "http://api.dev.viki.io/v5/sessions/token.json")
 	.with(query: hash_including(:sig, :t, params), headers: {'Content-Type'=>'application/json', 'User-Agent'=>'viki'})
-	.to_return(:status => 200, :body => "", :headers => {})
+	.to_return(:status => 200, :body => "{}", :headers => {})
 
       res = described_class.fetch_sync(token: 'token')
       res.error.should be_nil

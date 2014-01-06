@@ -33,13 +33,13 @@ describe Viki::Subscription, api: true do
 
   describe "for a container" do
     it "fetches subscriptions" do
-      stub_api 'containers/1c/subscriptions.json', 'some_data', manage: true
+      stub_api 'containers/1c/subscriptions.json', '{"data": "some_data"}', manage: true
       data = nil
       described_class.fetch(container_id: "1c", manage: true) do |response|
         data = response.value
       end
       Viki.run
-      data.should == 'some_data'
+      data.should == {"data" => "some_data"}
     end
 
     it "fails if its not manage" do

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Viki::BlockedLanguages, api: true do
   it "fetches blocked languages for a specific container" do
-    stub_api 'containers/1c/blocked_languages.json', { 'container_id' => '1c', 'languages' => 'th,ko' }
+    stub_api 'containers/1c/blocked_languages.json', Oj.dump({ 'container_id' => '1c', 'languages' => 'th,ko' })
     described_class.fetch(container_id: "1c") do |response|
       response.value.should == { 'container_id' => '1c', 'languages' => 'th,ko' }
     end

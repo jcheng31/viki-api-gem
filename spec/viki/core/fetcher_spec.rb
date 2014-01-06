@@ -79,7 +79,7 @@ describe Viki::Core::Fetcher do
     end
 
     describe "caching" do
-      let(:fetcher) { Viki::Core::Fetcher.new("http://example.com/path", nil, {cache_seconds: 5}) }
+      let(:fetcher) { Viki::Core::Fetcher.new("http://example.com/path", nil, "json", {cache_seconds: 5}) }
       let(:cache) do
         {}.tap { |c|
           def c.setex(k, s, v)
@@ -141,8 +141,8 @@ describe Viki::Core::Fetcher do
         stub_request("get", "http://example.com/path?token=1234_13").to_return(:body => Oj.dump(content))
         stub_request("get", "http://example.com/path?token=1234_13").to_return(:body => Oj.dump(content))
 
-        Viki::Core::Fetcher.new("http://example.com/path?token=1234_13", nil, {cache_seconds: 5}).queue do
-          Viki::Core::Fetcher.new("http://example.com/path?token=1234_13", nil, {cache_seconds: 5}).queue do
+        Viki::Core::Fetcher.new("http://example.com/path?token=1234_13", nil, 'json', {cache_seconds: 5}).queue do
+          Viki::Core::Fetcher.new("http://example.com/path?token=1234_13", nil, 'json', {cache_seconds: 5}).queue do
             WebMock.should have_requested("get", "http://example.com/path?token=1234_13").once
             WebMock.should have_requested("get", "http://example.com/path?token=1234_13").once
           end
