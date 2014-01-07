@@ -1,4 +1,5 @@
 class Viki::Container < Viki::Core::Base
+  cacheable
   path '/containers', api_version: "v4"
   path '/containers/:recommended_for/recommendations', api_version: "v4"
   path '/containers/:people_for/people', api_version: "v4"
