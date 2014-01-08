@@ -39,7 +39,7 @@ module Viki::Core
           if Viki.cache && !cacheable.empty?
             cacheSeconds = cacheable[:cache_seconds]
             # Respect timing set in Cache-Control header for stuff that's public
-            if headers..respond_to?(:has_key?) && headers.has_key?("Cache-Control")
+            if headers.respond_to?(:has_key?) && headers.has_key?("Cache-Control")
               cacheControlMatchObj = %r{^public, max-age=(\d+)$}.match(
                 headers["Cache-Control"])
               if cacheControlMatchObj
