@@ -79,7 +79,8 @@ describe Viki::Core::Fetcher do
     end
 
     describe "caching" do
-      let(:fetcher) { Viki::Core::Fetcher.new("http://example.com/path", nil, "json", {cache_seconds: 5}) }
+      let(:cache_seconds) { 5 }
+      let(:fetcher) { Viki::Core::Fetcher.new("http://example.com/path", nil, "json", {cache_seconds: cache_seconds}) }
       let(:cache) do
         {}.tap { |c|
           def c.setex(k, s, v)
@@ -145,6 +146,100 @@ describe Viki::Core::Fetcher do
           Viki::Core::Fetcher.new("http://example.com/path?token=1234_13", nil, 'json', {cache_seconds: 5}).queue do
             WebMock.should have_requested("get", "http://example.com/path?token=1234_13").once
             WebMock.should have_requested("get", "http://example.com/path?token=1234_13").once
+          end
+        end
+      end
+
+      describe "Cache-Control header (for Fetcher taking in JSON)" do
+        let(:cacheSeconds) { 5 }
+        let(:fetchUrl) { "http://one.two/three" }
+        let(:fetcher) {
+          Viki::Core::Fetcher.new(fetchUrl, nil, "json",
+                                  { cache_seconds: cacheSeconds })
+        }
+        let(:content) { { "Title" => "iTerm2 is better than Terminal?"} }
+        let(:newCache) {
+          {}.tap { |c|
+            def c.setex(key, time, value)
+              self["cache-seconds"] = time
+            end
+
+            def c.get(k)
+              self[k]
+            end
+          }
+        }
+
+        it "honors max-age in Cache-Control header when the resource is public" do
+          Viki.stub(:cache) { newCache }
+          stub_request("get", fetchUrl).to_return(
+            body: Oj.dump(content, mode: :compat),
+            status: 200,
+            headers: { "Cache-Control" => "public, max-age=1793" }
+          )
+
+          fetcher.queue do
+            newCache["cache-seconds"].should == 1793
+          end
+        end
+
+        it "does not use max-age in Cache-Control header when resource is not public" do
+          Viki.stub(:cache) { newCache }
+          stub_request("get", fetchUrl).to_return(
+            body: Oj.dump(content, mode: :compat),
+            status: 200,
+            headers: { "Cache-Control" => "private, max-age=2046" }
+          )
+
+          fetcher.queue do
+            newCache["cache-seconds"].should == cacheSeconds
+          end
+        end
+      end
+
+      describe "Cache-Control header (for Fetcher not taking in JSON)" do
+        let(:cacheSeconds) { 5 }
+        let(:fetchUrl) { "http://www.going.to.korea.com/" }
+        let(:fetcher) {
+          Viki::Core::Fetcher.new(fetchUrl, nil, "notjson",
+                                  { cache_seconds: cacheSeconds })
+        }
+        let(:content) { "iMacs are best used in low light conditions" }
+        let(:newCache) {
+          {}.tap { |c|
+            def c.setex(k, time, v)
+              self["cache-seconds"] = time
+            end
+
+            def c.get(k)
+              self[k]
+            end
+          }
+        }
+
+        it "honors max-age in Cache-Control header when the resource is public" do
+          Viki.stub(:cache) { newCache }
+          stub_request("get", fetchUrl).to_return(
+            body: content,
+            status: 200,
+            headers: { "Cache-Control" => "public, max-age=9861" }
+          )
+
+          fetcher.queue do
+            newCache["cache-seconds"].should == 9861
+          end
+        end
+
+        it "does not use max-age in Cache-Control header when resource is not public" do
+          Viki.stub(:cache) { newCache }
+          stub_request("get", fetchUrl).to_return(
+            body: content,
+            status: 200,
+            headers: { "Cache-Control" => "private, max-age=12573" }
+          )
+
+          fetcher.queue do
+            newCache["cache-seconds"].should == cacheSeconds
           end
         end
       end

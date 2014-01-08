@@ -1,6 +1,6 @@
 module Viki::Core
   class Creator < BaseRequest
-    def on_complete(error, body, &block)
+    def on_complete(error, body, headers, &block)
       block.call Viki::Core::Response.new(error, body)
     end
 

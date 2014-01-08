@@ -24,19 +24,19 @@ module Viki::Core
 
             Viki.logger.error(error.to_s)
             raise error if error.invalid_token?
-            on_complete error, nil, &block
+            on_complete error, nil, nil, &block
           else
             if @format == JSON_FORMAT
               begin
                 parsed_body = Oj.load(res.body, mode: :compat, symbol_keys: false)
-                on_complete nil, parsed_body, &block
+                on_complete nil, parsed_body, res.headers, &block
               rescue
                 Viki.logger.info "Couldn't parse json. Body: #{@body.to_s}. Response body: #{res.body.to_s} Object: #{self}"
                 error = Viki::Core::ErrorResponse.new(res.body, 0, @url)
-                on_complete error, nil, &block
+                on_complete error, nil, nil, &block
               end
             else
-              on_complete nil, res.body, &block
+              on_complete nil, res.body, res.headers, &block
             end
           end
         end

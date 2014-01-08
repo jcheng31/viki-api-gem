@@ -31,13 +31,22 @@ module Viki::Core
       end
     end
 
-    def on_complete(error, body, &block)
+    def on_complete(error, body, headers, &block)
       if error
         block.call Viki::Core::Response.new(error, nil, self)
       else
         if body
           if Viki.cache && !cacheable.empty?
-            Viki.cache.setex(cache_key(url), cacheable[:cache_seconds], Oj.dump(body, mode: :compat))
+            cacheSeconds = cacheable[:cache_seconds]
+            # Respect timing set in Cache-Control header for stuff that's public
+            if headers..respond_to?(:has_key?) && headers.has_key?("Cache-Control")
+              cacheControlMatchObj = %r{^public, max-age=(\d+)$}.match(
+                headers["Cache-Control"])
+              if cacheControlMatchObj
+                cacheSeconds = cacheControlMatchObj[1].to_i
+              end
+            end
+            Viki.cache.setex(cache_key(url), cacheSeconds, Oj.dump(body, mode: :compat))
           end
           block.call Viki::Core::Response.new(nil, get_content(body), self)
         else
