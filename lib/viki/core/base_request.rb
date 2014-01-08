@@ -24,7 +24,7 @@ module Viki::Core
 
             Viki.logger.error(error.to_s)
             raise error if error.invalid_token?
-            on_complete error, nil, &block
+            on_complete error, nil, nil, &block
           else
             begin
               error = nil
@@ -33,7 +33,7 @@ module Viki::Core
               Viki.logger.error "#{e}. Body #{res.body.to_s} Object: #{self}"
               error = Viki::Core::ErrorResponse.new(res.body, 0, @url)
             ensure
-              on_complete error, body, &block
+              on_complete error, body, res.headers, &block
             end
           end
         end
