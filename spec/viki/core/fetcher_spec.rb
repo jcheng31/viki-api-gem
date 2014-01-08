@@ -124,6 +124,42 @@ describe Viki::Core::Fetcher do
         end
       end
 
+      it "doesn't cache response on timeout error" do
+        Viki.stub(:cache) { cache }
+        fetcher.stub(:is_error?).and_return(true)
+        stub_request("get", "http://example.com/path").to_return(
+          body: Oj.dump(content, mode: :compat),
+          timed_out?: true
+        )
+        fetcher.queue do
+        end
+        Viki.cache.should_not_receive(:setex)
+      end
+
+      it "doesn't cache response on non-timeout error" do
+        Viki.stub(:cache) { cache }
+        fetcher.stub(:is_error?).and_return(true)
+        stub_request("get", "http://example.com/path").to_return(
+          body: Oj.dump(content, mode: :compat),
+          timed_out?: false,
+          code: 12345
+        )
+        fetcher.queue do
+        end
+        Viki.cache.should_not_receive(:setex)
+      end
+
+      it "doesn't cache response on json parse error" do
+        Viki.stub(:cache) { cache }
+        stub_request("get", "http://example.com/path").to_return(
+          body: {},
+          status: 200
+        )
+        fetcher.queue do
+        end
+        Viki.cache.should_not_receive(:setex)
+      end
+
       it "ignores t, sig and token parameters" do
         Viki.stub(:cache) { cache }
         stub_request("get", "http://example.com/path?other=a&t=123&sig=abc&token=123").to_return(body: Oj.dump(content, mode: :compat), status: status)
