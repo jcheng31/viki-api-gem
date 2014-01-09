@@ -1,3 +1,5 @@
+require 'set'
+
 module Viki::Core
   class Fetcher < BaseRequest
     attr_accessor :count, :more
@@ -40,10 +42,13 @@ module Viki::Core
             cacheSeconds = cacheable[:cache_seconds]
             # Respect timing set in Cache-Control header for stuff that's public
             if headers.respond_to?(:has_key?) && headers.has_key?("Cache-Control")
-              cacheControlMatchObj = %r{^public, max-age=(\d+)$}.match(
-                headers["Cache-Control"])
-              if cacheControlMatchObj
-                cacheSeconds = cacheControlMatchObj[1].to_i
+              cacheHeaderParts = headers["Cache-Control"].split(",").map &:strip
+              if cacheHeaderParts.include?("public")
+                maxAgeRegex = %r{^max-age=\d+$}
+                maxAgeList = cacheHeaderParts.drop_while { |x| x !~ maxAgeRegex }
+                if maxAgeList.length > 0
+                  cacheSeconds = %r{^max-age=(\d+)$}.match(maxAgeList[0])[1].to_i
+                end
               end
             end
             Viki.cache.setex(cache_key(url), cacheSeconds, Oj.dump(body, mode: :compat))
