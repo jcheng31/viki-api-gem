@@ -219,6 +219,19 @@ describe Viki::Core::Fetcher do
           end
         end
 
+        it "honors max-age in Cache-Control header when resource is public (shuffled order)" do
+          Viki.stub(:cache) { newCache }
+          stub_request("get", fetchUrl).to_return(
+            body: Oj.dump(content, mode: :compat),
+            status: 200,
+            headers: { "Cache-Control" => "max-age=671, a useless string, public" }
+          )
+
+          fetcher.queue do
+            newCache["cache-seconds"].should == 671
+          end
+        end
+
         it "does not use max-age in Cache-Control header when resource is not public" do
           Viki.stub(:cache) { newCache }
           stub_request("get", fetchUrl).to_return(
