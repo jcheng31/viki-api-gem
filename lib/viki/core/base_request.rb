@@ -4,7 +4,7 @@ module Viki::Core
 
     JSON_FORMAT = "json"
 
-    def initialize(url, body = nil, format="json", cache = {})
+    def initialize(url, body = nil, format=JSON_FORMAT, cache = {})
       @cacheable = cache
       @url = url.to_s
       @format = format
@@ -26,17 +26,14 @@ module Viki::Core
             raise error if error.invalid_token?
             on_complete error, nil, &block
           else
-            if @format == JSON_FORMAT
-              begin
-                parsed_body = Oj.load(res.body, mode: :compat, symbol_keys: false)
-                on_complete nil, parsed_body, &block
-              rescue
-                Viki.logger.info "Couldn't parse json. Body: #{@body.to_s}. Response body: #{res.body.to_s} Object: #{self}"
-                error = Viki::Core::ErrorResponse.new(res.body, 0, @url)
-                on_complete error, nil, &block
-              end
-            else
-              on_complete nil, res.body, &block
+            begin
+              error = nil
+              body = @format == JSON_FORMAT ? Oj.load(res.body, mode: :compat, symbol_keys: false) : res.body
+            rescue => e
+              Viki.logger.error "#{e}. Body #{res.body.to_s} Object: #{self}"
+              error = Viki::Core::ErrorResponse.new(res.body, 0, @url)
+            ensure
+              on_complete error, body, &block
             end
           end
         end
