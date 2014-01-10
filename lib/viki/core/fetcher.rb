@@ -42,7 +42,7 @@ module Viki::Core
             cacheSeconds = cacheable[:cache_seconds]
             # Respect timing set in Cache-Control header for stuff that's public
             if headers.respond_to?(:has_key?) && headers.has_key?("Cache-Control")
-              cacheHeaderParts = headers["Cache-Control"].split(",").map &:strip
+              cacheHeaderParts = headers["Cache-Control"].split(",").map { |s| s.strip }
               if cacheHeaderParts.include?("public")
                 maxAgeRegex = %r{^max-age=\d+$}
                 maxAgeList = cacheHeaderParts.drop_while { |x| x !~ maxAgeRegex }
