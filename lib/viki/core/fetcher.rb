@@ -1,3 +1,5 @@
+require 'set'
+
 module Viki::Core
   class Fetcher < BaseRequest
     attr_accessor :count, :more
@@ -31,13 +33,25 @@ module Viki::Core
       end
     end
 
-    def on_complete(error, body, &block)
+    def on_complete(error, body, headers, &block)
       if error
         block.call Viki::Core::Response.new(error, nil, self)
       else
         if body
           if Viki.cache && !cacheable.empty?
-            Viki.cache.setex(cache_key(url), cacheable[:cache_seconds], Oj.dump(body, mode: :compat))
+            cacheSeconds = cacheable[:cache_seconds]
+            # Respect timing set in Cache-Control header for stuff that's public
+            if headers.respond_to?(:has_key?) && headers.has_key?("Cache-Control")
+              cacheHeaderParts = headers["Cache-Control"].split(",").map { |s| s.strip }
+              if cacheHeaderParts.include?("public")
+                maxAgeRegex = %r{^max-age=\d+$}
+                maxAgeList = cacheHeaderParts.drop_while { |x| x !~ maxAgeRegex }
+                if maxAgeList.length > 0
+                  cacheSeconds = %r{^max-age=(\d+)$}.match(maxAgeList[0])[1].to_i
+                end
+              end
+            end
+            Viki.cache.setex(cache_key(url), cacheSeconds, Oj.dump(body, mode: :compat))
           end
           block.call Viki::Core::Response.new(nil, get_content(body), self)
         else
