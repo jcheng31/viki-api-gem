@@ -599,6 +599,10 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.8.2
+  * Cache to honor cache-control header instead of the default 5 seconds cacheable
+* 1.8.1
+  * Return error for malform json from api response
 * 1.8.0
   * support for session PUT v5
 * 1.7.9
