@@ -599,6 +599,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.8.3
+  * Add support to allow deleting of titles and description
 * 1.8.2
   * Cache to honor cache-control header instead of the default 5 seconds cacheable
 * 1.8.1

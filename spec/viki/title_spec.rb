@@ -21,4 +21,19 @@ describe Viki::Title, api: true do
     stub.should have_been_made
   end
 
+  it "destroy a container title" do
+    stub = stub_request('delete', %r{.*/containers/42v/titles/ja.json.*})
+    described_class.destroy({container_id: "42v", language_code: "ja"}) do
+    end
+    Viki.run
+    stub.should have_been_made
+  end
+
+  it "destroy a video title" do
+    stub = stub_request('delete', %r{.*/videos/42v/titles/ja.json.*})
+    described_class.destroy({video_id: "42v", language_code: "ja"}) do
+    end
+    Viki.run
+    stub.should have_been_made
+  end
 end
