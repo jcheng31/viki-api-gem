@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Viki::Artist, api: true do
-  before { stub_api 'artists.json', json_fixture(:artists), api_version: "v5"}
+  before { stub_api 'artists.json', json_fixture(:artists), api_version: "v4"}
   it_behaves_like "a container object"
 
   context "fetches casts" do
