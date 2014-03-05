@@ -599,6 +599,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.8.4
+  * Add support for rakuten login via client side
 * 1.8.3
   * Add support to allow deleting of titles and description
 * 1.8.2

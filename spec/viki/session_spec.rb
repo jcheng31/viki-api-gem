@@ -59,6 +59,34 @@ describe Viki::Session, api: true do
     end
   end
 
+  describe ".auth_rakuten_openid" do
+    it 'authenticate the use with rakuten parameters' do
+      params = {app: Viki.app_id}
+      stub_request("post", "http://api.dev.viki.io/v5/sessions.json").
+          with(query: hash_including(:sig, :t, params),
+               headers: {'Content-Type' => 'application/json', 'User-Agent' => 'viki'},
+               body: hash_including("rakuten_params" => 'a=b&c=d&e=f')).
+          to_return(body: '{"token" : "123456"}', status: 200)
+
+      described_class.auth_rakuten_openid('a=b&c=d&e=f') do |response|
+        response.error.should be_nil
+      end
+    end
+
+    it 'authenticate the use with rakuten parameters and params' do
+      params = {app: Viki.app_id}
+      stub_request("post", "http://api.dev.viki.io/v5/sessions.json").
+          with(query: hash_including(:sig, :t, params),
+               headers: {'Content-Type' => 'application/json', 'User-Agent' => 'viki'},
+               body: hash_including("rakuten_params" => 'a=b&c=d&e=f', 'sign' => 'me_in')).
+          to_return(body: '{"token" : "123456"}', status: 200)
+
+      described_class.auth_rakuten_openid('a=b&c=d&e=f', {'sign' => "me_in"}) do |response|
+        response.error.should be_nil
+      end
+    end
+  end
+
   describe ".fetch" do
     it 'calls v5 endpoint' do
       params = {app: Viki.app_id}
