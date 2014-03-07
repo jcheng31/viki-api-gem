@@ -578,6 +578,18 @@ Viki::Caption.languages do |response| # get caption languages
   puts r.inspect
 end
 
+* Video Parts
+
+```ruby
+Viki::VideoPart.fetch({video_id: video_id}) |r|   # Create a video
+  puts r.inspect
+end
+
+Viki::VideoPart.create({video_id: video_id}, {end_times: '600000,1200000'}) |r|   # Create a video parts
+  puts r.inspect
+end
+```
+
 Testing Tool
 ------------
 
