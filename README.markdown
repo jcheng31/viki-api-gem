@@ -590,6 +590,25 @@ Viki::VideoPart.create({video_id: video_id}, {end_times: '600000,1200000'}) |r| 
 end
 ```
 
+* Badges
+
+```ruby
+Viki::Badge.fetch |r|   # Fetch all badges
+  puts r.inspect
+end
+
+Viki::Badge.fetch({user_id: '1u'}) |r|   # Fetch user's badges
+  puts r.inspect
+end
+```
+
+* Tracks
+```ruby
+Viki::Track.fetch |r|   # Fetch all tracks
+  puts r.inspect
+end
+```
+
 Testing Tool
 ------------
 
