@@ -630,6 +630,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.8.5
+  * Add Badge Endpoint
 * 1.8.4
   * Add support for rakuten login via client side
 * 1.8.3
