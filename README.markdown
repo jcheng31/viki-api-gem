@@ -609,6 +609,17 @@ Viki::Track.fetch |r|   # Fetch all tracks
 end
 ```
 
+* List Items
+```ruby
+Viki::ListItems.fetch(list_id: '1l') |r|   # Fetch all list items
+  puts r.inspect
+end
+
+Viki::ListItems.update({list_id: '1l'}, {videos: ['1v', '2v']}) |r|   # Update list items
+  puts r.inspect
+end
+```
+
 Testing Tool
 ------------
 
@@ -630,6 +641,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.8.6
+  * Add List Items Endpoint
 * 1.8.5
   * Add Badge Endpoint
 * 1.8.4
