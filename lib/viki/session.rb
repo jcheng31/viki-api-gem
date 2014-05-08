@@ -27,4 +27,12 @@ class Viki::Session < Viki::Core::Base
     creator = Viki::Core::Creator.new(uri, body)
     creator.queue &block
   end
+
+  def self.auth_google_plus(token, params = {}, &block)
+    body = params.merge({'google_token' => token, persist: false})
+    uri = signed_uri({}, body)
+    Viki.logger.info "#{self.name} authenticating google token to the API: #{uri}"
+    creator = Viki::Core::Creator.new(uri, body)
+    creator.queue &block
+  end
 end

@@ -641,6 +641,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.8.7
+  * Add google_auth session support
 * 1.8.6
   * Add List Items Endpoint
 * 1.8.5
