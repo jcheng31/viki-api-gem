@@ -620,6 +620,13 @@ Viki::ListItems.update({list_id: '1l'}, {videos: ['1v', '2v']}) |r|   # Update l
 end
 ```
 
+* Recommendation lists for contributors
+```ruby
+Viki::Contribution.recommendation_lists |r| # Fetch recommendation lists
+  puts r.inspect
+end
+```
+
 Testing Tool
 ------------
 
@@ -641,6 +648,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.8.8
+  * Add Contribution Recommendation list endpoint
 * 1.8.7
   * Add google_auth session support
 * 1.8.6
