@@ -620,6 +620,13 @@ Viki::ListItems.update({list_id: '1l'}, {videos: ['1v', '2v']}) |r|   # Update l
 end
 ```
 
+* List Alias
+```ruby
+Viki::ListAlias.create(list_id: '1l', name: 'alias_for_1l') |r|   # create an alias for the list
+  puts r.inspect
+end
+```
+
 Testing Tool
 ------------
 
