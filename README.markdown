@@ -620,6 +620,12 @@ Viki::ListItems.update({list_id: '1l'}, {videos: ['1v', '2v']}) |r|   # Update l
 end
 ```
 
+* Wanted Lists
+```ruby
+Viki::WantedList.fetch(name: 'list_name') |r|   # Fetch a list by name
+  puts r.inspect
+end
+
 * Recommendation lists for contributors
 ```ruby
 Viki::Contribution.recommendation_lists |r| # Fetch recommendation lists
