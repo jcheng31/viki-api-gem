@@ -662,6 +662,8 @@ Changelog
 ---------
 * 1.8.8
   * Add Contribution Recommendation list endpoint
+  * Add Wanted list endpoint
+  * Add List Alias endpoint
 * 1.8.7
   * Add google_auth session support
 * 1.8.6
