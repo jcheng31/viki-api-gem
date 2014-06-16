@@ -1,4 +1,3 @@
-require 'pry'
 module Viki::Core
   class Base
     class InvalidOption < RuntimeError
