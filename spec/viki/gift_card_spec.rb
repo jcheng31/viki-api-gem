@@ -51,4 +51,23 @@ describe Viki::GiftCard do
       end
     end
   end
+
+  describe 'send_email' do
+    it do
+      attrs = { 'recipient_email' => 'coolguy@gmail.com',
+                'to' => 'coolgal',
+                'from' => 'coolguy',
+                'message' => 'sooo coool',
+                'month_type' => '12m',
+                'is_purchaser' => true }
+
+      stub = stub_request('post', %r{.*/gift_cards/cool/send_email.json.*}).
+          with(body: Oj.dump(attrs))
+
+      described_class.send_email({gift_code: 'cool'}, attrs) do
+      end
+      Viki.run
+      stub.should have_been_made
+    end
+  end
 end
