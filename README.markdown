@@ -660,6 +660,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.8.9
+  * Add send_email endpoint for gift_card
 * 1.8.8
   * Add Contribution Recommendation list endpoint
   * Add Wanted list endpoint
