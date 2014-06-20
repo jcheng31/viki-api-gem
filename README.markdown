@@ -214,6 +214,16 @@ Viki::ContainerSummary.fetch(id: '50c') do |response|
 end
 ```
 
+* Fetch container people
+
+```ruby
+Viki::ContainerPeople.fetch(id: '50c') do |response|
+  puts response.value.inspect
+end
+
+Viki::ContainerPeople.update(id: '50c', {[]}) { |r| puts r.inspect }
+```
+
 * Fetch multiple ids from container
 
 ```ruby
@@ -660,6 +670,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.8.10
+  * Add ContainerPeople container/:id/people PUT and GET
 * 1.8.9
   * Add send_email endpoint for gift_card
 * 1.8.8
