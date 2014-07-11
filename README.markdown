@@ -670,6 +670,9 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.9.0
+  * Move videos and containers endpoints back to v4
+  * Specs for user.rb and user_summary.rb
 * 1.8.10
   * Add ContainerPeople container/:id/people PUT and GET
 * 1.8.9

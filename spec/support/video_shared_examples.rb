@@ -1,7 +1,7 @@
 shared_examples_for "a video object" do
 
   it "fetches videos" do
-    stub_api 'videos.json', json_fixture(:containers), api_version: 'v5'
+    stub_api 'videos.json', json_fixture(:containers), api_version: 'v4'
     described_class.fetch do |response|
       videos = response.value
       videos.should be_a_kind_of(Array)
