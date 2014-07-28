@@ -21,4 +21,13 @@ describe Viki::Thread, api: true do
       described_class.unread_count_sync("2u").value.should == {'count' => 10}
     end
   end
+  describe "#bulk_create" do
+    it "creates threads with usernames" do
+      stub = stub_request('post', %r{.*/users/2u/threads/bulk_create.json.*}).with(:query => hash_including({usernames: 'user1,user2', content: 'hello'}))
+      described_class.bulk_create({ user_id: '2u' }, { usernames: 'user1,user2', content: 'hello'}) do |response|
+      end
+      Viki.run
+      stub.should have_been_made
+    end
+  end
 end

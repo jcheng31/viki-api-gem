@@ -465,6 +465,7 @@ Viki::Thread.update(user_id: user_id, id: thread_id, unread: 'true') { |r| puts 
 Viki::Thread.update(user_id: user_id, id: thread_id, unread: 'false') { |r| puts r.inspect } # Mark thread as Read
 Viki::Message.create({user_id: user_id, thread_id: thread_id}, content: 'hi') { |r| puts r.inspect } # Reply to a thread
 Viki::Thread.unread_count(user_id) { |r| puts r.inspect }                                  # Unread count
+Viki::Thread.bulk_create(user_id: user_id, usernames: 'user1,user2', content: 'hi') { |r| puts r.inspect } # Create threads with usernames
 ```
 
 * [Notification](#notification)
