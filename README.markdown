@@ -671,6 +671,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.9.1
+  * Add bulk creating threads end point
 * 1.9.0
   * Move videos and containers endpoints back to v4
   * Specs for user.rb and user_summary.rb
