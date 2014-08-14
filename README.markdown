@@ -103,6 +103,14 @@ Viki::SubtitleHistory.fetch(user_id: "1u") do |response|
 end
 ```
 
+* Import Subtitles
+
+```ruby
+Viki::Subtitle.create(video_id: "44699v", language: "en", content: 'subrip text') do |response|
+  puts response.inspect  # SRT format
+end
+```
+
 * Block languages
 
 ```ruby
@@ -671,6 +679,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.9.2
+  * Add subtitle import endpoint
 * 1.9.1
   * Add bulk creating threads end point
 * 1.9.0
