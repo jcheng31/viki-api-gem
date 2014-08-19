@@ -10,11 +10,19 @@ describe Viki::Redemption, api: true do
       end
     end
 
-    it '/users/:user_id/redemptions/gift_code.json' do
+    it '/users/:user_id/redemptions/:gift_code.json' do
       stub_api 'users/1u/redemptions/XBD.json', Oj.dump({'key' => 'value'})
       described_class.fetch(user_id: '1u', gift_code: 'XBD') do |response|
         res = response.value
         res["key"].should eq 'value'
+      end
+    end
+
+    it 'users/:user_id/redemption/gift_card_info.json' do
+      stub_api 'ysers/1u/redemptions/gift_card_info.json', Oj.dump({'key' => 'value'})
+      described_class.gift_card_info(user_id: '1u') do |response|
+        res = response.value
+        res['key'].should eq 'value'
       end
     end
   end
