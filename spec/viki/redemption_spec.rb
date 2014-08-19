@@ -19,7 +19,7 @@ describe Viki::Redemption, api: true do
     end
 
     it 'users/:user_id/redemption/gift_card_info.json' do
-      stub_api 'ysers/1u/redemptions/gift_card_info.json', Oj.dump({'key' => 'value'})
+      stub_api 'users/1u/redemptions/gift_card_info.json', Oj.dump({'key' => 'value'})
       described_class.gift_card_info(user_id: '1u') do |response|
         res = response.value
         res['key'].should eq 'value'

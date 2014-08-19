@@ -7,6 +7,6 @@ class Viki::Redemption < Viki::Core::Base
   path "/users/:user_id/redemptions/gift_card_info", name: GIFT_CARD_INFO
 
   def self.gift_card_info(options = {})
-    self.fetch_sync(options.merge(named_path: SEND_EMAIL), body, &block)
+    self.fetch_sync(options.merge(named_path: GIFT_CARD_INFO))
   end
 end
