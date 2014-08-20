@@ -106,7 +106,7 @@ end
 * Import Subtitles
 
 ```ruby
-Viki::Subtitle.import_srt(video_id: "44699v", language: "en", content: 'subrip text') do |response|
+Viki::Srt.import(video_id: "44699v", language: "en", content: 'subrip text') do |response|
   puts response.inspect  # SRT format
 end
 ```
