@@ -13,6 +13,6 @@ class Viki::Thread < Viki::Core::Base
   end
 
   def self.bulk_create(options = {}, body = {}, &block)
-    self.create(options.merge(named_path: BULK_CREATE).merge(body), &block)
+    self.create(options.merge(named_path: BULK_CREATE), body, &block)
   end
 end

@@ -23,7 +23,7 @@ describe Viki::Thread, api: true do
   end
   describe "#bulk_create" do
     it "creates threads with usernames" do
-      stub = stub_request('post', %r{.*/users/2u/threads/bulk_create.json.*}).with(:query => hash_including({usernames: 'user1,user2', content: 'hello'}))
+      stub = stub_request('post', %r{.*/users/2u/threads/bulk_create.json.*}).with(:body => {usernames: 'user1,user2', content: 'hello'})
       described_class.bulk_create({ user_id: '2u' }, { usernames: 'user1,user2', content: 'hello'}) do |response|
       end
       Viki.run

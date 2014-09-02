@@ -679,6 +679,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.9.5
+  * Fix thread endpoint to send message and username in the request body
 * 1.9.4
   * Fix subtitle import endpoint to send srt content and language in the request body
 * 1.9.2
