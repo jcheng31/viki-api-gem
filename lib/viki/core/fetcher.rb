@@ -76,7 +76,7 @@ module Viki::Core
         @count = json["count"]
         @more = json["more"] if json.has_key?('more')
         @more = !!json["pagination"]["next"] if json.has_key?('pagination')
-        @title = json["details"]
+        @details = json["details"]
         json["response"]
       else
         json

@@ -685,6 +685,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.9.7
+  * Expose details attribute as optional extra attributes hash for list responses meta data
 * 1.9.6
   * MetaCountry.rb. Support endpoint to get unresolved countries with countries2.json
 * 1.9.5
