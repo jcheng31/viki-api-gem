@@ -1,6 +1,6 @@
-class Viki::Country < Viki::Core::Base
+class Viki::MetaCountry < Viki::Core::Base
   EMPTY = {}.freeze
-  path '/countries'
+  path '/countries2'
 
   def self.find(country_code)
     all[country_code]
