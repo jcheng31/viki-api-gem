@@ -1,5 +1,5 @@
 class Viki::Country < Viki::Core::Base
-  EMPTY = {}
+  EMPTY = {}.freeze
   path '/countries'
 
   def self.find(country_code)
