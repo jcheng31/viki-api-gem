@@ -329,6 +329,12 @@ italy = Viki::Country.find('it')
 all_country_codes = Viki::Country.codes
 ```
 
+* Get meta country information
+
+```ruby
+italy = Viki::MetaCountry.find('rd')
+all_country_codes = Viki::Country.codes
+
 * Create a user
 
 ```ruby
@@ -679,6 +685,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.9.6
+  * MetaCountry.rb. Support endpoint to get unresolved countries with countries2.json
 * 1.9.5
   * Fix thread endpoint to send message and username in the request body
 * 1.9.4
