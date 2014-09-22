@@ -2,7 +2,7 @@ require 'set'
 
 module Viki::Core
   class Fetcher < BaseRequest
-    attr_accessor :count, :more
+    attr_accessor :count, :more, :details
 
     PAGE_REGEX = /page=(\d+)/
     TOKEN_FIELD = "token"
@@ -76,6 +76,7 @@ module Viki::Core
         @count = json["count"]
         @more = json["more"] if json.has_key?('more')
         @more = !!json["pagination"]["next"] if json.has_key?('pagination')
+        @details = json["details"]
         json["response"]
       else
         json

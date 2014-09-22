@@ -46,14 +46,22 @@ describe Viki::Core::Fetcher do
       let(:content) { {
         'more' => true,
         'response' => [
-        ]
-      } }
+        ],
+        'details' => {'titles' => {'en' => 'english title'}}}
+      }
 
       it 'loads the pagination field' do
         fetcher.queue {}
         Viki.run
         fetcher.more.should be_true
         fetcher.count.should be_nil
+      end
+
+      it 'allows access to the details attribute' do
+        fetcher.queue {}
+        Viki.run
+        fetcher.more.should === true
+        fetcher.details.should == {'titles' => {'en' => 'english title'}}
       end
 
       context "with_paging" do
