@@ -664,6 +664,21 @@ Viki::Contribution.recommendation_lists |r| # Fetch recommendation lists
 end
 ```
 
+* Devices for users
+```ruby
+Viki::Device.link('42u', {'type'=>'roku', 'device_registration_code' => 'dummy_code'})  |r| # Fetch recommendation lists
+  puts r.inspect
+end
+
+Viki::Device.unlink('42u', {device_token: '42abc'})  |r| # Fetch recommendation lists
+  puts r.inspect
+end
+
+Viki::Device.fetch(user_id:  '42u')|r| # Fetch recommendation lists
+  puts r.inspect
+end
+```
+
 Testing Tool
 ------------
 
@@ -685,6 +700,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.9.8
+  * Device linking endpoints
 * 1.9.7
   * Expose details attribute as optional extra attributes hash for list responses meta data
 * 1.9.6
