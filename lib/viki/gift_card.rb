@@ -15,4 +15,8 @@ class Viki::GiftCard < Viki::Core::Base
   def self.types(options = {})
     self.fetch_sync(options.merge(named_path: TYPES))
   end
+
+  def self.types(options = {})
+    self.fetch_sync(options.merge(named_path: TYPES))
+  end
 end
