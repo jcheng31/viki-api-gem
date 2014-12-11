@@ -8,8 +8,8 @@ class Viki::GiftCard < Viki::Core::Base
   path "/gift_cards/:gift_code/send_email", name: SEND_EMAIL
   path "/gift_cards/types", name: TYPES
 
-  def self.send_email(options = {}, body={}, &block)
-    self.create(options.merge(named_path: SEND_EMAIL), body, &block)
+  def self.send_email(options = {}, body={})
+    self.create_sync(options.merge(named_path: SEND_EMAIL), body)
   end
 
   def self.types(options = {})
