@@ -42,4 +42,11 @@ describe Viki::Contribution, api: true do
     Viki.run
     stub.should have_been_made
   end
+
+  it "loads user contribution counts" do
+    stub = stub_request('get', %r{.*/users/42u/contributions/count.json.*})
+    described_class.count(user_id: '42u') {}
+    Viki.run
+    stub.should have_been_made
+  end
 end
