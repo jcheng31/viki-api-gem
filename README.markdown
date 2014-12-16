@@ -103,6 +103,14 @@ Viki::SubtitleHistory.fetch(user_id: "1u") do |response|
 end
 ```
 
+* Fetch recent contributions
+
+```ruby
+Viki::RecentContribution.fetch(user_id: "1u") do |response|
+  puts response.inspect
+end
+```
+
 * Import Subtitles
 
 ```ruby
