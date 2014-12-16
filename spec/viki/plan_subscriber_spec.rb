@@ -23,6 +23,14 @@ describe Viki::PlanSubscriber, api: true do
         res["payment_provider"].should eq 'stripe'
       end
     end
+
+    it "fetches /plan_subscribers/users.json" do
+      stub_api 'plan_subscribers/users.json', Oj.dump([{"id" => "1ps"}, {"id" => "2ps"}])
+      described_class.fetch do | response |
+        expect(response.value.first["id"]).to eq "1ps"
+        expect(response.value.last["id"]).to eq "2ps"
+      end
+    end
   end
 
   describe 'create' do
