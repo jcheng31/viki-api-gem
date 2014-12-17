@@ -708,6 +708,10 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.9.10
+  * Recent contribution support
+* 1.9.9
+  * Include file for 1.9.8 to fix bad publish
 * 1.9.8
   * Device linking endpoints
 * 1.9.7
