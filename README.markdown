@@ -103,6 +103,14 @@ Viki::SubtitleHistory.fetch(user_id: "1u") do |response|
 end
 ```
 
+* Fetch recent contributions
+
+```ruby
+Viki::RecentContribution.fetch(user_id: "1u") do |response|
+  puts response.inspect
+end
+```
+
 * Import Subtitles
 
 ```ruby
@@ -507,6 +515,7 @@ Viki::Alert.unread_count(user_id) { |r| puts r.inspect }
 Viki::Contribution.fetch(container_id: container_id) { |r| puts r.inspect }   # container specific contributions
 Viki::Contribution.fetch(user_id: user_id) { |r| puts r.inspect }             # user specific contributions
 Viki::Contribution.mark_as_candidate(user_id: user_id) { |r| puts r.inspect } # apply to be a contributor
+Viki::Contribution.count(user_id: user_id) { |r| puts r.inspect }             # user's contribution count
 ```
 
 * Title
@@ -700,6 +709,10 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 1.9.10
+  * Recent contribution support
+* 1.9.9
+  * Include file for 1.9.8 to fix bad publish
 * 1.9.8
   * Device linking endpoints
 * 1.9.7
