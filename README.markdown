@@ -709,6 +709,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 2.0.0
+  * Vikipass related refactor, breaks previous version plans, plans subscriber and gift card endpoints
 * 1.9.10
   * Recent contribution support
 * 1.9.9
@@ -754,66 +756,6 @@ Changelog
   * Return error for malform json from api response
 * 1.8.0
   * support for session PUT v5
-* 1.7.9
-  * Request info logs IP
 
-* 1.7.8
-  * artist cast endpoint to be v4
-
-* 1.7.7
-  * Move Vertical centric path to vertical.rb
-  * Revert video.rb and container.rb to v4
-
-* 1.7.6
-  * Add support for v5 sessions
-  * Fix backward compatiblity for containers & videos update
-
-* 1.7.5
-  * Add support for v5 vertical
-
-* 1.7.4
-  * Add support for user redemptions endpoint
-
-* 1.7.3
-  * Add support for gift cards endpoint
-
-* 1.7.2
-  * Support for time out errors
-
-* 1.6.4
-  * Support for referrals endpoint
-
-* 1.6.1
-  * Downgraded typhoeus version. (seg fault errors after upgrade)
-
-* 1.5.9
-  * Fix OJ response breakage
-
-* 1.5.8
-  * Mark as candidate endpoint
-
-* 1.5.4
-  * Change dependency specifications to 'more than'
-
-* 1.5.2
-  * Fix timeout issue. Typhoeus expect timeout in milliseconds
-
-* 1.5.1
-  * Do not cache fetcher request if request have nocache=true parameter
-
-* 1.5.0
-  * Invoices
-
-* 1.4.9
-  * Content owner
-
-* 1.4.8
-  * Log api response time in request
-
-* 1.4.6
-  * Leaaderboard
-
-* 1.4.5
-  * Caption
 
 

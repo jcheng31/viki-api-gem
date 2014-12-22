@@ -64,9 +64,58 @@ describe Viki::GiftCard do
       stub = stub_request('post', %r{.*/gift_cards/cool/send_email.json.*}).
           with(body: Oj.dump(attrs))
 
-      described_class.send_email({gift_code: 'cool'}, attrs) do
-      end
-      Viki.run
+      described_class.send_email({gift_code: 'cool'}, attrs)
+      stub.should have_been_made
+    end
+  end
+
+  describe 'types' do
+    it do
+      stub_api 'gift_cards/types.json', Oj.dump(
+          [
+            {
+                :id => "5gt",
+                :name => "12",
+                :payment_provider => "stripe",
+                :duration_type => "once",
+                :amount_off => 4788,
+                :duration_in_months => nil,
+                :max_redemptions => 1,
+                :price => 2394,
+            },
+            {
+                :id => "6gt",
+                :name => "6",
+                :payment_provider => "stripe",
+                :duration_type => "repeating",
+                :amount_off => 399,
+                :duration_in_months => 6,
+                :max_redemptions => 1,
+                :price => 1915
+            },
+            {
+                :id => "7gt",
+                :name => "3",
+                :payment_provider => "stripe",
+                :duration_type => "repeating",
+                :amount_off => 399,
+                :duration_in_months => 3,
+                :max_redemptions => 1,
+                :price => 1077
+            }
+          ], mode: :compat)
+
+      res = described_class.types
+      expect(res.value.count).to eq 3
+      expect(res.value.map{|gt| gt['name']}).to eq ['12','6','3']
+    end
+  end
+
+  describe 'generate' do
+    it do
+      stub = stub_request('post', %r{.*/gift_cards/generate.json.*}).
+          with(:body => "{}")
+      described_class.generate(gift_type:'3',amount: 3)
       stub.should have_been_made
     end
   end
