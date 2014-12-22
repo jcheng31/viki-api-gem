@@ -64,9 +64,7 @@ describe Viki::GiftCard do
       stub = stub_request('post', %r{.*/gift_cards/cool/send_email.json.*}).
           with(body: Oj.dump(attrs))
 
-      described_class.send_email({gift_code: 'cool'}, attrs) do
-      end
-      Viki.run
+      described_class.send_email({gift_code: 'cool'}, attrs)
       stub.should have_been_made
     end
   end
@@ -110,6 +108,15 @@ describe Viki::GiftCard do
       res = described_class.types
       expect(res.value.count).to eq 3
       expect(res.value.map{|gt| gt['name']}).to eq ['12','6','3']
+    end
+  end
+
+  describe 'generate' do
+    it do
+      stub = stub_request('post', %r{.*/gift_cards/generate.json.*}).
+          with(:body => "{}")
+      described_class.generate(gift_type:'3',amount: 3)
+      stub.should have_been_made
     end
   end
 end

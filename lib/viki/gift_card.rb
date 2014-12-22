@@ -25,6 +25,6 @@ class Viki::GiftCard < Viki::Core::Base
   end
 
   def self.generate(options = {})
-    self.fetch_sync(options.merge(named_path: GENERATE))
+    self.create_sync(options.merge(named_path: GENERATE))
   end
 end
