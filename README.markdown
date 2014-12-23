@@ -709,6 +709,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 2.0.1
+  * Update typhoeus gem.
 * 2.0.0
   * Vikipass related refactor, breaks previous version plans, plans subscriber and gift card endpoints
 * 1.9.10
