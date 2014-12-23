@@ -709,6 +709,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 2.0.2
+  * Update viki_utils gem
 * 2.0.1
   * Update typhoeus gem.
 * 2.0.0
