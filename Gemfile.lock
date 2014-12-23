@@ -6,7 +6,7 @@ PATH
       ethon (= 0.7.1)
       oj (>= 2.0)
       typhoeus (= 0.6.9)
-      viki_utils (= 0.0.8)
+      viki_utils (= 0.0.9)
 
 GEM
   remote: https://rubygems.org/
@@ -88,9 +88,9 @@ GEM
       ethon (>= 0.7.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    viki_utils (0.0.8)
-      addressable (>= 2.3)
-      oj (>= 2.0.2)
+    viki_utils (0.0.9)
+      addressable (~> 2.3)
+      oj (~> 2.0, >= 2.0.2)
     webmock (1.12.3)
       addressable (>= 2.2.7)
       crack (>= 0.3.2)
