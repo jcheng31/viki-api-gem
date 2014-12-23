@@ -21,7 +21,7 @@ describe Viki::ContentOwner, api: true do
     it "loads containers" do
       stub_api 'content_owners/42co/containers.json', Oj.dump(json_fixture(:containers))
       described_class.fetch(containers_for: '42co') do |response|
-        response.value.should == json_fixture(:containers)
+        response.value.should == json_fixture(:containers).force_encoding('UTF-8')
       end
     end
   end
