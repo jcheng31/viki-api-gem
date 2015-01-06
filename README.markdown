@@ -688,6 +688,17 @@ Viki::Device.fetch(user_id:  '42u')|r| # Fetch recommendation lists
 end
 ```
 
+* Following
+```ruby
+Viki::Follow.followings('42u') |r| # Fetch followings of a user (who user is following)
+  puts r.inspect
+end
+
+Viki::Follow.followers('42u') |r| # Fetch followers of a user (who is following the user)
+  puts r.inspect
+end
+```
+
 Testing Tool
 ------------
 
@@ -709,6 +720,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 2.0.3
+  * Follow endpoints
 * 2.0.2
   * Update viki_utils gem
 * 2.0.1
