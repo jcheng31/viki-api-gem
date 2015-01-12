@@ -699,6 +699,14 @@ Viki::Follow.followers('42u') |r| # Fetch followers of a user (who is following 
 end
 ```
 
+* Country by Resource
+```ruby
+Viki::CountryByResource.fetch(resource: "series") |r| # Fetch countries which have shows originating form for the resource series
+  puts r.inspect
+end
+```
+
+
 Testing Tool
 ------------
 
@@ -720,6 +728,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 2.0.4
+  * Country by resource endpoints
 * 2.0.3
   * Follow endpoints
 * 2.0.2
