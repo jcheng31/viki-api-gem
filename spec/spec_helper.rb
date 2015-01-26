@@ -23,6 +23,7 @@ RSpec.configure do |config|
 
   config.after(:each) do
     Viki.run
+    Thread.current[:typhoeus_hydra] = nil
   end
 
   config.after(:each, api: true) do

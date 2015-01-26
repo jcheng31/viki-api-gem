@@ -9,20 +9,18 @@ require 'base64'
 
 module Viki
   class << self
-    attr_accessor :salt, :app_id, :domain, :manage, :logger, :user_ip, :user_token, :signer, :hydra,
+    attr_accessor :salt, :app_id, :domain, :manage, :logger, :user_ip, :user_token, :signer,
                   :timeout_seconds, :timeout_seconds_post, :cache, :cache_ns, :cache_seconds, :hydra_options
   end
 
   def self.run
     if defined?(::ActiveSupport::Notifications)
       ActiveSupport::Notifications.instrument("viki-api.fetch") do
-        @hydra.run
+        hydra.run
       end
     else
-      @hydra.run
+      hydra.run
     end
-  ensure
-    @hydra = Typhoeus::Hydra.new(@hydra_options)
   end
 
   def self.configure(&block)
@@ -43,8 +41,11 @@ module Viki
     @cache_ns = configurator.cache_ns
     @cache_seconds = configurator.cache_seconds
     @hydra_options = {max_concurrency: configurator.max_concurrency, pipelining: configurator.pipelining}
-    @hydra = Typhoeus::Hydra.new(@hydra_options)
     nil
+  end
+
+  def self.hydra
+    ::Thread.current[:typhoeus_hydra] ||= Typhoeus::Hydra.new(@hydra_options)
   end
 
   class Configurator
