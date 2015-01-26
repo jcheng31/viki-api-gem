@@ -2,18 +2,36 @@ require 'spec_helper'
 
 describe Viki do
   describe 'configure' do
-    it 'sets max concurrency' do
-      Viki.configure do |c|
-        c.max_concurrency = 100
+    describe 'max concurrency' do
+      it 'sets max concurrency' do
+        Viki.configure do |c|
+          c.max_concurrency = 100
+        end
+        expect(Viki.hydra_options[:max_concurrency]).to eq(100)
       end
-      expect(Viki.hydra_options).to eq(max_concurrency: 100)
+
+      it 'sets to 200 if max_concurrency is not specified' do
+        Viki.configure do |c|
+        end
+
+        expect(Viki.hydra_options[:max_concurrency]).to eq(200)
+      end
     end
 
-    it 'sets to 200 if max_concurrency is not specified' do
-      Viki.configure do |c|
+    describe 'pipelining' do
+      it 'enables' do
+        Viki.configure do |c|
+          c.pipelining = 1
+        end
+        expect(Viki.hydra_options[:pipelining]).to eq(1)
       end
 
-      expect(Viki.hydra_options).to eq(max_concurrency: 200)
+      it 'disable pipelining if it is not specified' do
+        Viki.configure do |c|
+        end
+
+        expect(Viki.hydra_options[:pipelining]).to eq(0)
+      end
     end
   end
 
@@ -21,6 +39,7 @@ describe Viki do
     it 'initializes with hydra_options' do
       Viki.configure do |c|
         c.max_concurrency = 100
+        c.pipelining = 1
       end
       Viki.run
       expect(Viki.hydra.max_concurrency).to be(100)
