@@ -21,16 +21,16 @@ describe Viki do
     describe 'pipelining' do
       it 'enables' do
         Viki.configure do |c|
-          c.pipelining = 1
+          c.pipelining = true
         end
-        expect(Viki.hydra_options[:pipelining]).to eq(1)
+        expect(Viki.hydra_options[:pipelining]).to eq(true)
       end
 
       it 'disable pipelining if it is not specified' do
         Viki.configure do |c|
         end
 
-        expect(Viki.hydra_options[:pipelining]).to eq(0)
+        expect(Viki.hydra_options[:pipelining]).to eq(false)
       end
     end
   end
@@ -39,7 +39,7 @@ describe Viki do
     it 'initializes with hydra_options' do
       Viki.configure do |c|
         c.max_concurrency = 100
-        c.pipelining = 1
+        c.pipelining = true
       end
       Viki.run
       expect(Viki.hydra.max_concurrency).to be(100)

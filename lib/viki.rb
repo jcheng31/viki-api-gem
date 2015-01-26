@@ -71,7 +71,7 @@ module Viki
       @cache_ns = "viki-api-gem"
       @cache_seconds = 5
       @max_concurrency = 200
-      @pipelining = 0
+      @pipelining = false
     end
   end
 end
