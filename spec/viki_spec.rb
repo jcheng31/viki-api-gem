@@ -33,6 +33,22 @@ describe Viki do
         expect(Viki.hydra_options[:pipelining]).to eq(false)
       end
     end
+
+    describe 'memoize' do
+      it 'sets meomoize to false' do
+        Viki.configure do |c|
+          c.memoize = false
+          c.logger = nil
+        end
+        expect(Typhoeus::Config.memoize).to eq(false)
+      end
+
+      it 'sets meomoize to true if it is not specified' do
+        Viki.configure do |c|
+        end
+        expect(Typhoeus::Config.memoize).to eq(true)
+      end
+    end
   end
 
   describe 'run' do
