@@ -49,6 +49,10 @@ module Viki
     ::Thread.current[:typhoeus_hydra] ||= Typhoeus::Hydra.new(@hydra_options)
   end
 
+  def self.reset_hydra
+    ::Thread.current[:typhoeus_hydra] = Typhoeus::Hydra.new(@hydra_options)
+  end
+
   class Configurator
     attr_reader :logger
     attr_accessor :salt, :app_id, :domain, :manage, :user_ip, :user_token, :timeout_seconds, :timeout_seconds_post, :cache, :cache_ns, :cache_seconds, :max_concurrency, :pipelining, :memoize
