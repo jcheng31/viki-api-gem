@@ -10,10 +10,6 @@ require 'viki'
 require 'timecop'
 require 'webmock/rspec'
 
-Viki.configure do |c|
-  c.logger = nil
-end
-
 Dir[File.join(File.dirname(__FILE__), "support/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
@@ -21,8 +17,15 @@ RSpec.configure do |config|
   config.include ApiStub
   config.order = "random"
 
+  config.before(:each) do
+    Viki.configure do |c|
+      c.logger = nil
+    end
+  end
+
   config.after(:each) do
     Viki.run
+    Thread.current[:typhoeus_hydra] = nil
   end
 
   config.after(:each, api: true) do

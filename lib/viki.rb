@@ -9,20 +9,18 @@ require 'base64'
 
 module Viki
   class << self
-    attr_accessor :salt, :app_id, :domain, :manage, :logger, :user_ip, :user_token, :signer, :hydra,
-                  :timeout_seconds, :timeout_seconds_post, :cache, :cache_ns, :cache_seconds
+    attr_accessor :salt, :app_id, :domain, :manage, :logger, :user_ip, :user_token, :signer,
+                  :timeout_seconds, :timeout_seconds_post, :cache, :cache_ns, :cache_seconds, :hydra_options
   end
 
   def self.run
     if defined?(::ActiveSupport::Notifications)
       ActiveSupport::Notifications.instrument("viki-api.fetch") do
-        @hydra.run
+        hydra.run
       end
     else
-      @hydra.run
+      hydra.run
     end
-  ensure
-    @hydra = Typhoeus::Hydra.new
   end
 
   def self.configure(&block)
@@ -42,13 +40,22 @@ module Viki
     @cache = configurator.cache
     @cache_ns = configurator.cache_ns
     @cache_seconds = configurator.cache_seconds
-    @hydra = Typhoeus::Hydra.new
+    @hydra_options = {max_concurrency: configurator.max_concurrency, pipelining: configurator.pipelining}
+    Typhoeus::Config.memoize = configurator.memoize
     nil
+  end
+
+  def self.hydra
+    ::Thread.current[:typhoeus_hydra] ||= Typhoeus::Hydra.new(@hydra_options)
+  end
+
+  def self.reset_hydra
+    ::Thread.current[:typhoeus_hydra] = Typhoeus::Hydra.new(@hydra_options)
   end
 
   class Configurator
     attr_reader :logger
-    attr_accessor :salt, :app_id, :domain, :manage, :user_ip, :user_token, :timeout_seconds, :timeout_seconds_post, :cache, :cache_ns, :cache_seconds
+    attr_accessor :salt, :app_id, :domain, :manage, :user_ip, :user_token, :timeout_seconds, :timeout_seconds_post, :cache, :cache_ns, :cache_seconds, :max_concurrency, :pipelining, :memoize
 
     def logger=(v)
       @logger.level = Viki::Logger::FATAL if v.nil?
@@ -68,12 +75,11 @@ module Viki
       @cache = nil
       @cache_ns = "viki-api-gem"
       @cache_seconds = 5
+      @max_concurrency = 200
+      @pipelining = false
+      @memoize = true
     end
   end
-end
-
-Typhoeus.configure do |config|
-  config.memoize = true
 end
 
 Viki::configure{}

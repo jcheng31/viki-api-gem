@@ -18,6 +18,7 @@ module Viki::Core
           if is_error?(res)
             if res.timed_out?
               error = Viki::Core::TimeoutErrorResponse.new(@url)
+              Viki.reset_hydra
             else
               error = Viki::Core::ErrorResponse.new(res.body, res.code, @url)
             end
