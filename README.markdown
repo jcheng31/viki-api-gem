@@ -29,6 +29,9 @@ Viki.configure do |c|
   c.cache_seconds = 5 # seconds to cache
   c.logger = Logger.new(STDOUT) # The logger to use from the gem
   c.timeout_seconds = 30 # The timeout for the requests.
+  c.max_concurrency = 200 # The number of concurrent connection the Gem can request with
+  c.pipelining = true # Allow pipeling in Hydra
+  c.memoize = true # Allow same calls to be called only once per batch
 end
 ```
 
@@ -728,6 +731,10 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 2.0.5
+  * Allow Gem to configure max_concurrency for multi threaded application
+  * Gem memoize is configuration
+  * Gem can configure pipelining
 * 2.0.4
   * Country by resource endpoints
 * 2.0.3
