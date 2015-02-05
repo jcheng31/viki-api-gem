@@ -71,10 +71,6 @@ module Viki::Core
                             timeout: (Viki.timeout_seconds)
     end
 
-    def log(url)
-      Viki.logger.info "[API Request] [Cacheable] [#{Viki.user_ip[]}] #{url} "
-    end
-
     private
     def get_content(json)
       if is_list?(json)
