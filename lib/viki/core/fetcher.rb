@@ -9,7 +9,8 @@ module Viki::Core
     IGNORED_PARAMS = ['t', 'sig', TOKEN_FIELD]
 
     def queue(&block)
-      Viki.logger.info "[API Request] [Cacheable] [#{Viki.user_ip[]}] #{@url} "
+
+      log @url
 
       super && return if @url.include?("nocache=true")
       super && return unless Viki.cache && !cacheable.empty?
@@ -68,6 +69,10 @@ module Viki::Core
                             method: "get",
                             # forbid_reuse: true,
                             timeout: (Viki.timeout_seconds)
+    end
+
+    def log(url)
+      Viki.logger.info "[API Request] [Cacheable] [#{Viki.user_ip[]}] #{url} "
     end
 
     private
