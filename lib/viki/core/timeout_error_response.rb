@@ -15,6 +15,10 @@ module Viki::Core
         [url, status, vcode, error]
     end
 
+    def to_json
+      Oj.dump({level: 'timeout', url: url, status: status, vcode: vcode, error: error}, mode: :compat)
+    end
+
     def timeout?
       true
     end

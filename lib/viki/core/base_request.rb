@@ -60,6 +60,9 @@ module Viki::Core
       end
     end
 
+    def log_json(msg)
+    end
+
     private
 
     def is_error?(response)
