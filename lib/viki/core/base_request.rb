@@ -24,7 +24,6 @@ module Viki::Core
             end
 
             Viki.logger.error(error.to_s)
-            Viki.logger.error(error.to_json)
             log_json(error.to_json)
             raise error if error.invalid_token?
             on_complete error, nil, nil, &block
