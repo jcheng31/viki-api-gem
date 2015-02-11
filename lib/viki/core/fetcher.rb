@@ -28,7 +28,7 @@ module Viki::Core
         else
           error = Viki::Core::ErrorResponse.new(body, 0, url)
           Viki.logger.error(error.to_s)
-          log_json(error.to_s)
+          log_json(error.to_json)
           block.call Viki::Core::Response.new(error, nil, self)
         end
       else
