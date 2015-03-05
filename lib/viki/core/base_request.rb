@@ -14,7 +14,7 @@ module Viki::Core
     def queue(&block)
       request.tap do |req|
         req.on_complete do |res|
-          Viki.logger.info "[API Request] [Responded] [#{Viki.user_ip[]}] #{@url} #{res.time}s"
+          log @url,res
           if is_error?(res)
             if res.timed_out?
               error = Viki::Core::TimeoutErrorResponse.new(@url)
@@ -24,6 +24,7 @@ module Viki::Core
             end
 
             Viki.logger.error(error.to_s)
+            log_json(error.to_json)
             raise error if error.invalid_token?
             on_complete error, nil, nil, &block
           else
@@ -50,6 +51,17 @@ module Viki::Core
         user_ip = Viki.user_ip.call
         headers['X-Forwarded-For'] = user_ip if user_ip
       end
+    end
+
+    def log(url, res = nil)
+      if res.present?
+        Viki.logger.info "[API Request] [Responded] [#{Viki.user_ip[]}] #{url} #{res.time}s"
+      else
+        Viki.logger.info "[API Request] [Cacheable] [#{Viki.user_ip[]}] #{url}"
+      end
+    end
+
+    def log_json(msg)
     end
 
     private

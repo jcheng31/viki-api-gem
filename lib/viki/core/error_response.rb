@@ -27,6 +27,10 @@ module Viki::Core
         [url, status, vcode, error, details.inspect]
     end
 
+    def to_json
+      Oj.dump({level: 'error', url: url, status: status, vcode: vcode, error: error, details: details.inspect}, mode: :compat)
+    end
+
     def invalid_token?
       INVALID_TOKENS.include? @vcode
     end

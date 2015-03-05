@@ -9,7 +9,8 @@ module Viki::Core
     IGNORED_PARAMS = ['t', 'sig', TOKEN_FIELD]
 
     def queue(&block)
-      Viki.logger.info "[API Request] [Cacheable] [#{Viki.user_ip[]}] #{@url} "
+
+      log @url
 
       super && return if @url.include?("nocache=true")
       super && return unless Viki.cache && !cacheable.empty?
@@ -20,12 +21,14 @@ module Viki::Core
           parsed_body = Oj.load(cached, mode: :compat, symbol_keys: false)
         rescue
           Viki.logger.info "Couldn't parse json. Body: #{@body.to_s}. Object: #{self}"
+          log_json(Oj.dump({level: 'error', error: "Could not parse json with body #{@body.to_s}"}, mode: :compat))
         end
         if parsed_body
           block.call Viki::Core::Response.new(nil, get_content(parsed_body), self)
         else
           error = Viki::Core::ErrorResponse.new(body, 0, url)
           Viki.logger.error(error.to_s)
+          log_json(error.to_json)
           block.call Viki::Core::Response.new(error, nil, self)
         end
       else
@@ -57,6 +60,7 @@ module Viki::Core
         else
           error = Viki::Core::ErrorResponse.new(body, 0, url)
           Viki.logger.error(error.to_s)
+          log_json(error.to_json)
           block.call Viki::Core::Response.new(error, nil, self)
         end
       end
