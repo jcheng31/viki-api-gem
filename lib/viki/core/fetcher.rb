@@ -1,20 +1,19 @@
 require 'set'
+require 'viki/core/cache'
 
 module Viki::Core
   class Fetcher < BaseRequest
     attr_accessor :count, :more, :details
 
     PAGE_REGEX = /page=(\d+)/
-    TOKEN_FIELD = "token"
-    IGNORED_PARAMS = ['t', 'sig', TOKEN_FIELD]
 
     def queue(&block)
-      Viki.logger.info "[API Request] [Cacheable] [#{Viki.user_ip[]}] #{@url} "
+      Viki.logger.info "[API Request] [Cacheable] [#{Viki.user_ip[]}] #{url} "
 
-      super && return if @url.include?("nocache=true")
+      super && return if url.include?("nocache=true")
       super && return unless Viki.cache && !cacheable.empty?
 
-      cached = Viki.cache.get(cache_key(url))
+      cached = Viki.cache.get(cache_key)
       if cached
         begin
           parsed_body = Oj.load(cached, mode: :compat, symbol_keys: false)
@@ -51,7 +50,7 @@ module Viki::Core
                 end
               end
             end
-            Viki.cache.setex(cache_key(url), cacheSeconds, Oj.dump(body, mode: :compat))
+            Viki.cache.setex(cache_key, cacheSeconds, Oj.dump(body, mode: :compat))
           end
           block.call Viki::Core::Response.new(nil, get_content(body), self)
         else
@@ -88,29 +87,8 @@ module Viki::Core
       value.has_key?("response")
     end
 
-    def cache_key(url)
-      parsed_url = Addressable::URI.parse(url)
-      cache_key = parsed_url.path
-
-      if parsed_url.query_values
-        token = parsed_url.query_values[TOKEN_FIELD]
-        user_role = 0
-        if token
-          rindex_token = token.rindex("_")
-          token_role = rindex_token.nil? ? 0 : token[rindex_token + 1, token.length]
-          user_role = token_role
-        end
-        cache_key += "-@role=#{user_role}"
-
-        parsed_url.query_values.
-          reject { |k, _| IGNORED_PARAMS.include?(k) }.
-          to_a.
-          sort_by { |(k, _)| k }.
-          each do |k, v|
-          cache_key += "-#{k}=#{v}"
-        end
-      end
-      "#{Viki.cache_ns}.#{cache_key}"
+    def cache_key
+      @cache_key ||= Cache.generate_key(url)
     end
   end
 end
