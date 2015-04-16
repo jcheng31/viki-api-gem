@@ -731,6 +731,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 2.1.0
+  * Gem logging configuration change. Highly coupled with Viki/Logstash requirement
 * 2.0.5
   * Allow Gem to configure max_concurrency for multi threaded application
   * Gem memoize is configuration
