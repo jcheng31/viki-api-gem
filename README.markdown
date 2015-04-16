@@ -771,6 +771,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 2.2.0
+  * Support for PATCH request
 * 2.1.1
   * Support for Person Endpoint
   * Support for RelationType Endpoint
