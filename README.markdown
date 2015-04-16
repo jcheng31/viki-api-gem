@@ -835,6 +835,9 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 2.2.1
+  * Support for PUT,PATCH,POST /bricks endpoint
+  * Support for PUT,PATCH /lists endpoint
 * 2.2.0
   * Support for PATCH request
 * 2.1.1
