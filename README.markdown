@@ -241,6 +241,10 @@ Viki::ContainerPeople.fetch(id: '50c') do |response|
 end
 
 Viki::ContainerPeople.update(id: '50c', {[]}) { |r| puts r.inspect }
+
+Viki::ContainerPeople.fetch(id: '50c', language: 'en') do |response| # Fetch the people (cast/directors) involved in a given show, with information localised in the given language
+  puts response.value.inspect
+end
 ```
 
 * Fetch multiple ids from container
@@ -709,6 +713,42 @@ Viki::CountryByResource.fetch(resource: "series") |r| # Fetch countries which ha
 end
 ```
 
+* Person
+```ruby
+Viki::Person.languages(person_id: "42pr") |r| # Fetch the languages that have translation for the given person_id
+  puts r.inspect
+end
+
+Viki::Person.fetch(person_id: "42pr", language: "en") |r| # Fetch the person information with data localised in the given language
+  puts r.inspect
+end
+
+Viki::Person.honors(person_id: "42pr") |r| # Fetch the honors/awards that the given person_id have
+  puts r.inspect
+end
+
+Viki::Person.relations(person_id: "42pr", language: "en") |r| # Fetch other people related to the given person_id in the provided language
+  puts r.inspect
+end
+
+Viki::Person.works(person_id: "42pr", language: "en") |r| # Fetch the works of the given person_id in the provided language
+  puts r.inspect
+end
+```
+
+* PersonRole
+```ruby
+Viki::PersonRole.fetch() |r| # Fetch the Role meta information that links a person to a work
+  puts r.inspect
+end
+```
+
+* RelationType
+```ruby
+Viki::RelationType.fetch() |r| # Fetch the Relation meta information that relates a person to another person
+  puts r.inspect
+end
+```
 
 Testing Tool
 ------------
@@ -731,6 +771,11 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 2.1.1
+  * Support for Person Endpoint
+  * Support for RelationType Endpoint
+  * Support for PersonRole Endpoint
+  * Addition endpoint for ContainerPeople
 * 2.1.0
   * Gem logging configuration change. Highly coupled with Viki/Logstash requirement
 * 2.0.5
