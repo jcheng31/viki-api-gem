@@ -139,6 +139,22 @@ module Viki::Core
         response
       end
 
+      def patch(url_options = {}, body = {}, &block)
+        format = get_format(url_options)
+        uri = signed_uri(url_options.dup, body)
+        Viki.logger.debug "#{self.name} patching to the API: #{uri}"
+        creator = Viki::Core::Patcher.new(uri, body, format)
+        creator.queue &block
+        creator
+      end
+
+      def patch_sync(url_options = {}, body = {})
+        response = nil
+        patch(url_options, body) { |r| response = r }
+        Viki.run
+        response
+      end
+
       private
 
       def get_format(params)
