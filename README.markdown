@@ -854,6 +854,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 2.2.2
+  * Support for contributors api resource
 * 2.2.1
   * Support for PUT,PATCH,POST /bricks endpoint
   * Support for PUT,PATCH /lists endpoint
