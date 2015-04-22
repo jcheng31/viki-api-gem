@@ -807,10 +807,29 @@ end
 Viki::List.update_sync({id: '1b'} {type: "container", resource_id: '1c'})
 ```
 
+<<<<<<< HEAD
 #### Delete a brick
 
 ```ruby
 Viki::List.destroy_sync({id: '1b'})
+```
+=======
+* Contributor's count
+```ruby
+Viki::Contributor.fetch_count(user_id: '1u') do |r|
+  puts r.inspect
+end
+```
+
+* Contributor's meta info
+```ruby
+Viki::Contributor.fetch_meta(user_id: '1u') do |r|
+  puts r.inspect
+end
+
+Viki::Contributor.update_meta(user_id: '1u', languages: 'ja,en') do |r|
+  puts r.inspect
+end
 ```
 
 Testing Tool
