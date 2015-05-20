@@ -832,6 +832,13 @@ Viki::Contributor.update_meta(user_id: '1u', languages: 'ja,en') do |r|
 end
 ```
 
+* Container years
+```ruby
+Viki::Year.fetch do |r|
+  puts r.inspect
+end
+```
+
 Testing Tool
 ------------
 
@@ -854,6 +861,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 2.2.3
+  * Support for container years endpoint
 * 2.2.2
   * Support for contributors api resource
 * 2.2.1
