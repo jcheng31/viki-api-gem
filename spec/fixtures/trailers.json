@@ -1,0 +1,282 @@
+{
+  "more": false,
+  "response": [
+    {
+      "id": "1037764v",
+      "created_at": "2014-04-23T04:38:46Z",
+      "updated_at": "2015-05-18T10:23:02Z",
+      "type": "trailer",
+      "duration": null,
+      "number": 0,
+      "root_id": "1028675vr",
+      "origin": {
+        "language": "ab"
+      },
+      "titles": {
+        "en": "Test042314"
+      },
+      "titles_phonetic": {},
+      "titles_aka": {},
+      "descriptions": {},
+      "subtitle_completions": {},
+      "container": {
+        "id": "11983c",
+        "type": "series",
+        "titles": {
+          "es": "test",
+          "en": "QA testing"
+        },
+        "team_name": "",
+        "genres": [
+          "10g",
+          "12g",
+          "13g",
+          "14g",
+          "17g",
+          "18g",
+          "19g",
+          "1g",
+          "20g",
+          "23g",
+          "24g",
+          "25g",
+          "26g",
+          "27g",
+          "2g",
+          "3g",
+          "4g",
+          "5g",
+          "6g",
+          "7g",
+          "8g",
+          "9g"
+        ],
+        "origin": {
+          "country": "mu",
+          "language": "vo"
+        },
+        "url": {
+          "web": "http://www.viki.com/tv/11983c-qa-testing",
+          "api": "http://api.viki.io/v4/series/11983c.json"
+        },
+        "managers": [
+          {
+            "id": "5164866u",
+            "username": "infn8loop01",
+            "images": {
+              "avatar": {
+                "url": "http://1.viki.io/u/5164866u/ec87ec51da.jpg"
+              }
+            },
+            "url": {
+              "web": "http://www.viki.com/users/infn8loop01",
+              "api": "http://api.viki.io/v4/users/5164866u.json"
+            }
+          },
+          {
+            "id": "711677u",
+            "username": "hannahcarleen",
+            "images": {
+              "avatar": {
+                "url": "http://1.viki.io/u/711677u/f2e47755a3.jpg"
+              }
+            },
+            "url": {
+              "web": "http://www.viki.com/users/hannahcarleen",
+              "api": "http://api.viki.io/v4/users/711677u.json"
+            }
+          }
+        ],
+        "images": {
+          "poster": {
+            "url": "http://1.viki.io/c/ecd/ec6/857/Beta_Tester_Invitation.jpg?x=b",
+            "source": "viki"
+          }
+        }
+      },
+      "source": null,
+      "images": {},
+      "likes": {
+        "count": 0
+      },
+      "flags": {
+        "licensed": true,
+        "hosted": true,
+        "on_air": false,
+        "embeddable": false,
+        "state": "normal",
+        "adult": true,
+        "hd": false,
+        "has_stream": false
+      },
+      "url": {
+        "api": "http://api.viki.io/v4/videos/1037764v.json",
+        "fb": "http://www.viki.com/videos/1037764v",
+        "web": "http://www.viki.com/videos/1037764v-test042314"
+      },
+      "embed": {
+        "iframe": {
+          "url": "http://www.viki.com/player/1037764v"
+        }
+      },
+      "rating": "PG-13",
+      "parts": [
+        {
+          "id": "1037764v",
+          "part": 1,
+          "url": "http://api.viki.io/v4/videos/1037764v.json"
+        }
+      ],
+      "credits_marker": 0,
+      "part_index": 0,
+      "author": "B2M Entertainment",
+      "author_url": "http://www.viki.com/networks/246co-b2m-entertainment",
+      "blocked": false,
+      "blocking": {
+        "geo": false,
+        "paywall": false,
+        "upcoming": false
+      }
+    },
+    {
+      "id": "1053911v",
+      "created_at": "2014-10-30T04:31:09Z",
+      "updated_at": "2015-05-18T10:24:14Z",
+      "type": "trailer",
+      "duration": 56,
+      "number": 20,
+      "root_id": "1041961vr",
+      "origin": {
+        "language": "vo"
+      },
+      "titles": {},
+      "titles_phonetic": {},
+      "titles_aka": {},
+      "descriptions": {},
+      "subtitle_completions": {},
+      "container": {
+        "id": "11983c",
+        "type": "series",
+        "titles": {
+          "es": "test",
+          "en": "QA testing"
+        },
+        "team_name": "",
+        "genres": [
+          "10g",
+          "12g",
+          "13g",
+          "14g",
+          "17g",
+          "18g",
+          "19g",
+          "1g",
+          "20g",
+          "23g",
+          "24g",
+          "25g",
+          "26g",
+          "27g",
+          "2g",
+          "3g",
+          "4g",
+          "5g",
+          "6g",
+          "7g",
+          "8g",
+          "9g"
+        ],
+        "origin": {
+          "country": "mu",
+          "language": "vo"
+        },
+        "url": {
+          "web": "http://www.viki.com/tv/11983c-qa-testing",
+          "api": "http://api.viki.io/v4/series/11983c.json"
+        },
+        "managers": [
+          {
+            "id": "5164866u",
+            "username": "infn8loop01",
+            "images": {
+              "avatar": {
+                "url": "http://1.viki.io/u/5164866u/ec87ec51da.jpg"
+              }
+            },
+            "url": {
+              "web": "http://www.viki.com/users/infn8loop01",
+              "api": "http://api.viki.io/v4/users/5164866u.json"
+            }
+          },
+          {
+            "id": "711677u",
+            "username": "hannahcarleen",
+            "images": {
+              "avatar": {
+                "url": "http://1.viki.io/u/711677u/f2e47755a3.jpg"
+              }
+            },
+            "url": {
+              "web": "http://www.viki.com/users/hannahcarleen",
+              "api": "http://api.viki.io/v4/users/711677u.json"
+            }
+          }
+        ],
+        "images": {
+          "poster": {
+            "url": "http://1.viki.io/c/ecd/ec6/857/Beta_Tester_Invitation.jpg?x=b",
+            "source": "viki"
+          }
+        }
+      },
+      "source": "viki",
+      "images": {
+        "poster": {
+          "url": "http://0.viki.io/videos/1053911v/1053911v_1410300431_1.jpg?x=b",
+          "source": "viki"
+        }
+      },
+      "likes": {
+        "count": 0
+      },
+      "flags": {
+        "licensed": true,
+        "hosted": true,
+        "on_air": false,
+        "embeddable": false,
+        "state": "normal",
+        "adult": true,
+        "hd": true,
+        "has_stream": true
+      },
+      "url": {
+        "api": "http://api.viki.io/v4/videos/1053911v.json",
+        "fb": "http://www.viki.com/videos/1053911v",
+        "web": "http://www.viki.com/videos/1053911v-qa-testing"
+      },
+      "embed": {
+        "iframe": {
+          "url": "http://www.viki.com/player/1053911v"
+        }
+      },
+      "rating": "PG-13",
+      "parts": [
+        {
+          "id": "1053911v",
+          "part": 1,
+          "url": "http://api.viki.io/v4/videos/1053911v.json"
+        }
+      ],
+      "credits_marker": 56,
+      "part_index": 0,
+      "author": "B2M Entertainment",
+      "author_url": "http://www.viki.com/networks/246co-b2m-entertainment",
+      "blocked": false,
+      "blocking": {
+        "geo": false,
+        "paywall": false,
+        "upcoming": false
+      }
+    }
+  ]
+}
