@@ -861,6 +861,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 2.2.4
+  * Support for trailers endpoint
 * 2.2.3
   * Support for container years endpoint
 * 2.2.2
