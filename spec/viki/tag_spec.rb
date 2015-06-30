@@ -16,7 +16,7 @@ describe Viki::Tag, api: true do
     it "returns a single tag information" do
       stub = stub_request('get', %r{.*/tags/37t.json.*})
 
-      described_class.fetch(tag_id: '37t', tag_type: 'external') do
+      described_class.fetch(id: '37t', tag_type: 'external') do
       end
       Viki.run
       stub.should have_been_made
@@ -27,7 +27,7 @@ describe Viki::Tag, api: true do
     it "returns languages of a particular tag" do
       stub = stub_request('get', %r{.*/tags/37t/languages.json.*})
 
-      described_class.tags_languages(tag_id: '37t') do
+      described_class.tags_languages(id: '37t') do
       end
       Viki.run
       stub.should have_been_made
@@ -49,7 +49,7 @@ describe Viki::Tag, api: true do
     it "returns all tags of a particular container" do
       stub = stub_request('get', %r{.*/series/50c/tags.json.*})
 
-      described_class.fetch(resource: 'series', container_id: '50c', tag_type: 'external') do
+      described_class.fetch(resource: 'series', id: '50c', tag_type: 'external') do
       end
       Viki.run
       stub.should have_been_made
