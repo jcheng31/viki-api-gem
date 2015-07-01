@@ -861,6 +861,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 2.2.6
+  * Support for tags endpoint
 * 2.2.4
   * Support for trailers endpoint
 * 2.2.3
