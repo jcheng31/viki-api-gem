@@ -6,8 +6,8 @@ module Viki::Core
     attr_accessor :error, :vcode, :status, :url, :json, :body, :details
 
     def initialize(body, status, url)
-      @body = body
       @status = status.to_i
+      @body = entity_too_large? ? set_413_body : body
       @url = url
       begin
         @json = Oj.load(@body.to_s, mode: :compat, symbol_keys: false)
@@ -45,6 +45,14 @@ module Viki::Core
 
     def server_error?
       @status >= 500 && @status < 600
+    end
+
+    def entity_too_large?
+      @status == 413
+    end
+
+    def set_413_body
+      Oj.dump({"error" => "Entity too large", "details" => "client_max_body side exceeded", "vcode" => 0})
     end
   end
 end

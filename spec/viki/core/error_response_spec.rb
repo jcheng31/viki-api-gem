@@ -38,4 +38,16 @@ describe Viki::Core::ErrorResponse do
     its(:client_error?) { should == false }
     its(:server_error?) { should == true }
   end
+
+  context 'entity too large' do
+    let(:status) { 413 }
+
+    its(:status) { should == 413 }
+    its(:entity_too_large?) { should == true }
+    its(:not_found?) { should == false }
+    its(:invalid_token?) { should == false }
+    its(:client_error?) { should == true }
+    its(:server_error?) { should == false }
+    its(:error) { should == 'Entity too large'}
+  end
 end
