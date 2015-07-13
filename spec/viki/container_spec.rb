@@ -34,6 +34,14 @@ describe Viki::Container, api: true do
     end
   end
 
+  it "fetches tags for container" do
+    resp = double
+    Viki::Container.should_receive(:fetch).with(tags_for: '50c').and_yield(resp)
+    Viki::Container.tags('50c') do |res|
+      res.should eq resp
+    end
+  end
+
   describe "create" do
     it "makes a POST request to v4" do
       params = {app: Viki.app_id}

@@ -44,4 +44,12 @@ describe Viki::Video, api: true do
   #     video.keys.should include('titles')
   #   end
   # end
+
+  it "fetches tags for container" do
+    resp = double
+    Viki::Video.should_receive(:fetch).with(tags_for: '50c').and_yield(resp)
+    Viki::Video.tags('50c') do |res|
+      res.should eq resp
+    end
+  end
 end
