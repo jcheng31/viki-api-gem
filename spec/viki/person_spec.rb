@@ -12,6 +12,17 @@ describe Viki::Person, api: true do
     end
   end
 
+  describe "create" do
+
+    it "creates a person" do
+      stub = stub_request('post', %r{.*/people.json.*}).with(body: {name: 'person name'})
+
+      described_class.create({}, {name: 'person name'}) do
+      end
+      Viki.run
+      stub.should have_been_made
+    end
+  end
 
   describe "fetch one person" do
     it "returns a person information in the selected language" do

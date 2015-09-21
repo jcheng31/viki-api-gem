@@ -5,6 +5,7 @@ class Viki::Person < Viki::Core::Base
   RELATIONS = 'relations'
   WORKS = 'works'
 
+  path '/people', api_version: "v4"
   path '/people/:language', api_version: "v4"
   path '/people/:person_id/languages', api_version: "v4", name: LANGUAGES
   path '/people/:person_id/:language', api_version: "v4"
