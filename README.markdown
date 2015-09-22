@@ -861,6 +861,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 2.2.10
+  * Support for POST /people endpoint
 * 2.2.9
   * entertainment agencies endpoint to return true source of data
 * 2.2.8
