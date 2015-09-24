@@ -861,6 +861,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 2.2.11
+  * Support for POST /image endpoint
 * 2.2.10
   * Support for POST /people endpoint
 * 2.2.9
