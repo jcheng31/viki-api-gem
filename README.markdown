@@ -807,7 +807,6 @@ end
 Viki::List.update_sync({id: '1b'} {type: "container", resource_id: '1c'})
 ```
 
-<<<<<<< HEAD
 #### Delete a brick
 
 ```ruby
@@ -839,6 +838,13 @@ Viki::Year.fetch do |r|
 end
 ```
 
+* Reported users
+```ruby
+Viki::ReportedUser.fetch do |r|
+  puts r.inspect
+end
+```
+
 Testing Tool
 ------------
 
@@ -861,6 +867,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 2.2.12
+  * Support for /reported_user endpoint
 * 2.2.11
   * Support for POST /image endpoint
 * 2.2.10
