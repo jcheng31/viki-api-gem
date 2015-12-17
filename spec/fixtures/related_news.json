@@ -1,0 +1,21 @@
+{
+   "count": 10,
+   "more": false,
+   "response": {
+      "news_items": [{
+        "type": "news_item",
+        "source": "soompi",
+        "language": "en",
+        "titles": {
+           "en": "10 Overused K-Drama Plots We Love to Hate"
+        },
+        "images": {
+           "thumbnail": "http://www.soompi.com/wp-content/uploads/2015/12/bofcover-140x140.jpg"
+        },
+        "url": {
+            "web": "http://www.soompi.com/2015/12/15/10-overused-k-drama-plots-we-love-to-hate/"
+        },
+        "published_at": "2015-12-15T01:20:50Z"
+      }]
+    }
+}
