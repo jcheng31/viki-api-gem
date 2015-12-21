@@ -315,6 +315,28 @@ end
 
 ### Others
 
+##### Fetch related news of a particular ID and resource type
+
+```ruby
+Viki::RelatedNews.fetch(resource_type: 'celebrities', resource_id: '15203pr', src: 'soompi', language: 'en') do |response|
+  puts response.value.inspect
+end
+```
+
+##### Fetch news from a particular source
+
+```ruby
+Viki::RelatedNews.fetch({src: "soompi", language: 'en', news_type:'spotlight'}) do |response|
+  puts response.value.inspect
+end
+```
+
+```ruby
+Viki::RelatedNews.fetch(resource_type: 'celebrities', resource_id: '15203pr', src: 'soompi', language: 'en') do |response|
+  puts response.value.inspect
+end
+```
+
 ##### Fetch a container cover page
 
 ```ruby
@@ -867,6 +889,8 @@ Only works with built-in RSpec mock framwork
 
 Changelog
 ---------
+* 2.2.13
+  * Support for /related_news endpoint
 * 2.2.12
   * Support for /reported_user endpoint
 * 2.2.11
@@ -958,6 +982,3 @@ Changelog
   * Return error for malform json from api response
 * 1.8.0
   * support for session PUT v5
-
-
-
