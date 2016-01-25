@@ -2,13 +2,14 @@ class Viki::Review < Viki::Core::Base
   cacheable
   LANGUAGES = 'languages'
   VOTE_PATCH = 'vote_patch'
+  EDIT = 'edit_review'
 
   path '/containers/:container_id/reviews'
   path '/reviews'
   path '/reviews/languages', name: LANGUAGES
   path '/users/:user_id/reviews'
-  path '/reviews/:review_id'
   path '/reviews/:review_id/votes', name: VOTE_PATCH
+  path '/reviews/:review_id', name: EDIT
 
   def self.languages(options = {}, &block)
     self.fetch(options.merge(named_path: LANGUAGES), &block)
@@ -19,7 +20,7 @@ class Viki::Review < Viki::Core::Base
   end
 
   def self.update_review(review_id, body = {}, &block)
-    self.update({review_id: review_id}, body, &block)
+    self.patch({review_id: review_id}.merge(named_path: EDIT), body, &block)
   end
 
   def self.update_like(review_id, body = {}, &block)
